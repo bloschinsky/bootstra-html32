@@ -10,18 +10,53 @@ Outset buttons that press in. Navy title bars. Phosphor-green terminal blocks. A
 
 ## Install
 
-Load Bootstrap first, then the theme from a CDN:
+The theme is a single CSS file with no images, fonts or JavaScript. Load Bootstrap 5.3 first, then the theme, using any of the options below.
+
+### CDN (versioned)
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstra-html32@0.1/dist/bootstra-html32.min.css">
 ```
 
-Or install it with npm and link `node_modules/bootstra-html32/dist/bootstra-html32.min.css`:
+### npm
 
 ```sh
 npm install bootstrap bootstra-html32
 ```
+
+Then link or import `node_modules/bootstra-html32/dist/bootstra-html32.min.css` after Bootstrap's stylesheet.
+
+### Latest build from GitHub Pages
+
+The demo site also serves the current build from `master`. It always follows the latest commit and cannot be pinned to a version, so use it for prototypes rather than long-lived pages.
+
+```html
+<link rel="stylesheet" href="https://bloschinsky.github.io/bootstra-html32/dist/bootstra-html32.min.css">
+```
+
+### Copy the file into your project
+
+Download [`bootstra-html32.min.css`](https://bloschinsky.github.io/bootstra-html32/dist/bootstra-html32.min.css) (or the readable [`bootstra-html32.css`](https://bloschinsky.github.io/bootstra-html32/dist/bootstra-html32.css)) and keep it next to your own code, for example in `assets/vendor/`. The file is self-contained, and its version is in the banner comment at the top.
+
+### Build from source
+
+```sh
+git clone https://github.com/bloschinsky/bootstra-html32.git
+cd bootstra-html32
+npm ci
+npm run build   # dist/bootstra-html32.css and dist/bootstra-html32.min.css
+```
+
+### Unbuilt source (quick experiments only)
+
+`src/bootstra-html32.css` pulls in its partials with plain CSS `@import`, so a browser can load it without a build. This makes 15 requests and is not minified:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bloschinsky/bootstra-html32@master/src/bootstra-html32.css">
+```
+
+### Set up the page
 
 Pick a colour scheme and a wallpaper on `<html>`:
 
@@ -31,7 +66,7 @@ Pick a colour scheme and a wallpaper on `<html>`:
 
 Then wrap the page in `.nv-page` and write normal Bootstrap markup. See [`examples/starter.html`](examples/starter.html) for a minimal page.
 
-Files in the package's `dist/`:
+Built files:
 
 | File | Use |
 | --- | --- |
