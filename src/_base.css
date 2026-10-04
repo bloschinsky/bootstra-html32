@@ -1,0 +1,28 @@
+/* ------------------------------------------------------------------
+   3. Base
+   ------------------------------------------------------------------ */
+body {
+  padding: 10px;
+  background: transparent;
+  font-size: 13px;
+}
+a { color: var(--nv-link); }
+a:visited { color: var(--nv-visited); }
+a:hover { color: #ff0000; }
+h1,h2,h3,h4,h5,h6 { font-family: var(--nv-font); font-weight: 700; line-height: 1.15; }
+code, kbd, samp, pre { font-family: var(--nv-font-mono); }
+code { color: var(--nv-title); }
+kbd {
+  padding: 1px 5px; color: #000; background: var(--nv-face);
+  border: 2px outset var(--nv-hi); border-radius: 0; font-size: 11px; font-weight: 700;
+}
+hr { border: 0; border-top: 2px groove var(--nv-hi); opacity: 1; margin: 10px 0; }
+::selection { color: #fff; background: var(--nv-title); }
+:focus-visible { outline: 2px dotted #000; outline-offset: 1px; }
+
+/* classic chunky scrollbars */
+* { scrollbar-color: var(--nv-lo) var(--nv-well); }
+::-webkit-scrollbar { width: 16px; height: 16px; }
+::-webkit-scrollbar-track { background: repeating-conic-gradient(var(--nv-face) 0 25%, var(--nv-hi) 0 50%) 0 0/2px 2px; }
+::-webkit-scrollbar-thumb { background: var(--nv-face); border: 3px outset var(--nv-hi); }
+::-webkit-scrollbar-corner { background: var(--nv-face); }

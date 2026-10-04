@@ -1,0 +1,85 @@
+/* ------------------------------------------------------------------
+   1. Colour schemes (Windows-style "Appearance" palettes)
+   Each scheme sets a face colour and a title-bar colour; everything
+   else (highlights, shadows, wells) is derived below.
+   ------------------------------------------------------------------ */
+:root,
+[data-nv-scheme="standard"] { --nv-face:#c0c0c0; --nv-face-rgb:192,192,192; --nv-title:#000080; --nv-title-rgb:0,0,128; }
+[data-nv-scheme="desert"]   { --nv-face:#d5ccbb; --nv-face-rgb:213,204,187; --nv-title:#8a7148; --nv-title-rgb:138,113,72; }
+[data-nv-scheme="eggplant"] { --nv-face:#90b0a8; --nv-face-rgb:144,176,168; --nv-title:#4b1f53; --nv-title-rgb:75,31,83; }
+[data-nv-scheme="rose"]     { --nv-face:#cfafb7; --nv-face-rgb:207,175,183; --nv-title:#8a3048; --nv-title-rgb:138,48,72; }
+[data-nv-scheme="slate"]    { --nv-face:#a8b4c0; --nv-face-rgb:168,180,192; --nv-title:#2f4a66; --nv-title-rgb:47,74,102; }
+[data-nv-scheme="spruce"]   { --nv-face:#a2c8a8; --nv-face-rgb:162,200,168; --nv-title:#205a34; --nv-title-rgb:32,90,52; }
+[data-nv-scheme="brick"]    { --nv-face:#c2bfa5; --nv-face-rgb:194,191,165; --nv-title:#800000; --nv-title-rgb:128,0,0; }
+[data-nv-scheme="marine"]   { --nv-face:#a8c8cc; --nv-face-rgb:168,200,204; --nv-title:#006070; --nv-title-rgb:0,96,112; }
+[data-nv-scheme="lilac"]    { --nv-face:#b8b0dc; --nv-face-rgb:184,176,220; --nv-title:#4e3f96; --nv-title-rgb:78,63,150; }
+[data-nv-scheme="pumpkin"]  { --nv-face:#e0c28c; --nv-face-rgb:224,194,140; --nv-title:#8a4000; --nv-title-rgb:138,64,0; }
+[data-nv-scheme="hotdog"]   { --nv-face:#ffff00; --nv-face-rgb:255,255,0; --nv-title:#ff0000; --nv-title-rgb:255,0,0; }
+
+:root,
+[data-nv-scheme] {
+  /* derived bevel palette */
+  --nv-hi:    color-mix(in srgb, var(--nv-face) 30%, #fff);   /* outset highlight   (#eee) */
+  --nv-hover: color-mix(in srgb, var(--nv-face) 72%, #fff);   /* hovered face       (#d8d8d8) */
+  --nv-well:  color-mix(in srgb, var(--nv-face) 96%, #000);   /* inset group bg     (#b8b8b8) */
+  --nv-lo:    color-mix(in srgb, var(--nv-face) 87%, #000);   /* side column bg     (#a8a8a8) */
+  --nv-press: color-mix(in srgb, var(--nv-face) 83%, #000);   /* pressed face       (#a0a0a0) */
+  --nv-shade: color-mix(in srgb, var(--nv-face) 54%, #000);   /* screen shell       (#686868) */
+  --nv-title-hi: color-mix(in srgb, var(--nv-title) 62%, #fff);
+  --nv-title-text: #ffffff;
+  --nv-text: #000000;
+
+  /* terminal / phosphor palette (shared by all schemes) */
+  --nv-crt: #000000;
+  --nv-phosphor: #00ff66;
+  --nv-phosphor-dim: #005522;
+  --nv-cyan: #00ccff;
+  --nv-hud: #00eaff;
+  --nv-amber: #ffff00;
+  --nv-alert: #ff6633;
+  --nv-red: #ff2b16;
+  --nv-blue: #168cff;
+  --nv-note: #ffffcc;
+  --nv-link: #0000ee;
+  --nv-visited: #551a8b;
+
+  --nv-font: Verdana, Geneva, Tahoma, Arial, sans-serif;
+  --nv-font-ui: Arial, Helvetica, sans-serif;
+  --nv-font-mono: "Courier New", Courier, monospace;
+
+  /* Bootstrap hooks */
+  --bs-body-font-family: var(--nv-font);
+  --bs-body-font-size: 13px;
+  --bs-body-line-height: 1.4;
+  --bs-body-color: var(--nv-text);
+  --bs-body-bg: var(--nv-face);
+  --bs-emphasis-color: #000;
+  --bs-secondary-color: color-mix(in srgb, var(--nv-shade) 80%, #000);
+  --bs-font-monospace: var(--nv-font-mono);
+  --bs-border-color: var(--nv-shade);
+  --bs-border-radius: 0;
+  --bs-border-radius-sm: 0;
+  --bs-border-radius-lg: 0;
+  --bs-border-radius-xl: 0;
+  --bs-border-radius-xxl: 0;
+  --bs-border-radius-pill: 0;
+  --bs-box-shadow: 4px 4px 0 rgba(0,0,0,.55);
+  --bs-box-shadow-sm: 2px 2px 0 rgba(0,0,0,.45);
+  --bs-box-shadow-lg: 8px 8px 0 rgba(0,0,0,.65);
+  --bs-link-color: var(--nv-link);
+  --bs-link-color-rgb: 0,0,238;
+  --bs-link-hover-color: #ff0000;
+  --bs-link-hover-color-rgb: 255,0,0;
+  --bs-focus-ring-color: rgba(0,0,0,.6);
+  --bs-primary: var(--nv-title);
+  --bs-primary-rgb: var(--nv-title-rgb);
+  --bs-secondary: var(--nv-face);
+  --bs-secondary-rgb: var(--nv-face-rgb);
+  --bs-success: #00aa44;   --bs-success-rgb: 0,170,68;
+  --bs-info: #008080;      --bs-info-rgb: 0,128,128;
+  --bs-warning: #ffff00;   --bs-warning-rgb: 255,255,0;
+  --bs-danger: #c01000;    --bs-danger-rgb: 192,16,0;
+  --bs-dark: #000000;      --bs-dark-rgb: 0,0,0;
+  --bs-light: #eeeeee;     --bs-light-rgb: 238,238,238;
+  color-scheme: light;
+}

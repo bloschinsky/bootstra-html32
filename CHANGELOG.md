@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Theme source moved to `src/` and split into partials; `dist/` is now built by `npm run build` (readable + minified) and is no longer committed.
+- Demo page moved to `site/` and deployed to GitHub Pages by GitHub Actions.
+- CI workflow runs stylelint and the build on every push and pull request.
+
 ## 0.1.0 — 2026-10-02
 
 First public release.

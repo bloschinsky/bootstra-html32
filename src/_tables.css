@@ -1,0 +1,39 @@
+/* ------------------------------------------------------------------
+   9. Tables
+   ------------------------------------------------------------------ */
+.table {
+  --bs-table-bg: #ffffff;
+  --bs-table-color: #000;
+  --bs-table-border-color: var(--nv-hi);
+  --bs-table-striped-bg: rgba(var(--nv-title-rgb), .07);
+  --bs-table-striped-color: #000;
+  --bs-table-hover-bg: var(--nv-note);
+  --bs-table-hover-color: #000;
+  --bs-table-active-bg: var(--nv-title);
+  --bs-table-active-color: #fff;
+  border: 3px outset var(--nv-hi);
+  border-collapse: separate; border-spacing: 2px;
+  font-size: 12px;
+}
+.table > :not(caption) > * > * { padding: 3px 7px; border: 1px inset var(--nv-hi); }
+.table > thead > tr > th, .table > thead > tr > td {
+  --bs-table-bg: var(--nv-title); --bs-table-color: var(--nv-title-text);
+  border: 1px outset var(--nv-title-hi); font-weight: 700;
+}
+.table-sm > :not(caption) > * > * { padding: 1px 5px; }
+.table-terminal {
+  --bs-table-bg: var(--nv-crt);
+  --bs-table-color: var(--nv-phosphor);
+  --bs-table-border-color: var(--nv-phosphor-dim);
+  --bs-table-striped-bg: #001a0a;
+  --bs-table-striped-color: var(--nv-phosphor);
+  --bs-table-hover-bg: #003311;
+  --bs-table-hover-color: #aaffcc;
+  border: 3px ridge #ffffff; border-collapse: collapse; border-spacing: 0;
+  font: 12px var(--nv-font-mono);
+}
+.table-terminal > :not(caption) > * > * { padding: 4px 7px; border: 1px solid var(--nv-phosphor-dim); white-space: nowrap; }
+.table-terminal > thead > tr > th, .table-terminal > thead > tr > td {
+  --bs-table-bg: #002a12; --bs-table-color: var(--nv-cyan); border: 1px solid var(--nv-phosphor-dim);
+}
+.table-terminal .nv-hot { color: var(--nv-amber); }

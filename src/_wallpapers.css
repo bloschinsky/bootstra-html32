@@ -1,0 +1,42 @@
+/* ------------------------------------------------------------------
+   2. Desktop wallpapers — repeating tiles. Put a class on <html>
+   (or on any element, e.g. a thumbnail).
+   ------------------------------------------------------------------ */
+.nv-bg-grid {
+  background-color: #000044;
+  background-image:
+    radial-gradient(circle at 2px 2px, #ffffff 0 1px, transparent 1.5px),
+    linear-gradient(45deg, transparent 46%, #004080 47% 53%, transparent 54%);
+  background-size: 23px 23px, 46px 46px;
+}
+.nv-bg-stars {
+  background-color: #00000c;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' shape-rendering='crispEdges'%3E%3Cg fill='%23fff'%3E%3Crect x='12' y='9' width='1' height='1'/%3E%3Crect x='47' y='31' width='2' height='2'/%3E%3Crect x='93' y='14' width='1' height='1'/%3E%3Crect x='131' y='40' width='1' height='1'/%3E%3Crect x='22' y='72' width='1' height='1'/%3E%3Crect x='70' y='88' width='1' height='1'/%3E%3Crect x='112' y='77' width='2' height='2'/%3E%3Crect x='150' y='101' width='1' height='1'/%3E%3Crect x='37' y='124' width='1' height='1'/%3E%3Crect x='88' y='139' width='1' height='1'/%3E%3Crect x='126' y='150' width='1' height='1'/%3E%3Crect x='5' y='147' width='1' height='1'/%3E%3Crect x='60' y='55' width='1' height='1'/%3E%3C/g%3E%3Cg fill='%23ffff66'%3E%3Crect x='101' y='118' width='1' height='1'/%3E%3Crect x='18' y='101' width='1' height='1'/%3E%3C/g%3E%3Cg fill='%2366ccff'%3E%3Crect x='144' y='12' width='1' height='1'/%3E%3Crect x='76' y='120' width='1' height='1'/%3E%3C/g%3E%3Cg fill='%23fff'%3E%3Crect x='139' y='66' width='1' height='5'/%3E%3Crect x='137' y='68' width='5' height='1'/%3E%3Crect x='139' y='68' width='1' height='1' fill='%23ffffcc'/%3E%3C/g%3E%3C/svg%3E"),
+                    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='97' height='97' shape-rendering='crispEdges'%3E%3Cg fill='%238888aa'%3E%3Crect x='30' y='20' width='1' height='1'/%3E%3Crect x='70' y='60' width='1' height='1'/%3E%3Crect x='10' y='80' width='1' height='1'/%3E%3Crect x='85' y='5' width='1' height='1'/%3E%3Crect x='50' y='44' width='1' height='1'/%3E%3C/g%3E%3C/svg%3E");
+}
+.nv-bg-marble {
+  background-color: #0c3a22;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='m' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.011 0.027' numOctaves='5' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.02  -1.3 0 0 0 0.62  -0.9 0 0 0 0.42  0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23m)'/%3E%3C/svg%3E");
+}
+.nv-bg-tartan {
+  background-color: #0e3b26;
+  background-image:
+    repeating-linear-gradient(90deg, transparent 0 18px, rgba(170,0,0,.62) 18px 34px, transparent 34px 42px, rgba(255,214,0,.55) 42px 44px, transparent 44px 60px, rgba(0,0,60,.55) 60px 72px),
+    repeating-linear-gradient(0deg,  transparent 0 18px, rgba(170,0,0,.62) 18px 34px, transparent 34px 42px, rgba(255,214,0,.55) 42px 44px, transparent 44px 60px, rgba(0,0,60,.55) 60px 72px),
+    repeating-linear-gradient(45deg, rgba(0,0,0,.18) 0 1px, transparent 1px 3px);
+}
+.nv-bg-bricks {
+  background-color: #b9a88a;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='32' shape-rendering='crispEdges'%3E%3Crect width='64' height='32' fill='%23b9a88a'/%3E%3Cg fill='%239a3a22'%3E%3Crect x='0' y='1' width='31' height='14'/%3E%3Crect x='32' y='1' width='31' height='14'/%3E%3Crect x='-16' y='17' width='31' height='14'/%3E%3Crect x='16' y='17' width='31' height='14'/%3E%3Crect x='48' y='17' width='31' height='14'/%3E%3C/g%3E%3Cg fill='%23c2553a'%3E%3Crect x='0' y='1' width='31' height='2'/%3E%3Crect x='32' y='1' width='31' height='2'/%3E%3Crect x='0' y='17' width='15' height='2'/%3E%3Crect x='16' y='17' width='31' height='2'/%3E%3Crect x='48' y='17' width='16' height='2'/%3E%3C/g%3E%3Cg fill='%236e2414'%3E%3Crect x='0' y='13' width='31' height='2'/%3E%3Crect x='32' y='13' width='31' height='2'/%3E%3Crect x='0' y='29' width='15' height='2'/%3E%3Crect x='16' y='29' width='31' height='2'/%3E%3Crect x='48' y='29' width='16' height='2'/%3E%3Crect x='9' y='6' width='2' height='1'/%3E%3Crect x='44' y='9' width='1' height='1'/%3E%3Crect x='27' y='22' width='2' height='1'/%3E%3Crect x='56' y='24' width='1' height='1'/%3E%3C/g%3E%3C/svg%3E");
+}
+.nv-bg-circuit {
+  background-color: #002a14;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' shape-rendering='crispEdges'%3E%3Cg fill='none' stroke='%23008a3a' stroke-width='2'%3E%3Cpath d='M0 20H24L34 30V52H56L66 42H80'/%3E%3Cpath d='M20 0V10L10 20'/%3E%3Cpath d='M20 80V66L34 52'/%3E%3Cpath d='M56 52V80'/%3E%3Cpath d='M56 0V14H70L80 24'/%3E%3Cpath d='M0 64H12'/%3E%3C/g%3E%3Cg fill='%23c8a000'%3E%3Crect x='31' y='27' width='6' height='6'/%3E%3Crect x='53' y='49' width='6' height='6'/%3E%3Crect x='9' y='61' width='6' height='6'/%3E%3Crect x='53' y='11' width='6' height='6'/%3E%3C/g%3E%3Cg fill='%23002a14'%3E%3Crect x='33' y='29' width='2' height='2'/%3E%3Crect x='55' y='51' width='2' height='2'/%3E%3Crect x='11' y='63' width='2' height='2'/%3E%3Crect x='55' y='13' width='2' height='2'/%3E%3C/g%3E%3Cg fill='%23101010' stroke='%23005a26'%3E%3Crect x='62' y='60' width='12' height='16'/%3E%3C/g%3E%3Cg fill='%23a0a0a0'%3E%3Crect x='60' y='63' width='2' height='2'/%3E%3Crect x='60' y='69' width='2' height='2'/%3E%3Crect x='74' y='63' width='2' height='2'/%3E%3Crect x='74' y='69' width='2' height='2'/%3E%3C/g%3E%3C/svg%3E");
+}
+.nv-bg-clouds {
+  background-color: #3a78d8;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='c' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.0095' numOctaves='5' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='2.4 0 0 0 -0.8  1.9 0 0 0 -0.4  0.8 0 0 0 0.5  0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='320' height='320' filter='url(%23c)'/%3E%3C/svg%3E");
+}
+.nv-bg-teal { background-color: #008080; background-image: none; }
+
+html[class*="nv-bg-"] { min-height: 100%; }

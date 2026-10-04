@@ -1,0 +1,43 @@
+/* ------------------------------------------------------------------
+   8. Cards → panels / windows
+   ------------------------------------------------------------------ */
+.card {
+  --bs-card-bg: var(--nv-face);
+  --bs-card-color: #000;
+  --bs-card-border-width: 3px;
+  --bs-card-border-color: var(--nv-hi);
+  --bs-card-border-radius: 0;
+  --bs-card-inner-border-radius: 0;
+  --bs-card-cap-bg: var(--nv-title);
+  --bs-card-cap-color: var(--nv-title-text);
+  --bs-card-cap-padding-y: 2px;
+  --bs-card-cap-padding-x: 5px;
+  --bs-card-spacer-y: 8px;
+  --bs-card-spacer-x: 8px;
+  --bs-card-title-spacer-y: 6px;
+  border-style: inset;
+  padding: 3px;
+}
+.card-header {
+  margin-bottom: 3px; border-bottom: 0;
+  text-align: center; font: 700 12px var(--nv-font-mono); letter-spacing: .5px;
+}
+.card-footer { background: transparent; border-top: 2px groove var(--nv-hi); font-size: 11px; }
+.card-title { font-size: 14px; font-weight: 700; }
+.card-subtitle { font-size: 11px; }
+.card-img-top, .card-img-bottom, .card-img { border: 3px inset var(--nv-hi); }
+.card.nv-window, .nv-window {
+  --bs-card-border-width: 6px;
+  padding: 0;
+  background: var(--nv-face);
+  border: 6px outset var(--nv-hi);
+  box-shadow: 8px 8px 0 rgba(0,0,0,.65);
+}
+.nv-window > .card-header, .nv-titlebar {
+  display: flex; align-items: center; justify-content: space-between; gap: 6px;
+  min-height: 32px; margin: 0; padding: 3px 4px 3px 8px;
+  color: var(--nv-title-text); background: var(--nv-title);
+  text-align: left; font: 700 13px var(--nv-font-mono); letter-spacing: 1px;
+}
+.nv-window-body { padding: 10px; }
+.card.nv-crt-card { --bs-card-bg: var(--nv-crt); --bs-card-color: var(--nv-phosphor); --bs-card-border-color: #fff; border-style: ridge; font-family: var(--nv-font-mono); }

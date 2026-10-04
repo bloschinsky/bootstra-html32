@@ -1,0 +1,67 @@
+/* ------------------------------------------------------------------
+   12. Lists, accordion, modal, offcanvas
+   ------------------------------------------------------------------ */
+.list-group {
+  --bs-list-group-bg: #fff; --bs-list-group-color: #000;
+  --bs-list-group-border-width: 0; --bs-list-group-border-radius: 0;
+  --bs-list-group-item-padding-x: 6px; --bs-list-group-item-padding-y: 2px;
+  --bs-list-group-action-hover-bg: var(--nv-note); --bs-list-group-action-hover-color: #000;
+  --bs-list-group-action-active-bg: var(--nv-title); --bs-list-group-action-active-color: var(--nv-title-text);
+  --bs-list-group-active-bg: var(--nv-title); --bs-list-group-active-color: var(--nv-title-text); --bs-list-group-active-border-color: var(--nv-title);
+  --bs-list-group-disabled-color: #808080;
+  padding: 2px; border: 3px inset var(--nv-hi); font-size: 12px;
+}
+.list-group-item.active { outline: 1px dotted #fff; outline-offset: -2px; }
+
+.accordion {
+  --bs-accordion-bg: var(--nv-face);
+  --bs-accordion-color: #000;
+  --bs-accordion-border-color: var(--nv-hi);
+  --bs-accordion-border-width: 3px;
+  --bs-accordion-border-radius: 0;
+  --bs-accordion-inner-border-radius: 0;
+  --bs-accordion-btn-padding-x: 8px; --bs-accordion-btn-padding-y: 5px;
+  --bs-accordion-btn-color: #000; --bs-accordion-btn-bg: var(--nv-face);
+  --bs-accordion-btn-focus-box-shadow: none;
+  --bs-accordion-active-color: var(--nv-title-text); --bs-accordion-active-bg: var(--nv-title);
+  --bs-accordion-btn-icon-width: 11px;
+  --bs-accordion-btn-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 9' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h9v9H0z' fill='%23fff'/%3E%3Cpath d='M0 0h9v1H1v8H0zM2 4h5v1H2zM4 2h1v5H4z'/%3E%3Cpath d='M8 1h1v8H1V8h7z' fill='%23808080'/%3E%3C/svg%3E");
+  --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 9' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h9v9H0z' fill='%23fff'/%3E%3Cpath d='M0 0h9v1H1v8H0zM2 4h5v1H2z'/%3E%3Cpath d='M8 1h1v8H1V8h7z' fill='%23808080'/%3E%3C/svg%3E");
+  --bs-accordion-body-padding-x: 9px; --bs-accordion-body-padding-y: 8px;
+}
+.accordion-item { border-style: outset; }
+.accordion-item + .accordion-item { border-top: 3px outset var(--nv-hi); margin-top: 3px; }
+.accordion-button { font: 700 12px var(--nv-font-ui); text-transform: uppercase; }
+.accordion-button:not(.collapsed) { box-shadow: none; }
+.accordion-button::after { transform: none !important; }
+.accordion-body { font-size: 12px; border-top: 2px groove var(--nv-hi); }
+
+.modal {
+  --bs-modal-bg: var(--nv-face);
+  --bs-modal-border-width: 6px;
+  --bs-modal-border-color: var(--nv-hi);
+  --bs-modal-border-radius: 0;
+  --bs-modal-inner-border-radius: 0;
+  --bs-modal-box-shadow: 8px 8px 0 rgba(0,0,0,.65);
+  --bs-modal-header-padding: 3px 4px 3px 8px;
+  --bs-modal-header-border-width: 0;
+  --bs-modal-footer-border-width: 0;
+  --bs-modal-padding: 10px;
+  --bs-modal-width: 420px;
+}
+.modal-content { border-style: outset; box-shadow: var(--bs-modal-box-shadow); }
+.modal-header { min-height: 32px; color: var(--nv-title-text); background: var(--nv-title); }
+.modal-title { font: 700 13px var(--nv-font-mono); letter-spacing: 1px; }
+.modal-header .btn-close { margin: 0 0 0 auto; padding: 0; }
+.modal-footer { padding: 0 10px 10px; gap: 6px; }
+.modal-footer > * { margin: 0; }
+.modal-backdrop { --bs-backdrop-bg: #000019; --bs-backdrop-opacity: .78; }
+
+.offcanvas {
+  --bs-offcanvas-bg: var(--nv-face);
+  --bs-offcanvas-border-width: 6px;
+  --bs-offcanvas-border-color: var(--nv-hi);
+  border-style: outset;
+}
+.offcanvas-header { color: var(--nv-title-text); background: var(--nv-title); padding: 4px 6px 4px 10px; }
+.offcanvas-title { font: 700 13px var(--nv-font-mono); }

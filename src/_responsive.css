@@ -1,0 +1,16 @@
+/* ------------------------------------------------------------------
+   14. Responsive & motion
+   ------------------------------------------------------------------ */
+@media (max-width: 575.98px) {
+  body { padding: 4px; }
+  .nv-page { border-width: 4px; padding: 3px; }
+  .nv-masthead { border-width: 3px; }
+  .nv-sidebar { padding: 3px; border-width: 3px; }
+  .nv-screen-shell { padding: 4px; border-width: 4px; }
+  .nv-dpad { width: 100%; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(3, 48px); }
+  .table-terminal > :not(caption) > * > * { white-space: normal; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nv-blink, .nv-cursor::after, .nv-new { animation: none; }
+  .nv-ticker-track { animation: none; padding-left: 0; }
+}

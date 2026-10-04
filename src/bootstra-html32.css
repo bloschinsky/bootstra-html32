@@ -1,0 +1,26 @@
+/*!
+ * bootstra-html32 — A Bootstrap 5 theme inspired by mid-90s web design,
+ * HTML 3.x pages, desktop UI chrome, and the early World Wide Web.
+ * Visual language derived from the NOSEVIEW 1997 interface.
+ * Load AFTER bootstrap.min.css.
+ *
+ *   <html data-nv-scheme="standard" class="nv-bg-grid">
+ *
+ * Schemes:  standard desert eggplant rose slate spruce brick marine lilac pumpkin hotdog
+ * Tiles:    nv-bg-grid nv-bg-stars nv-bg-marble nv-bg-tartan nv-bg-bricks nv-bg-circuit nv-bg-clouds nv-bg-teal
+ */
+
+@import "_schemes.css";
+@import "_wallpapers.css";
+@import "_base.css";
+@import "_page.css";
+@import "_screen.css";
+@import "_buttons.css";
+@import "_forms.css";
+@import "_cards.css";
+@import "_tables.css";
+@import "_navigation.css";
+@import "_feedback.css";
+@import "_lists-overlays.css";
+@import "_furniture.css";
+@import "_responsive.css";

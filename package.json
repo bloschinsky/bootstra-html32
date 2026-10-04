@@ -4,9 +4,49 @@
   "description": "A Bootstrap 5 theme inspired by mid-90s web design, HTML 3.x pages, desktop UI chrome, and the early World Wide Web.",
   "style": "dist/bootstra-html32.css",
   "main": "dist/bootstra-html32.css",
-  "files": ["dist/", "LICENSE", "README.md"],
-  "keywords": ["bootstrap", "bootstrap5", "theme", "css", "retro", "90s", "html32", "windows95", "geocities"],
+  "files": [
+    "dist/",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "build:css": "node scripts/build.mjs --css",
+    "dev": "node scripts/build.mjs --watch",
+    "lint": "stylelint \"src/**/*.css\" \"site/**/*.css\"",
+    "test": "npm run lint && npm run build",
+    "prepublishOnly": "npm test"
+  },
+  "keywords": [
+    "bootstrap",
+    "bootstrap5",
+    "theme",
+    "css",
+    "retro",
+    "90s",
+    "html32",
+    "windows95",
+    "geocities"
+  ],
   "author": "Artem Bloschinsky",
   "license": "MIT",
-  "peerDependencies": { "bootstrap": "^5.3.0" }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bloschinsky/bootstra-html32.git"
+  },
+  "homepage": "https://bloschinsky.github.io/bootstra-html32/",
+  "bugs": {
+    "url": "https://github.com/bloschinsky/bootstra-html32/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "peerDependencies": {
+    "bootstrap": "^5.3.0"
+  },
+  "devDependencies": {
+    "lightningcss": "^1.33.0",
+    "stylelint": "^17.16.0",
+    "stylelint-config-recommended": "^18.0.0"
+  }
 }

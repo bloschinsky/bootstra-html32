@@ -4,17 +4,23 @@ A Bootstrap 5 theme inspired by mid-90s web design, HTML 3.x pages, desktop UI c
 
 Outset buttons that press in. Navy title bars. Phosphor-green terminal blocks. A marquee ticker, a visitor counter and a tiled wallpaper behind it all. Underneath, it's still Bootstrap 5.3: the grid, utilities, components and JavaScript plugins work exactly as documented. Only the look changes.
 
-![bootstra-html32 demo page](docs/screenshot.png)
+![bootstra-html32 demo page](.github/assets/screenshot.png)
 
 **[▶ Live demo](https://bloschinsky.github.io/bootstra-html32/)**
 
 ## Install
 
-Load Bootstrap first, then the theme:
+Load Bootstrap first, then the theme from a CDN:
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="dist/bootstra-html32.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstra-html32@0.1/dist/bootstra-html32.min.css">
+```
+
+Or install it with npm and link `node_modules/bootstra-html32/dist/bootstra-html32.min.css`:
+
+```sh
+npm install bootstrap bootstra-html32
 ```
 
 Pick a colour scheme and a wallpaper on `<html>`:
@@ -25,18 +31,18 @@ Pick a colour scheme and a wallpaper on `<html>`:
 
 Then wrap the page in `.nv-page` and write normal Bootstrap markup. See [`examples/starter.html`](examples/starter.html) for a minimal page.
 
-Files in `dist/`:
+Files in the package's `dist/`:
 
 | File | Use |
 | --- | --- |
-| `bootstra-html32.css` | Readable source |
+| `bootstra-html32.css` | Readable build with comments |
 | `bootstra-html32.min.css` | Minified build |
 
 ## Colour schemes
 
 Like the Appearance tab in Windows, every component keeps its shape while the palette changes. Set `data-nv-scheme` on `<html>`, or on any element to recolour just that part of the page.
 
-![Schemes and wallpapers](docs/schemes.png)
+![Schemes and wallpapers](.github/assets/schemes.png)
 
 | Value | Face | Title bar |
 | --- | --- | --- |
@@ -132,7 +138,7 @@ A few variants have a 90s meaning:
 | `.nv-new`, `.nv-rainbow` | Flashing NEW! tag and rainbow text |
 | `.nv-footer` | Centred small-print footer |
 
-`index.html` shows every component in use and doubles as the documentation.
+The [demo page](https://bloschinsky.github.io/bootstra-html32/) (`site/index.html`) shows every component in use and doubles as the documentation.
 
 ## Accessibility and motion
 
@@ -141,6 +147,35 @@ Focus is shown with a dotted outline, in keeping with the era. Blinking text, th
 ## Browser support
 
 Any current browser that supports `color-mix()`: Chrome / Edge 111+, Firefox 113+, Safari 16.2+.
+
+## Development
+
+```
+src/        theme source, one partial per section, bundled from bootstra-html32.css
+site/       demo page published to GitHub Pages
+examples/   starter template
+scripts/    build script
+```
+
+`dist/` and `_site/` are build output and are not committed.
+
+```sh
+npm install
+npm run dev     # build, watch and serve the demo on http://localhost:8080
+npm run build   # dist/ (readable + minified CSS) and _site/ (demo page)
+npm run lint    # stylelint
+```
+
+The demo is deployed to GitHub Pages by the `pages.yml` workflow on every push to `master`.
+
+To release, move the `Unreleased` notes in `CHANGELOG.md` under a new version heading, then:
+
+```sh
+npm version minor   # bumps package.json, commits and tags vX.Y.Z
+git push --follow-tags
+```
+
+The `release.yml` workflow checks that the tag matches `package.json`, runs lint and build, publishes to npm with provenance (trusted publishing, no token) and creates a GitHub Release with the CSS files attached.
 
 ## Credits
 
