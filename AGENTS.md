@@ -180,7 +180,7 @@ These rules are mandatory.
 ## Security
 
 - Never commit secrets, tokens, or credentials. npm publishing uses OIDC trusted publishing and needs no token.
-- The demo loads Bootstrap from jsDelivr only. Do not add analytics, tracking, or other third-party requests.
+- The demo makes only two third-party requests: Bootstrap from jsDelivr and the visitor counter badge from `88x31.lol` (a plain image, no JavaScript or cookies). Do not add analytics, tracking, or other third-party requests.
 
 ## Non-goals
 
