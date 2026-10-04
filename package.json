@@ -1,0 +1,12 @@
+{
+  "name": "bootstra-html32",
+  "version": "0.1.0",
+  "description": "A Bootstrap 5 theme inspired by mid-90s web design, HTML 3.x pages, desktop UI chrome, and the early World Wide Web.",
+  "style": "dist/bootstra-html32.css",
+  "main": "dist/bootstra-html32.css",
+  "files": ["dist/", "LICENSE", "README.md"],
+  "keywords": ["bootstrap", "bootstrap5", "theme", "css", "retro", "90s", "html32", "windows95", "geocities"],
+  "author": "Artem Bloschinsky",
+  "license": "MIT",
+  "peerDependencies": { "bootstrap": "^5.3.0" }
+}

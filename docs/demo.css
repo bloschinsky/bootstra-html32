@@ -1,0 +1,17 @@
+/* Showcase-only helpers for index.html — not part of the theme. */
+:root { box-sizing: border-box; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+.demo-code { display:block; margin-top:6px; padding:3px 6px; font: 11px "Courier New", monospace; color:#000; background:#fff; border:2px inset var(--nv-hi); overflow-x:auto; white-space:nowrap; }
+.demo-section + .demo-section { margin-top: 8px; }
+.swatch-btn { display:flex; align-items:center; gap:6px; width:100%; text-align:left; }
+.swatch-btn .sw { display:inline-flex; flex:none; width:26px; height:14px; border:1px solid #000; }
+.swatch-btn .sw i { flex:1; }
+.wall-btn { width:100%; padding:3px !important; }
+.wall-btn .thumb { display:block; height:54px; border:2px inset var(--nv-hi); }
+.wall-btn .cap { display:block; margin-top:3px; font-size:9px; }
+.wall-btn.active .thumb, .swatch-btn.active { outline: 2px dotted #000; outline-offset: -6px; }
+.preview-desk { position:relative; height:150px; border:3px inset var(--nv-hi); overflow:hidden; }
+.preview-desk .mini { position:absolute; left:14%; top:18%; width:72%; padding:0; border:4px outset var(--nv-hi); background:var(--nv-face); }
+.preview-desk .mini .t { padding:2px 5px; color:#fff; background:var(--nv-title); font:700 10px "Courier New",monospace; }
+.preview-desk .mini .b { padding:6px; font-size:10px; }
+.hscroll { overflow-x:auto; }
