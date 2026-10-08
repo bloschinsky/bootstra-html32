@@ -33,7 +33,7 @@ function buildCss() {
   fs.mkdirSync(distDir, { recursive: true });
   fs.writeFileSync(path.join(distDir, `${pkg.name}.css`), css);
   fs.writeFileSync(path.join(distDir, `${pkg.name}.min.css`), code);
-  console.log(`dist/${pkg.name}.css (${css.length} B), .min.css (${code.length} B)`);
+  console.log(`dist/${pkg.name}.css (${Buffer.byteLength(css)} B), .min.css (${code.length} B)`);
 }
 
 function buildSite() {
