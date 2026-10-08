@@ -27,6 +27,8 @@ npm install bootstrap bootstra-html32
 
 Then link or import `node_modules/bootstra-html32/dist/bootstra-html32.min.css` after Bootstrap's stylesheet.
 
+Bootstrap is a peer dependency (`^5.3.0`): npm 7 and later installs it automatically if your project does not have it yet, and reuses your project's copy if it does, so only one Bootstrap ends up in the page.
+
 ### Latest build from GitHub Pages
 
 The demo site also serves the current build from `master`. It always follows the latest commit and cannot be pinned to a version, so use it for prototypes rather than long-lived pages.
