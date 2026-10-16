@@ -1,8 +1,14 @@
 name: Release
 
+# Publishes bootstra-html32 only. Until per-package releases exist, a `vX.Y.Z`
+# tag always means packages/bootstra-html32; the private root is never published.
+
 on:
   push:
     tags: ['v*']
+
+env:
+  PKG_DIR: packages/bootstra-html32
 
 jobs:
   release:
@@ -21,25 +27,30 @@ jobs:
       # Trusted publishing needs npm 11.5.1+
       - run: npm install -g npm@latest
 
-      - name: Check tag matches package.json version
+      - name: Check tag matches the package version
         run: |
-          VERSION=$(node -p "require('./package.json').version")
-          if [ "v$VERSION" != "$GITHUB_REF_NAME" ]; then
-            echo "::error::Tag $GITHUB_REF_NAME does not match package.json version $VERSION"
+          NAME=$(node -p "require('./$PKG_DIR/package.json').name")
+          VERSION=$(node -p "require('./$PKG_DIR/package.json').version")
+          if [ "$NAME" != "bootstra-html32" ]; then
+            echo "::error::$PKG_DIR/package.json is $NAME, expected bootstra-html32"
             exit 1
           fi
+          if [ "v$VERSION" != "$GITHUB_REF_NAME" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match $NAME version $VERSION"
+            exit 1
+          fi
+          echo "NAME=$NAME" >> "$GITHUB_ENV"
           echo "VERSION=$VERSION" >> "$GITHUB_ENV"
 
       - run: npm ci
-      - run: npm test
+      - run: npm test --workspace "$NAME"
 
       - name: Publish to npm
         run: |
-          NAME=$(node -p "require('./package.json').name")
           if npm view "$NAME@$VERSION" version >/dev/null 2>&1; then
             echo "$NAME@$VERSION is already on npm, skipping publish"
           else
-            npm publish
+            npm publish --workspace "$NAME"
           fi
 
       - name: Create GitHub Release
@@ -50,7 +61,7 @@ jobs:
             $0 ~ "^## " v "( |$)" { on = 1; next }
             /^## / { on = 0 }
             on
-          ' CHANGELOG.md > release-notes.md
-          gh release create "$GITHUB_REF_NAME" dist/*.css \
+          ' "$PKG_DIR/CHANGELOG.md" > release-notes.md
+          gh release create "$GITHUB_REF_NAME" "$PKG_DIR"/dist/*.css \
             --title "$GITHUB_REF_NAME" \
             --notes-file release-notes.md

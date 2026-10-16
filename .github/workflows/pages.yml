@@ -25,10 +25,11 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+      # Until the collection showcase exists, the site root is the HTML32 demo.
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: packages/bootstra-html32/_site
 
   deploy:
     needs: build

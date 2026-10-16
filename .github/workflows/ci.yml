@@ -17,3 +17,5 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run build
+      # Every workspace package must pack cleanly; the private root never packs.
+      - run: npm pack --workspaces --dry-run
