@@ -9,36 +9,17 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { listWorkspaces, readJson, repoSlug } from './workspaces.mjs';
 
 const TAG = /^((?:@[a-z0-9][a-z0-9._-]*\/)?[a-z0-9][a-z0-9._-]*)@(\d+\.\d+\.\d+)$/;
 const NPM_REGISTRY = /^https:\/\/registry\.npmjs\.org\/?$/;
 
-const readJson = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
 const toPosix = (p) => p.split(path.sep).join('/');
 
 export function parseTag(tag = '') {
   const match = TAG.exec(tag);
   if (!match) throw new Error(`Tag "${tag}" is not <package-name>@<X.Y.Z>`);
   return { name: match[1], version: match[2] };
-}
-
-// "owner/repo" from a package.json `repository` field.
-function repoSlug(pkg) {
-  const url = typeof pkg.repository === 'string' ? pkg.repository : pkg.repository?.url ?? '';
-  return url.match(/github\.com[/:]([\w.-]+\/[\w.-]+?)(?:\.git)?$/)?.[1] ?? '';
-}
-
-// Package folders matched by the root `workspaces` globs (only `dir/*` is supported).
-export function listWorkspaces(root) {
-  const { workspaces = [] } = readJson(path.join(root, 'package.json'));
-  return workspaces.flatMap((pattern) => {
-    if (!pattern.endsWith('/*')) throw new Error(`Unsupported workspace pattern "${pattern}"`);
-    const parent = path.join(root, pattern.slice(0, -2));
-    if (!fs.existsSync(parent)) return [];
-    return fs.readdirSync(parent, { withFileTypes: true })
-      .filter((d) => d.isDirectory() && fs.existsSync(path.join(parent, d.name, 'package.json')))
-      .map((d) => path.join(parent, d.name));
-  });
 }
 
 export function checkTag(root, tag) {

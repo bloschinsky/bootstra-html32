@@ -1,0 +1,15 @@
+{
+  "name": "bootstra-showcase",
+  "private": true,
+  "description": "The theme collection site published to GitHub Pages.",
+  "scripts": {
+    "build": "node build.mjs",
+    "serve": "node build.mjs --serve",
+    "lint": "stylelint \"src/**/*.css\"",
+    "test": "npm run lint && npm run build && node --test build.test.mjs"
+  },
+  "devDependencies": {
+    "stylelint": "^17.16.0",
+    "stylelint-config-recommended": "^18.0.0"
+  }
+}

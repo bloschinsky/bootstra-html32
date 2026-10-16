@@ -11,6 +11,9 @@ This repository is a small collection of Bootstrap 5 themes managed as an npm-wo
 | Package | Folder | npm name | Rules |
 | --- | --- | --- | --- |
 | bootstra-html32 | `packages/bootstra-html32/` | `bootstra-html32` | [`packages/bootstra-html32/AGENTS.md`](packages/bootstra-html32/AGENTS.md) |
+| bootstra-showcase (private) | `apps/showcase/` | not published | [`apps/showcase/AGENTS.md`](apps/showcase/AGENTS.md) |
+
+The collection site (`apps/showcase/`) is published to GitHub Pages. It lists every theme and hosts each theme's own demo as a separate page.
 
 The root is private and is never published. It only wires the workspaces together and holds shared CI and documentation.
 
@@ -22,6 +25,7 @@ Shared infrastructure does not mean shared visual foundations.
 - Do not import files from another package, and do not create a shared visual core (tokens, base CSS, mixins) across themes.
 - A package's own rules (for example HTML32's CSS-only build, `nv-` prefix, Sass prohibition, and demo layout) apply to that package only. **Never impose them on another theme.** Each theme keeps its own build system, naming, preprocessors, and public CSS API.
 - Move code to the root only when at least two packages genuinely need it and the owner agrees.
+- The showcase reads theme metadata and copies built demos; it contains no theme-specific code or styles, and themes never depend on it.
 
 ## Language
 
@@ -52,15 +56,18 @@ Decision rule: when several approaches satisfy the task, choose the one with few
 │   ├── ADDING_A_THEME.md     agent checklist for adding a theme
 │   └── RELEASING.md          per-package release procedure and npm setup
 ├── scripts/
+│   ├── workspaces.mjs        workspace discovery shared by the scripts and the showcase
 │   ├── release.mjs           release tag validation, notes, and assets
 │   └── release.test.mjs      its tests (run by the root `npm test`)
 ├── packages/
 │   └── <slug>/               one theme package each, with its own AGENTS.md
+├── apps/
+│   └── showcase/             the collection site (GitHub Pages), private
 ├── incoming/                 staging area for themes to add (git-ignored)
 └── .github/workflows/        ci.yml, pages.yml, release.yml
 ```
 
-Generated, never committed, never edited by hand: `node_modules/` and each package's own build output (for HTML32: `dist/`, `_site/`).
+Generated, never committed, never edited by hand: `node_modules/` and each package's own build output (for HTML32: `dist/`, `_site/`; for the showcase: `_site/`).
 
 Keep the structure compact. Do not create new top-level directories without a concrete reason.
 
@@ -71,12 +78,13 @@ Run from the repository root:
 | Command | What it does |
 | --- | --- |
 | `npm ci` | Install every workspace from the root lockfile |
-| `npm run build` | `build` in every package that has one |
+| `npm run build` | `build` in every package that has one: themes (`packages/*`) first, then the showcase (`apps/*`) |
 | `npm run lint` | `lint` in every package that has one |
 | `npm test` | `test` in every package that has one, then the release-check tests |
-| `npm run dev` | Dev server of `bootstra-html32` (the only demo until the collection showcase exists) |
+| `npm run dev` | Dev server of the `bootstra-html32` demo |
+| `npm run preview` | Build everything and serve the collection site under its GitHub Pages base path |
 | `npm run <script> --workspace <name>` | Run one package's script |
-| `npm pack --workspaces --dry-run` | Show what each package would publish |
+| `npm pack --workspace <name> --dry-run` | Show what a package would publish |
 
 Every package must provide `build`, `lint`, and `test` scripts (`test` may simply run lint and build) so the root scripts and CI cover it.
 
@@ -89,21 +97,25 @@ Every package must provide `build`, `lint`, and `test` scripts (`test` may simpl
 
 ## Package metadata for the collection
 
-Every theme package declares a small `themeCollection` field in its own `package.json`. It is the only registry: tooling discovers themes by reading `packages/*/package.json`, so never keep a separate hand-maintained list of themes.
+Every theme package declares a small `themeCollection` field in its own `package.json`. It is the only registry: the showcase discovers themes by reading the workspace `package.json` files, so never keep a separate hand-maintained list of themes and never edit the showcase to add one.
 
 ```json
 "themeCollection": {
   "id": "bootstra-html32",
   "name": "HTML32",
-  "description": "Mid-90s web pages and desktop UI chrome: outset buttons, navy title bars, tiled wallpapers."
+  "description": "Mid-90s web pages and desktop UI chrome: outset buttons, navy title bars, tiled wallpapers.",
+  "demo": "_site",
+  "preview": "screenshots/screenshot.png"
 }
 ```
 
-- `id`: stable, lowercase, URL-safe slug, equal to the package folder name. It will be used in URLs; never change it once released.
-- `name`: short display name.
-- `description`: one sentence, plain text.
+- `id` (required): stable, lowercase, URL-safe slug, equal to the package folder name. The demo is published at `themes/<id>/`; never change it once released.
+- `name` (required): short display name.
+- `description` (required): one sentence, plain text.
+- `demo` (optional): folder, relative to the package, that the package's `build` script fills with a self-contained demo. It must contain `index.html` and use only relative links. The showcase copies it unchanged to `themes/<id>/`, so it keeps its own CSS, scripts, and assets (with their licence notices). Without `demo`, the theme still gets a card with install instructions and docs, marked "Demo coming soon".
+- `preview` (optional): an image (`.png`, `.jpg`, `.webp`, `.svg`) inside the package, shown on the card. Without it the card shows a placeholder.
 
-Do not add more fields until a feature needs them.
+The card also uses the package's own `name`, `version`, `private`, `style`, `peerDependencies.bootstrap`, and `repository` for install snippets and links. The showcase build fails with the file name and the fix when the metadata is invalid: an unknown field, a bad or duplicate `id`, a missing name or description, or a `demo`/`preview` path that is absolute, outside the package, or missing. Do not add more fields until a feature needs them.
 
 ## Adding a theme
 
@@ -127,7 +139,7 @@ During implementation:
 
 - `npm test` at the root for every change to a package, a root script, `package.json`, or the lockfile.
 - Package-specific checks (visual review, pack contents) as listed in that package's `AGENTS.md`.
-- For workflow or workspace changes: `npm ci`, the root scripts, and `npm pack --workspaces --dry-run`.
+- For workflow or workspace changes: `npm ci`, the root scripts, and `npm pack --workspace <name> --dry-run` for each publishable package.
 - For release changes: the root `npm test` (which includes `scripts/release.test.mjs`) and `node scripts/release.mjs check|notes|assets <tag>` for an existing package. Never test by pushing a tag.
 
 The final report states what was actually checked. Never claim a check passed that was not run.

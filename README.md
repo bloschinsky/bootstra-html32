@@ -4,14 +4,15 @@ A small collection of Bootstrap 5 themes. Each theme is its own npm package with
 
 | Theme | npm | Docs | Demo |
 | --- | --- | --- | --- |
-| **HTML32**: mid-90s web pages and desktop UI chrome | [`bootstra-html32`](https://www.npmjs.com/package/bootstra-html32) | [README](packages/bootstra-html32/README.md) | [▶ Live demo](https://bloschinsky.github.io/bootstra-html32/) |
+| **HTML32**: mid-90s web pages and desktop UI chrome | [`bootstra-html32`](https://www.npmjs.com/package/bootstra-html32) | [README](packages/bootstra-html32/README.md) | [▶ Live demo](https://bloschinsky.github.io/bootstra-html32/themes/bootstra-html32/) |
 
-Install and usage instructions live in each theme's README.
+Browse them all on the **[collection site](https://bloschinsky.github.io/bootstra-html32/)**. Install and usage instructions live in each theme's README.
 
 ## Repository layout
 
 ```
 packages/<theme>/   one theme package each: source, build, demo, README, CHANGELOG
+apps/showcase/      the collection site published to GitHub Pages
 docs/               repository guides (adding a theme, releasing)
 scripts/            release checks shared by all packages
 .github/workflows/  CI, GitHub Pages, release
@@ -25,15 +26,16 @@ Requires Node.js 20 or later.
 
 ```sh
 npm ci          # install every package from the root lockfile
-npm run build   # build every package
+npm run build   # build every theme, then the collection site
 npm run lint    # lint every package
-npm test        # lint + build every package
+npm test        # lint + build + tests for every package
 npm run dev     # build, watch and serve the HTML32 demo on http://localhost:8080
+npm run preview # build and serve the collection site on http://localhost:8090/bootstra-html32/
 ```
 
 Run a single package's script with `--workspace`, for example `npm run build --workspace bootstra-html32`.
 
-GitHub Pages currently serves the HTML32 demo from `master`.
+GitHub Pages serves the [collection site](https://bloschinsky.github.io/bootstra-html32/) from `master`: a gallery of all themes, with each theme's own demo under `themes/<id>/`. Preview it locally with `npm run preview` (http://localhost:8090/bootstra-html32/).
 
 ## Releases
 

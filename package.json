@@ -7,13 +7,15 @@
     "url": "git+https://github.com/bloschinsky/bootstra-html32.git"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "apps/*"
   ],
   "scripts": {
     "build": "npm run build --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
     "test": "npm test --workspaces --if-present && node --test scripts/release.test.mjs",
-    "dev": "npm run dev --workspace bootstra-html32"
+    "dev": "npm run dev --workspace bootstra-html32",
+    "preview": "npm run build && npm run serve --workspace bootstra-showcase"
   },
   "engines": {
     "node": ">=20"

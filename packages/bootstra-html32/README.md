@@ -6,7 +6,7 @@ Outset buttons that press in. Navy title bars. Phosphor-green terminal blocks. A
 
 ![bootstra-html32 demo page](screenshots/screenshot.png)
 
-**[▶ Live demo](https://bloschinsky.github.io/bootstra-html32/)**
+**[▶ Live demo](https://bloschinsky.github.io/bootstra-html32/themes/bootstra-html32/)** · part of the [Bootstrap Theme Collection](https://bloschinsky.github.io/bootstra-html32/)
 
 ## Install
 
@@ -31,15 +31,15 @@ Bootstrap is a peer dependency (`^5.3.0`): npm 7 and later installs it automatic
 
 ### Latest build from GitHub Pages
 
-The demo site also serves the current build from `master`. It always follows the latest commit and cannot be pinned to a version, so use it for prototypes rather than long-lived pages.
+The demo page also serves the current build from `master`. It always follows the latest commit and cannot be pinned to a version, so use it for prototypes rather than long-lived pages.
 
 ```html
-<link rel="stylesheet" href="https://bloschinsky.github.io/bootstra-html32/dist/bootstra-html32.min.css">
+<link rel="stylesheet" href="https://bloschinsky.github.io/bootstra-html32/themes/bootstra-html32/dist/bootstra-html32.min.css">
 ```
 
 ### Copy the file into your project
 
-Download [`bootstra-html32.min.css`](https://bloschinsky.github.io/bootstra-html32/dist/bootstra-html32.min.css) (or the readable [`bootstra-html32.css`](https://bloschinsky.github.io/bootstra-html32/dist/bootstra-html32.css)) and keep it next to your own code, for example in `assets/vendor/`. The file is self-contained, and its version is in the banner comment at the top.
+Download [`bootstra-html32.min.css`](https://bloschinsky.github.io/bootstra-html32/themes/bootstra-html32/dist/bootstra-html32.min.css) (or the readable [`bootstra-html32.css`](https://bloschinsky.github.io/bootstra-html32/themes/bootstra-html32/dist/bootstra-html32.css)) and keep it next to your own code, for example in `assets/vendor/`. The file is self-contained, and its version is in the banner comment at the top.
 
 ### Build from source
 
@@ -178,7 +178,7 @@ A few variants have a 90s meaning:
 | `.nv-new`, `.nv-rainbow` | Flashing NEW! tag and rainbow text |
 | `.nv-footer` | Centred small-print footer |
 
-The [demo page](https://bloschinsky.github.io/bootstra-html32/) (`site/index.html`) shows every component in use and doubles as the documentation.
+The [demo page](https://bloschinsky.github.io/bootstra-html32/themes/bootstra-html32/) (`site/index.html`) shows every component in use and doubles as the documentation.
 
 ## Accessibility and motion
 
@@ -210,7 +210,7 @@ npm run build   # dist/ (readable + minified CSS) and _site/ (demo page)
 npm run lint    # stylelint
 ```
 
-The demo is deployed to GitHub Pages by the repository's `pages.yml` workflow on every push to `master`.
+The demo is deployed to GitHub Pages as `themes/bootstra-html32/` of the collection site by the repository's `pages.yml` workflow on every push to `master`. The `themeCollection` field in `package.json` registers it there.
 
 To release, move the `Unreleased` notes in `CHANGELOG.md` under a new version heading, then from the repository root:
 

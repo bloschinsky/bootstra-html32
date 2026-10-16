@@ -55,7 +55,7 @@ Anything the prompt leaves open (npm name, display name, licence questions) is e
   - Bootstrap as a `peerDependency` when the theme loads after Bootstrap's CSS, or as a dependency or devDependency when it compiles Bootstrap's Sass. Never copy Bootstrap files into the package;
   - the theme's own build tools as `devDependencies`;
   - `build`, `lint`, and `test` scripts (add a minimal `lint` that fits the theme's language if it has none; `test` may be `npm run lint && npm run build`), and `dev` if it has a demo server;
-  - the `themeCollection` field described in the root `AGENTS.md` (`id`, `name`, `description`).
+  - the `themeCollection` field described in the root `AGENTS.md` (`id`, `name`, `description`, and optionally `demo` and `preview`; see step 7).
 - [ ] Add a package `.gitignore` for the theme's build output. Do not commit generated files unless the theme's design requires it, and say so in the report if it does.
 - [ ] Make every path in the build script, demo, and examples relative to the package folder.
 - [ ] Run `npm install` at the root to link the workspace and update the single root lockfile. Delete any lockfile that came with the theme.
@@ -76,9 +76,13 @@ Anything the prompt leaves open (npm name, display name, licence questions) is e
 - [ ] The demo or example page works over HTTP with Bootstrap loaded first: desktop and narrow viewports, Bootstrap's JavaScript components (dropdown, modal, tooltip) still behave.
 - [ ] Other packages' build output is unchanged.
 
-### 7. Site registration
+### 7. Collection site
 
-- [ ] When the collection showcase exists, follow its documented registration step (it reads `themeCollection` from each package). Until then, the theme's own demo is built by its `build` script and is not deployed to GitHub Pages; mention this in the report.
+There is no registration step: the collection site (`apps/showcase/`) lists every package with a valid `themeCollection` field. Do not edit the showcase to add a theme.
+
+- [ ] Set `themeCollection.demo` to the folder the package's `build` writes its demo to (it must contain `index.html` and use relative links only). If the theme has no demo page, leave `demo` out rather than writing one in another theme's style; the card then says "Demo coming soon". Keep the theme's own demo; do not restyle it to match HTML32 or the gallery.
+- [ ] Set `themeCollection.preview` to a screenshot inside the package if one exists or can be taken from the demo; otherwise leave it out.
+- [ ] Run `npm run preview` and check at `http://localhost:8090/bootstra-html32/`: the new card shows the right name, version, and install commands; **Open demo** opens `themes/<slug>/` with the theme's own styling; existing themes look unchanged.
 
 ### 8. Clean up and report
 
