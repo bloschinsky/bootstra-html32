@@ -34,7 +34,7 @@ Follow **KISS, DRY, and YAGNI**. Build the smallest solution that fully solves t
 
 - Prefer the simplest readable implementation.
 - Do not add abstractions, dependencies, configuration, tooling, or features for hypothetical future needs.
-- Root-level scripts are plain ES modules using Node.js built-in APIs; plain functions are the default.
+- Root-level scripts (`scripts/`) are plain ES modules using Node.js built-in APIs; plain functions are the default. Tests use `node:test`.
 
 Decision rule: when several approaches satisfy the task, choose the one with fewer moving parts, fewer dependencies, and the code a developer opening the repository later will understand fastest.
 
@@ -49,7 +49,11 @@ Decision rule: when several approaches satisfy the task, choose the one with few
 ├── package.json              private workspace root, root scripts
 ├── package-lock.json         the single lockfile for all workspaces
 ├── docs/
-│   └── ADDING_A_THEME.md     agent checklist for adding a theme
+│   ├── ADDING_A_THEME.md     agent checklist for adding a theme
+│   └── RELEASING.md          per-package release procedure and npm setup
+├── scripts/
+│   ├── release.mjs           release tag validation, notes, and assets
+│   └── release.test.mjs      its tests (run by the root `npm test`)
 ├── packages/
 │   └── <slug>/               one theme package each, with its own AGENTS.md
 ├── incoming/                 staging area for themes to add (git-ignored)
@@ -69,7 +73,7 @@ Run from the repository root:
 | `npm ci` | Install every workspace from the root lockfile |
 | `npm run build` | `build` in every package that has one |
 | `npm run lint` | `lint` in every package that has one |
-| `npm test` | `test` in every package that has one |
+| `npm test` | `test` in every package that has one, then the release-check tests |
 | `npm run dev` | Dev server of `bootstra-html32` (the only demo until the collection showcase exists) |
 | `npm run <script> --workspace <name>` | Run one package's script |
 | `npm pack --workspaces --dry-run` | Show what each package would publish |
@@ -124,15 +128,20 @@ During implementation:
 - `npm test` at the root for every change to a package, a root script, `package.json`, or the lockfile.
 - Package-specific checks (visual review, pack contents) as listed in that package's `AGENTS.md`.
 - For workflow or workspace changes: `npm ci`, the root scripts, and `npm pack --workspaces --dry-run`.
+- For release changes: the root `npm test` (which includes `scripts/release.test.mjs`) and `node scripts/release.mjs check|notes|assets <tag>` for an existing package. Never test by pushing a tag.
 
 The final report states what was actually checked. Never claim a check passed that was not run.
 
 ## Versioning and releases
 
+[`docs/RELEASING.md`](docs/RELEASING.md) is the release procedure. In short:
+
 - Each package is versioned independently with Semantic Versioning; its own `package.json` is the source of truth and its own `CHANGELOG.md` records its changes. Follow the package's `AGENTS.md` for bump rules.
-- Repository-only changes (root docs, CI, workspace tooling) do not bump any package version.
+- A change to one package bumps only that package. Repository-only changes (root docs, CI, workspace tooling) do not bump any package version.
+- A release tag is `<npm name>@<X.Y.Z>` (for example `bootstra-html32@0.1.1`) and releases exactly that package. Do not create `v*` tags.
+- `release.yml` validates the tag with `scripts/release.mjs`, tests the package, publishes it with npm trusted publishing, and creates its GitHub Release. Keep the workflow file name `release.yml`: npm trusted publishers are bound to it.
 - The root package is `private` and must never be published.
-- Until per-package release automation exists, `release.yml` publishes **only** `bootstra-html32`, and a `vX.Y.Z` tag always refers to that package. Do not create `v*` tags for other packages.
+- When asked to prepare a release, an agent may update the changelog, run `npm version <patch|minor> --workspace <name>`, run the local checks from `docs/RELEASING.md`, commit `Release <name>@X.Y.Z`, and create the local tag. The owner pushes.
 
 ## Git and publishing
 

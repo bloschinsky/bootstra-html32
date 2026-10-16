@@ -6,6 +6,7 @@
 - Demo page moved to `site/` and deployed to GitHub Pages by GitHub Actions.
 - CI workflow runs stylelint and the build on every push and pull request.
 - The repository is now a monorepo of themes; this package lives in `packages/bootstra-html32/`. The unbuilt-source CDN URL changed to `…/bootstra-html32@master/packages/bootstra-html32/src/bootstra-html32.css`. The npm package, its files, and the demo URL are unchanged.
+- Releases are now tagged `bootstra-html32@X.Y.Z` (previously `vX.Y.Z`), and GitHub Releases are titled `bootstra-html32 X.Y.Z`.
 
 ## 0.1.0 — 2026-10-02
 

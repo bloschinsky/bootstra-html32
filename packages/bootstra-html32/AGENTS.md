@@ -131,8 +131,8 @@ The demo page is the documentation. A new or changed public component, variant, 
 - Changes to documentation, the demo, CI, or tooling alone do not bump the version.
 - Every user-visible change adds a line under `## Unreleased` in `CHANGELOG.md`. A release moves those lines under `## X.Y.Z — YYYY-MM-DD`.
 - A minor release also updates the `@X.Y` version in the README CDN link.
-- Release flow (only when the owner asks for a release): from the repository root, `npm version <patch|minor> --workspace bootstra-html32` bumps the version (it does not commit or tag inside a workspace); commit with message `Release vX.Y.Z` and create the local tag `vX.Y.Z`. The owner pushes the tag; `release.yml` then checks it against this package's version, runs lint and build, publishes to npm through trusted publishing, and creates the GitHub Release.
-- Until per-package releases are introduced, a `vX.Y.Z` tag always refers to this package.
+- Release tags are `bootstra-html32@X.Y.Z`. The old `v0.1.0` tag is history; do not create `v*` tags.
+- Release flow (only when the owner asks for a release) follows the repository's [`docs/RELEASING.md`](../../docs/RELEASING.md): update `CHANGELOG.md` and the README CDN link, run `npm version <patch|minor> --workspace bootstra-html32` from the root, run the local checks, commit `Release bootstra-html32@X.Y.Z`, and create the local tag. The owner pushes it; `release.yml` validates, tests, publishes to npm through trusted publishing, and creates the GitHub Release with `dist/*.css` attached.
 
 ## Demo security
 

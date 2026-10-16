@@ -2,13 +2,17 @@
   "name": "bootstra-themes",
   "private": true,
   "description": "A collection of Bootstrap 5 themes, one npm package per theme.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bloschinsky/bootstra-html32.git"
+  },
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
     "build": "npm run build --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
-    "test": "npm test --workspaces --if-present",
+    "test": "npm test --workspaces --if-present && node --test scripts/release.test.mjs",
     "dev": "npm run dev --workspace bootstra-html32"
   },
   "engines": {

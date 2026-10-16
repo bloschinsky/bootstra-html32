@@ -12,7 +12,8 @@ Install and usage instructions live in each theme's README.
 
 ```
 packages/<theme>/   one theme package each: source, build, demo, README, CHANGELOG
-docs/               repository guides (adding a theme)
+docs/               repository guides (adding a theme, releasing)
+scripts/            release checks shared by all packages
 .github/workflows/  CI, GitHub Pages, release
 ```
 
@@ -32,7 +33,11 @@ npm run dev     # build, watch and serve the HTML32 demo on http://localhost:808
 
 Run a single package's script with `--workspace`, for example `npm run build --workspace bootstra-html32`.
 
-GitHub Pages currently serves the HTML32 demo from `master`. Each theme is released separately; see its README and `AGENTS.md`.
+GitHub Pages currently serves the HTML32 demo from `master`.
+
+## Releases
+
+Each theme is versioned and published to npm on its own. A tag such as `bootstra-html32@0.1.1` releases exactly that package; see [`docs/RELEASING.md`](docs/RELEASING.md).
 
 ## Adding a theme
 

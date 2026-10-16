@@ -20,7 +20,7 @@ Anything the prompt leaves open (npm name, display name, licence questions) is e
 - **Integrate, do not redesign.** Keep the theme's own build system (plain CSS, Sass, PostCSS, or other), file layout, naming prefix, public CSS API, demo, and visual tokens. Change only what is needed to run inside the workspace.
 - **Do not apply another package's rules.** HTML32's CSS-only build, `nv-` prefix, Sass prohibition, `color-mix()` schemes, wallpapers, and demo layout belong to HTML32 alone. Do not copy them into the new theme, and do not copy the new theme's conventions into HTML32.
 - **Do not touch other packages.** Adding a theme may change root files (README, AGENTS table, lockfile) but never another package's source, version, or changelog.
-- **Do not publish.** The new package gets ready-to-release metadata; releasing it is a separate owner decision (per-package release automation does not exist yet, and `release.yml` publishes only `bootstra-html32`).
+- **Do not publish.** The new package gets ready-to-release metadata and passes the release checks; releasing it is a separate owner decision that follows [`RELEASING.md`](RELEASING.md).
 
 ## Checklist
 
@@ -49,7 +49,7 @@ Anything the prompt leaves open (npm name, display name, licence questions) is e
 - [ ] Move the theme into `packages/<slug>/`, preserving its internal layout.
 - [ ] Create or complete `packages/<slug>/package.json`:
   - `name`, `version`, `description`, `license`, `author`;
-  - `repository` with `"directory": "packages/<slug>"`, plus `homepage` and `bugs`;
+  - `repository` with this repository's URL and `"directory": "packages/<slug>"`, plus `homepage` and `bugs` (the release checks and npm provenance require the exact `repository` values; see [`RELEASING.md`](RELEASING.md#package-metadata));
   - `files` listing only what users need (built CSS, licence, README); check it with `npm pack --dry-run`;
   - `style` / `main` pointing to the main built CSS file;
   - Bootstrap as a `peerDependency` when the theme loads after Bootstrap's CSS, or as a dependency or devDependency when it compiles Bootstrap's Sass. Never copy Bootstrap files into the package;
@@ -72,6 +72,7 @@ Anything the prompt leaves open (npm name, display name, licence questions) is e
 - [ ] `npm ci`, then root `npm run build`, `npm run lint`, and `npm test` all pass, and `npm test --workspace <name>` passes on its own.
 - [ ] The built CSS is functionally equivalent to the output saved in step 1 (expect only path or banner differences).
 - [ ] `npm pack --workspace <name> --dry-run` lists only the package's own files.
+- [ ] The root `npm test` includes the release checks: the new package passes them at its current version (`node scripts/release.mjs check <name>@<version>` and `assets` show the details). There is nothing else to register; the release workflow finds packages by name.
 - [ ] The demo or example page works over HTTP with Bootstrap loaded first: desktop and narrow viewports, Bootstrap's JavaScript components (dropdown, modal, tooltip) still behave.
 - [ ] Other packages' build output is unchanged.
 
@@ -83,7 +84,7 @@ Anything the prompt leaves open (npm name, display name, licence questions) is e
 
 - [ ] Remove `incoming/<slug>/` once its contents are in `packages/<slug>/`, unless the owner asked to keep it.
 - [ ] Create one local commit with only the new package and the root files it required (for example `Add bootstra-neon theme`). Do not tag, push, or publish.
-- [ ] Report: the package name and folder, the checks that were actually run and their results, anything changed in the theme and why, open questions (licence, naming, missing assets), and the next steps for releasing it.
+- [ ] Report: the package name and folder, the checks that were actually run and their results, anything changed in the theme and why, open questions (licence, naming, missing assets), and the next steps for releasing it. Those steps include the owner's one-time npm setup from [`RELEASING.md`](RELEASING.md#npm-trusted-publishing): publish the first version manually, then add the trusted publisher for `release.yml`.
 
 ## Incomplete themes
 

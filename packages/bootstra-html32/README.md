@@ -216,12 +216,13 @@ To release, move the `Unreleased` notes in `CHANGELOG.md` under a new version he
 
 ```sh
 npm version minor --workspace bootstra-html32   # bumps the version in package.json and the lockfile
-git commit -am "Release vX.Y.Z"
-git tag vX.Y.Z
-git push --follow-tags
+npm test
+git commit -am "Release bootstra-html32@X.Y.Z"
+git tag bootstra-html32@X.Y.Z
+git push origin master bootstra-html32@X.Y.Z
 ```
 
-The `release.yml` workflow checks that the tag matches this package's version, runs lint and build, publishes to npm with provenance (trusted publishing, no token) and creates a GitHub Release with the CSS files attached.
+The `release.yml` workflow checks that the tag matches this package's version, runs lint and build, publishes to npm with provenance (trusted publishing, no token) and creates a GitHub Release with the CSS files attached. Releases before the monorepo were tagged `vX.Y.Z`. The full procedure, including troubleshooting, is in the repository's [`docs/RELEASING.md`](https://github.com/bloschinsky/bootstra-html32/blob/master/docs/RELEASING.md).
 
 ## Credits
 

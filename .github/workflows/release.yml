@@ -1,14 +1,20 @@
 name: Release
 
-# Publishes bootstra-html32 only. Until per-package releases exist, a `vX.Y.Z`
-# tag always means packages/bootstra-html32; the private root is never published.
+# Publishes exactly one workspace package per tag. A tag is `<npm name>@<X.Y.Z>`,
+# for example `bootstra-html32@0.1.1`; see docs/RELEASING.md. The private root and
+# every other package are never published by this workflow.
 
 on:
   push:
-    tags: ['v*']
+    tags:
+      - '*@*'      # unscoped: theme@1.2.3
+      - '@*/*@*'   # scoped:   @scope/theme@1.2.3
 
-env:
-  PKG_DIR: packages/bootstra-html32
+permissions: {}
+
+concurrency:
+  group: release-${{ github.ref_name }}
+  cancel-in-progress: false
 
 jobs:
   release:
@@ -16,6 +22,8 @@ jobs:
     permissions:
       contents: write   # create the GitHub Release
       id-token: write   # npm trusted publishing (OIDC) + provenance
+    env:
+      TAG: ${{ github.ref_name }}
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
@@ -27,27 +35,31 @@ jobs:
       # Trusted publishing needs npm 11.5.1+
       - run: npm install -g npm@latest
 
-      - name: Check tag matches the package version
-        run: |
-          NAME=$(node -p "require('./$PKG_DIR/package.json').name")
-          VERSION=$(node -p "require('./$PKG_DIR/package.json').version")
-          if [ "$NAME" != "bootstra-html32" ]; then
-            echo "::error::$PKG_DIR/package.json is $NAME, expected bootstra-html32"
-            exit 1
-          fi
-          if [ "v$VERSION" != "$GITHUB_REF_NAME" ]; then
-            echo "::error::Tag $GITHUB_REF_NAME does not match $NAME version $VERSION"
-            exit 1
-          fi
-          echo "NAME=$NAME" >> "$GITHUB_ENV"
-          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+      - name: Validate tag and package
+        id: target
+        run: node scripts/release.mjs check "$TAG"
+
+      - name: Extract release notes
+        run: node scripts/release.mjs notes "$TAG" > release-notes.md
 
       - run: npm ci
-      - run: npm test --workspace "$NAME"
+
+      - name: Test the package
+        env:
+          NAME: ${{ steps.target.outputs.name }}
+        run: npm test --workspace "$NAME"
+
+      - name: Check package contents
+        run: |
+          node scripts/release.mjs assets "$TAG" > release-assets.txt
+          cat release-assets.txt
 
       - name: Publish to npm
+        env:
+          NAME: ${{ steps.target.outputs.name }}
+          VERSION: ${{ steps.target.outputs.version }}
         run: |
-          if npm view "$NAME@$VERSION" version >/dev/null 2>&1; then
+          if [ -n "$(npm view "$NAME@$VERSION" version 2>/dev/null)" ]; then
             echo "$NAME@$VERSION is already on npm, skipping publish"
           else
             npm publish --workspace "$NAME"
@@ -56,12 +68,15 @@ jobs:
       - name: Create GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
+          NAME: ${{ steps.target.outputs.name }}
+          VERSION: ${{ steps.target.outputs.version }}
         run: |
-          awk -v v="$VERSION" '
-            $0 ~ "^## " v "( |$)" { on = 1; next }
-            /^## / { on = 0 }
-            on
-          ' "$PKG_DIR/CHANGELOG.md" > release-notes.md
-          gh release create "$GITHUB_REF_NAME" "$PKG_DIR"/dist/*.css \
-            --title "$GITHUB_REF_NAME" \
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG already exists, skipping"
+            exit 0
+          fi
+          mapfile -t ASSETS < release-assets.txt
+          gh release create "$TAG" "${ASSETS[@]}" \
+            --verify-tag \
+            --title "$NAME $VERSION" \
             --notes-file release-notes.md

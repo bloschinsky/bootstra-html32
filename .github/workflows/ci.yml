@@ -1,9 +1,15 @@
 name: CI
 
+# Validates every workspace on every change. There are deliberately no path filters:
+# the root lockfile and release script are shared, and a full run takes under a minute.
+
 on:
   pull_request:
   push:
     branches: [master]
+
+permissions:
+  contents: read
 
 jobs:
   build:
@@ -15,7 +21,7 @@ jobs:
           node-version: lts/*
           cache: npm
       - run: npm ci
-      - run: npm run lint
-      - run: npm run build
+      # Lint and build every package, then test the release checks against them.
+      - run: npm test
       # Every workspace package must pack cleanly; the private root never packs.
       - run: npm pack --workspaces --dry-run
