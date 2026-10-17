@@ -29,7 +29,9 @@ Anything the prompt leaves open (npm name, display name, licence questions) is e
 - [ ] List its files. Identify the source, build tool, output files, demo or example pages, assets (fonts, images, icons), and any `package.json`.
 - [ ] Read its README, licence, and changelog if present.
 - [ ] Find how it consumes Bootstrap: loaded before the theme as plain CSS (peer dependency), or compiled from Bootstrap's Sass source. Note the Bootstrap version range.
-- [ ] Build it as it is, before changing anything, and keep the output for comparison in step 6.
+- [ ] Treat its code as untrusted until reviewed: read its `package.json` scripts (including `pre`/`post` and `install` hooks), build scripts, and inline demo scripts before running anything. Note scripts that download code at run time (such as `npx --yes …`) and do not run them.
+- [ ] Build it as it is, before changing anything, and keep the output for comparison in step 6. If it ships prebuilt files (for example a committed `dist/`), compare against those.
+- [ ] List every third-party request its demo makes (CDNs, web fonts, images, counters). Analytics or tracking is not accepted; other requests are recorded in the package's `AGENTS.md` (step 5).
 
 ### 2. Check the licence and ownership
 
@@ -56,15 +58,17 @@ Anything the prompt leaves open (npm name, display name, licence questions) is e
   - the theme's own build tools as `devDependencies`;
   - `build`, `lint`, and `test` scripts (add a minimal `lint` that fits the theme's language if it has none; `test` may be `npm run lint && npm run build`), and `dev` if it has a demo server;
   - the `themeCollection` field described in the root `AGENTS.md` (`id`, `name`, `description`, and optionally `demo` and `preview`; see step 7).
-- [ ] Add a package `.gitignore` for the theme's build output. Do not commit generated files unless the theme's design requires it, and say so in the report if it does.
-- [ ] Make every path in the build script, demo, and examples relative to the package folder.
+- [ ] Add a package `.gitignore` for the theme's build output. Do not commit generated files unless the theme's design requires it, and say so in the report if it does. Drop prebuilt output that came with the theme; the build recreates it.
+- [ ] Make every path in the build script, demo, and examples relative to the package folder. npm runs workspace scripts with the package folder as the working directory, so scripts that use relative paths keep working.
+- [ ] If the demo pages link files outside one folder (for example `examples/*.html` loading `../dist/theme.css`), extend the build to assemble a demo folder (such as `_site/`) that copies those files in the same relative layout. Do not rewrite the demo's links.
+- [ ] For `lint`, use the linter the theme already has. Otherwise add `stylelint` with `stylelint-config-recommended` for CSS, or the matching tool for its language. Do not restyle or reorder the theme's source to satisfy a heuristic rule: disable that rule in the package config and record why in its `AGENTS.md`. Real errors (invalid syntax, unknown properties) are fixed and listed in the report.
 - [ ] Run `npm install` at the root to link the workspace and update the single root lockfile. Delete any lockfile that came with the theme.
 
 ### 5. Documentation
 
-- [ ] `packages/<slug>/README.md`: what the theme is, install (CDN, npm), how to include it after Bootstrap, its public classes and variables, browser support, licence. Keep the author's existing text where it is accurate.
+- [ ] `packages/<slug>/README.md`: what the theme is, install (CDN, npm), how to include it after Bootstrap, its public classes and variables, browser support, licence. Keep the author's existing text where it is accurate; replace only what the move made wrong (placeholder or GitHub CDN URLs → `https://cdn.jsdelivr.net/npm/<name>@<X.Y>/…`, standalone build instructions → workspace commands, the project-structure tree).
 - [ ] `packages/<slug>/CHANGELOG.md`: keep the existing history, or start one with an `## Unreleased` section.
-- [ ] `packages/<slug>/AGENTS.md`: the rules for this theme, written from what the theme actually is (its build, naming prefix, source organization, accessibility and browser support, public API, verification, versioning). Use HTML32's `AGENTS.md` as a model for structure only, not for content. Add a `CLAUDE.md` pointer next to it.
+- [ ] `packages/<slug>/AGENTS.md`: the rules for this theme, written from what the theme actually is (its build, naming prefix, source organization, accessibility and browser support, public API, verification, versioning, and the third-party requests its demo may make). Use an existing package's `AGENTS.md` as a model for structure only, not for content. Add a `CLAUDE.md` pointer next to it.
 - [ ] Root `README.md` and root `AGENTS.md`: add one row to the package tables. Do not copy per-theme documentation into root files.
 
 ### 6. Verify
@@ -89,6 +93,17 @@ There is no registration step: the collection site (`apps/showcase/`) lists ever
 - [ ] Remove `incoming/<slug>/` once its contents are in `packages/<slug>/`, unless the owner asked to keep it.
 - [ ] Create one local commit with only the new package and the root files it required (for example `Add bootstra-neon theme`). Do not tag, push, or publish.
 - [ ] Report: the package name and folder, the checks that were actually run and their results, anything changed in the theme and why, open questions (licence, naming, missing assets), and the next steps for releasing it. Those steps include the owner's one-time npm setup from [`RELEASING.md`](RELEASING.md#npm-trusted-publishing): publish the first version manually, then add the trusted publisher for `release.yml`.
+
+## Common situations
+
+| Situation | What to do |
+| --- | --- |
+| Sass, PostCSS, or another toolchain | Keep it. Its compiler and config live in the package (`devDependencies`, config files in `packages/<slug>/`). A Sass theme that compiles Bootstrap's source takes `bootstrap` as a dependency or devDependency instead of a peer dependency. |
+| Slug, npm name, or CSS prefix collision | Stop and ask the owner. Never rename an existing package. |
+| Licence missing or unclear, or third-party assets without notices | Stop and ask the owner. |
+| No demo page | Leave `themeCollection.demo` out; the card says "Demo coming soon". Write a small demo only if the owner asks, in the theme's own style. |
+| Web fonts | Keep the theme's own approach (CDN link or bundled files with their licence). Do not add or remove fonts. |
+| Release credentials | None are needed in the repository. The owner publishes the first version manually and then adds the npm trusted publisher (see [`RELEASING.md`](RELEASING.md#npm-trusted-publishing)). |
 
 ## Incomplete themes
 

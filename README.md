@@ -5,8 +5,24 @@ A small collection of Bootstrap 5 themes. Each theme is its own npm package with
 | Theme | npm | Docs | Demo |
 | --- | --- | --- | --- |
 | **HTML32**: mid-90s web pages and desktop UI chrome | [`bootstra-html32`](https://www.npmjs.com/package/bootstra-html32) | [README](packages/bootstra-html32/README.md) | [▶ Live demo](https://bloschinsky.github.io/bootstra-html32/themes/bootstra-html32/) |
+| **Code437**: ANSI art, BBS boards and DOS-era terminals | [`bootstra-code437`](https://www.npmjs.com/package/bootstra-code437) | [README](packages/bootstra-code437/README.md) | [▶ Live demo](https://bloschinsky.github.io/bootstra-html32/themes/bootstra-code437/) |
 
 Browse them all on the **[collection site](https://bloschinsky.github.io/bootstra-html32/)**. Install and usage instructions live in each theme's README.
+
+## Using a theme
+
+Every theme is installed on its own and loads **after** Bootstrap's CSS. Use one theme per page.
+
+```sh
+npm install bootstrap bootstra-html32   # or bootstra-code437, …
+```
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/<theme>@<X.Y>/dist/<file>.min.css">
+```
+
+The collection site shows the exact snippet for each theme; some themes need extra setup (for example Code437 expects `data-bs-theme="dark"` and its font), described in their README.
 
 ## Repository layout
 

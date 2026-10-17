@@ -11,6 +11,7 @@ This repository is a small collection of Bootstrap 5 themes managed as an npm-wo
 | Package | Folder | npm name | Rules |
 | --- | --- | --- | --- |
 | bootstra-html32 | `packages/bootstra-html32/` | `bootstra-html32` | [`packages/bootstra-html32/AGENTS.md`](packages/bootstra-html32/AGENTS.md) |
+| bootstra-code437 | `packages/bootstra-code437/` | `bootstra-code437` | [`packages/bootstra-code437/AGENTS.md`](packages/bootstra-code437/AGENTS.md) |
 | bootstra-showcase (private) | `apps/showcase/` | not published | [`apps/showcase/AGENTS.md`](apps/showcase/AGENTS.md) |
 
 The collection site (`apps/showcase/`) is published to GitHub Pages. It lists every theme and hosts each theme's own demo as a separate page.
@@ -67,7 +68,7 @@ Decision rule: when several approaches satisfy the task, choose the one with few
 └── .github/workflows/        ci.yml, pages.yml, release.yml
 ```
 
-Generated, never committed, never edited by hand: `node_modules/` and each package's own build output (for HTML32: `dist/`, `_site/`; for the showcase: `_site/`).
+Generated, never committed, never edited by hand: `node_modules/` and each package's own build output (for the themes: `dist/`, `_site/`; for the showcase: `_site/`).
 
 Keep the structure compact. Do not create new top-level directories without a concrete reason.
 

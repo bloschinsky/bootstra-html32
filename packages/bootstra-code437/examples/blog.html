@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>noise.sh — notes from a home node</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="../dist/code437.css">
+</head>
+<body>
+<div class="container-cp">
+
+  <!-- ═══ NAVIGATION: offcanvas on mobile, inline row from md up ═══ -->
+  <nav class="navbar navbar-expand-md sticky-top">
+    <div class="container-fluid px-0">
+      <a class="navbar-brand" href="#" data-cp-go="home"><span id="cp-path">~/noise/</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#cpMenu" aria-controls="cpMenu" aria-label="Open menu">[≡ menu]</button>
+      <div class="offcanvas-md offcanvas-end" tabindex="-1" id="cpMenu" aria-labelledby="cpMenuLabel">
+        <div class="offcanvas-header">
+          <h2 class="offcanvas-title" id="cpMenuLabel">menu</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#cpMenu" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav nav-pills ms-md-auto" role="tablist">
+            <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#p-home" type="button" role="tab"><span class="cp-n">00</span>index</button></li>
+            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#p-about" type="button" role="tab"><span class="cp-n">01</span>about</button></li>
+            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#p-log" type="button" role="tab"><span class="cp-n">02</span>log</button></li>
+            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#p-projects" type="button" role="tab"><span class="cp-n">03</span>projects</button></li>
+            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#p-time" type="button" role="tab"><span class="cp-n">04</span>timeline</button></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="tab-content cp-section">
+
+    <!-- ═══ 00 INDEX ═══ -->
+    <section class="tab-pane fade show active cp-amber" id="p-home" role="tabpanel" data-path="">
+      <div class="cp-hex">00000000: 7f4e 4f49 5345 0201 0173 7973 6f70 2e73  .NOISE...sysop.s</div>
+<pre class="cp-pre cp-logo my-3" aria-label="NOISE">
+█▀▄ █ █▀▀▀█ ▀▀█▀▀ █▀▀▀▀ █▀▀▀▀
+█ ▀▄█ █   █   █   ▀▀▀▀█ █▀▀▀ 
+▀   ▀ ▀▀▀▀▀ ▀▀▀▀▀ ▀▀▀▀▀ ▀▀▀▀▀</pre>
+      <div class="cp-hex mb-4">00000030: 6e6f 6973 652e 6c6f 672f 7631 0000 0000  noise.log/v1....</div>
+
+      <div class="card cp-acc-frame">
+        <div class="card-header"><span>notes from a home node</span></div>
+        <div class="card-body px-0">
+          <div class="list-group list-group-flush">
+            <a href="#" class="list-group-item list-group-item-action cp-lead" data-cp-go="about"><span><span class="cp-n">01</span>about me</span><span>about</span></a>
+            <a href="#" class="list-group-item list-group-item-action cp-lead" data-cp-go="log"><span><span class="cp-n">02</span>notes</span><span>log</span></a>
+            <a href="#" class="list-group-item list-group-item-action cp-lead" data-cp-go="projects"><span><span class="cp-n">03</span>projects</span><span>projects</span></a>
+            <a href="#" class="list-group-item list-group-item-action cp-lead" data-cp-go="time"><span><span class="cp-n">04</span>timeline</span><span>timeline</span></a>
+            <a href="#" class="list-group-item list-group-item-action cp-lead"><span><span class="cp-n">05</span>guestbook</span><span>guestbook</span></a>
+          </div>
+        </div>
+      </div>
+
+      <dl class="cp-kv mt-4">
+        <div><dt>last entry</dt><dd>2026.09.18</dd></div>
+        <div><dt>node</dt><dd class="cp-acc">online</dd></div>
+        <div><dt>speed</dt><dd>14400 baud</dd></div>
+      </dl>
+      <p class="mt-4 mb-0 cp-cursor"><span class="cp-dim">&gt;</span> choose a section</p>
+    </section>
+
+    <!-- ═══ 01 ABOUT ═══ -->
+    <section class="tab-pane fade cp-rose" id="p-about" role="tabpanel" data-path="about">
+      <div class="card cp-round">
+        <div class="card-header"><h1>about me</h1><span class="cp-meta">~/about</span></div>
+        <div class="card-body">
+          <div class="row g-4 align-items-start">
+            <div class="col-12 col-md-4 text-center text-md-start">
+              <div class="cp-avatar mx-auto mx-md-0" role="img" aria-label="Avatar placeholder"></div>
+              <div class="cp-dim small mt-3">[ avatar.png ]</div>
+            </div>
+            <div class="col-12 col-md-8">
+              <dl class="cp-kv mb-4">
+                <div><dt>name</dt><dd>[your name]</dd></div>
+                <div><dt>handle</dt><dd class="cp-acc">sysop</dd></div>
+                <div><dt>location</dt><dd>[city]</dd></div>
+                <div><dt>online since</dt><dd>2019</dd></div>
+                <div><dt>now</dt><dd class="cp-acc">setting up a BBS</dd></div>
+              </dl>
+              <p class="cp-bright">I build servers out of what other people throw away, shoot film, and write down how it went. This is a working log: no gloss, with the mistakes, the logs, and the 2 a.m. photos.</p>
+              <ul class="cp-tags">
+                <li>homelab</li><li>film</li><li>retro hardware</li><li>telephony</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 02 LOG ═══ -->
+    <section class="tab-pane fade cp-teal" id="p-log" role="tabpanel" data-path="log">
+      <h1 class="cp-h mb-4" data-n="02">notes</h1>
+
+      <article class="cp-entry" data-off="0x01" data-off-short="01">
+        <div class="cp-meta"><time datetime="2026-09-18">2026.09.18</time><span class="cp-tag">#homelab</span></div>
+        <h3>Moving the node into a rack</h3>
+        <figure class="cp-fig">
+          <div class="ratio ratio-16x9 cp-photo" data-label="photo 1600×1000"></div>
+          <figcaption>the rack at 2:14 a.m., before cable management</figcaption>
+        </figure>
+        <p>Three evenings, two snapped cable ties, and one drive that decided to die right in the middle of the migration. Here is what went wrong and what I would do differently.</p>
+        <a href="#">read more</a>
+      </article>
+
+      <article class="cp-entry" data-off="0x02" data-off-short="02">
+        <div class="cp-meta"><time datetime="2026-09-02">2026.09.02</time><span class="cp-tag">#film</span></div>
+        <h3>A roll of film that waited 20 years</h3>
+        <figure class="cp-fig">
+          <div class="ratio ratio-4x3 cp-photo" data-label="frame 17/36"></div>
+          <figcaption>fogged, but alive</figcaption>
+        </figure>
+        <p>Found an undeveloped cassette in a drawer. Developed it at home and some frames survived. I still can't tell what is on them.</p>
+        <a href="#">read more</a>
+      </article>
+
+      <article class="cp-entry" data-off="0x03" data-off-short="03">
+        <div class="cp-meta"><time datetime="2026-08-21">2026.08.21</time><span class="cp-tag">#retro</span></div>
+        <h3>Why I still keep a modem</h3>
+        <p>Because the handshake sound is the most honest sign that two machines have agreed on something.</p>
+        <a href="#">read more</a>
+      </article>
+
+      <nav aria-label="Log pages">
+        <ul class="pagination justify-content-center">
+          <li class="page-item disabled"><span class="page-link">‹</span></li>
+          <li class="page-item active"><span class="page-link">1</span></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">›</a></li>
+        </ul>
+      </nav>
+    </section>
+
+    <!-- ═══ 03 PROJECTS ═══ -->
+    <section class="tab-pane fade cp-olive" id="p-projects" role="tabpanel" data-path="projects">
+      <h1 class="cp-h mb-4" data-n="03">projects <small>on the workbench</small></h1>
+
+      <div class="card cp-heavy mb-5">
+        <div class="card-header"><h2>01 NODE-01</h2><span class="badge text-bg-warning">ACTIVE</span></div>
+        <div class="card-body">
+          <p>Home server in a rack: virtualization, storage, backups.</p>
+          <div class="cp-progress cp-amber"><div class="progress" role="progressbar" aria-label="NODE-01 progress" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar" style="width: 65%"></div></div><span>65%</span></div>
+          <div class="cp-split"></div>
+          <p class="cp-state">disk pool is built, backups are still manual. Next up: monitoring and a UPS.</p>
+          <div class="ratio ratio-21x9 cp-photo cp-amber" data-label="project photo"></div>
+        </div>
+        <div class="card-footer">upd: 2 days ago</div>
+      </div>
+
+      <div class="card cp-heavy mb-5">
+        <div class="card-header"><h2>02 DIAL-UP BBS</h2><span class="badge cp-rose">EXPERIMENT</span></div>
+        <div class="card-body">
+          <p>A BBS with dial-in over an old phone line.</p>
+          <div class="cp-progress cp-rose"><div class="progress" role="progressbar" aria-label="BBS progress" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar" style="width: 30%"></div></div><span>30%</span></div>
+          <div class="cp-split"></div>
+          <p class="cp-state">telnet works, the modem hears the ring but never picks up.</p>
+          <div class="ratio ratio-21x9 cp-photo cp-rose" data-label="project photo"></div>
+        </div>
+        <div class="card-footer">upd: a week ago</div>
+      </div>
+
+      <div class="card cp-heavy">
+        <div class="card-header"><h2>03 FILM ARCHIVE</h2><span class="badge cp-steel">PAUSED</span></div>
+        <div class="card-body">
+          <p>Scanning family negatives from the 80s and 90s.</p>
+          <div class="cp-progress cp-steel"><div class="progress" role="progressbar" aria-label="Archive progress" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar" style="width: 45%"></div></div><span>45%</span></div>
+          <div class="cp-split"></div>
+          <p class="cp-state">18 rolls out of 40. Waiting for a new scanner holder.</p>
+        </div>
+        <div class="card-footer">upd: a month ago</div>
+      </div>
+    </section>
+
+    <!-- ═══ 04 TIMELINE ═══ -->
+    <section class="tab-pane fade cp-orange" id="p-time" role="tabpanel" data-path="timeline">
+      <h1 class="cp-h mb-4" data-n="04">timeline <small>how it grew</small></h1>
+      <ol class="cp-timeline">
+        <li><time>2019.03</time>First node on an old laptop under the desk</li>
+        <li><time>2021.11</time>Blog launched. The first post had three readers</li>
+        <li><time>2023.06</time>Moved into a rack, NODE-01 is born</li>
+        <li><time>2025.01</time>Started the family film archive</li>
+        <li class="cp-now"><time>2026.09</time>BBS over telnet, modem is next</li>
+      </ol>
+      <p class="cp-timeline-end cp-cursor">to be continued</p>
+    </section>
+
+    <!-- ═══ footer on every page ═══ -->
+    <div class="d-flex justify-content-between gap-2 mt-5 mb-3">
+      <button class="btn btn-sm" type="button" id="cp-prev">‹ back</button>
+      <button class="btn btn-sm btn-primary" type="button" id="cp-next">next ›</button>
+    </div>
+    <div class="cp-sig">noise.sh · (c) 2026 sysop · NO CARRIER</div>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(() => {
+  const order = ['home', 'about', 'log', 'projects', 'time'];
+  const tabBtn = id => document.querySelector(`[data-bs-target="#p-${id}"]`);
+  const menu = document.getElementById('cpMenu');
+  const current = () => document.querySelector('.tab-pane.active').id.slice(2);
+  const go = id => { bootstrap.Tab.getOrCreateInstance(tabBtn(id)).show(); };
+
+  document.querySelectorAll('[data-cp-go]').forEach(el =>
+    el.addEventListener('click', e => { e.preventDefault(); go(el.dataset.cpGo); }));
+
+  document.querySelectorAll('[data-bs-toggle="tab"]').forEach(btn =>
+    btn.addEventListener('shown.bs.tab', () => {
+      const pane = document.querySelector(btn.dataset.bsTarget);
+      document.getElementById('cp-path').textContent = '~/noise/' + pane.dataset.path;
+      const oc = bootstrap.Offcanvas.getInstance(menu);
+      if (oc) oc.hide();
+      window.scrollTo({ top: 0 });
+      const i = order.indexOf(current());
+      document.getElementById('cp-prev').hidden = i === 0;
+    }));
+
+  document.getElementById('cp-prev').hidden = true;
+  document.getElementById('cp-prev').addEventListener('click', () => go(order[Math.max(0, order.indexOf(current()) - 1)]));
+  document.getElementById('cp-next').addEventListener('click', () => go(order[(order.indexOf(current()) + 1) % order.length]));
+})();
+</script>
+</body>
+</html>

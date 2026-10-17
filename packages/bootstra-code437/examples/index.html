@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>bootstra-code437 — components</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="../dist/code437.css">
+<style>
+  .sw { display: flex; align-items: center; gap: 1ch; }
+  .sw i { display: inline-block; width: 3ch; height: 1.4em; border: 1px solid var(--cp-line-2); flex: none; }
+  .demo-row { display: flex; flex-wrap: wrap; gap: .75rem 1.5ch; align-items: center; }
+  code.tok { color: var(--cp-muted); font-size: .85em; }
+</style>
+</head>
+<body>
+<div class="container-cp">
+
+  <nav class="navbar sticky-top">
+    <div class="container-fluid px-0">
+      <span class="navbar-brand">~/code437/</span>
+      <span class="cp-dim small">bootstrap 5.3 + code437.css</span>
+    </div>
+  </nav>
+
+  <main class="cp-section">
+<pre class="cp-pre cp-logo mb-2" aria-label="CP437">
+█▀▀▀▀ █▀▀▀█ █   █ ▀▀▀▀█ ▀▀▀▀█
+█     █▀▀▀▀ ▀▀▀▀█  ▀▀▀█    ▄▀
+▀▀▀▀▀ ▀         ▀ ▀▀▀▀▀   ▀  </pre>
+    <p class="text-center cp-muted mb-5">A Bootstrap 5 theme inspired by ANSI art, BBS interfaces, DOS-era terminals, and IBM Code Page 437. Layout is plain Bootstrap; the look comes from here.</p>
+
+    <!-- 01 -->
+    <h2 class="cp-h" data-n="01">colors</h2>
+    <div class="row g-2 mb-3">
+      <div class="col-6 col-md-4 sw"><i style="background:#141311"></i><span>page <code class="tok">#141311</code></span></div>
+      <div class="col-6 col-md-4 sw"><i style="background:#0b0b0a"></i><span>surface <code class="tok">#0b0b0a</code></span></div>
+      <div class="col-6 col-md-4 sw"><i style="background:#1d1c19"></i><span>raise <code class="tok">#1d1c19</code></span></div>
+      <div class="col-6 col-md-4 sw"><i style="background:#3a3731"></i><span>line <code class="tok">#3a3731</code></span></div>
+      <div class="col-6 col-md-4 sw"><i style="background:#5d5950"></i><span>dim <code class="tok">#5d5950</code></span></div>
+      <div class="col-6 col-md-4 sw"><i style="background:#8a857a"></i><span>muted <code class="tok">#8a857a</code></span></div>
+      <div class="col-6 col-md-4 sw"><i style="background:#b9b3a6"></i><span>fg <code class="tok">#b9b3a6</code></span></div>
+      <div class="col-6 col-md-4 sw"><i style="background:#ece5d4"></i><span>bright <code class="tok">#ece5d4</code></span></div>
+    </div>
+    <p class="cp-muted small mb-2">Accents are a class on any container; they set <code>--cp-acc</code>:</p>
+    <div class="row g-2 mb-5">
+      <div class="col-6 col-md-4 sw cp-amber"><i style="background:var(--cp-acc)"></i><code>.cp-amber</code></div>
+      <div class="col-6 col-md-4 sw cp-rose"><i style="background:var(--cp-acc)"></i><code>.cp-rose</code></div>
+      <div class="col-6 col-md-4 sw cp-teal"><i style="background:var(--cp-acc)"></i><code>.cp-teal</code></div>
+      <div class="col-6 col-md-4 sw cp-olive"><i style="background:var(--cp-acc)"></i><code>.cp-olive</code></div>
+      <div class="col-6 col-md-4 sw cp-orange"><i style="background:var(--cp-acc)"></i><code>.cp-orange</code></div>
+      <div class="col-6 col-md-4 sw cp-steel"><i style="background:var(--cp-acc)"></i><code>.cp-steel</code></div>
+    </div>
+
+    <!-- 02 -->
+    <h2 class="cp-h" data-n="02">type</h2>
+    <h1>h1 page title</h1>
+    <h2>h2 section title</h2>
+    <h3>h3 subsection</h3>
+    <p class="lead">.lead is an intro paragraph, slightly brighter.</p>
+    <p>A regular paragraph. One monospace face for everything; hierarchy comes from weight, color, and frames. <a href="#">A link</a>, <code>inline code</code>, <kbd>F1</kbd>, <mark>mark</mark>.</p>
+    <p class="cp-muted">.cp-muted is secondary text</p>
+    <p class="cp-cursor mb-5">.cp-cursor adds a blinking cursor</p>
+
+    <!-- 03 -->
+    <h2 class="cp-h" data-n="03">buttons <small>.btn</small></h2>
+    <div class="demo-row mb-3">
+      <button class="btn btn-primary">save</button>
+      <button class="btn">cancel</button>
+      <button class="btn btn-danger">delete</button>
+      <button class="btn btn-success">done</button>
+      <button class="btn btn-link">link</button>
+      <button class="btn" disabled>disabled</button>
+    </div>
+    <div class="demo-row mb-5">
+      <button class="btn btn-sm btn-primary">sm</button>
+      <button class="btn btn-lg btn-primary">lg</button>
+      <div class="btn-group"><button class="btn active">day</button><button class="btn">week</button><button class="btn">month</button></div>
+      <div class="dropdown">
+        <button class="btn dropdown-toggle" data-bs-toggle="dropdown">menu</button>
+        <ul class="dropdown-menu">
+          <li><h6 class="dropdown-header">sections</h6></li>
+          <li><a class="dropdown-item" href="#"><span class="cp-n">01</span>about</a></li>
+          <li><a class="dropdown-item" href="#"><span class="cp-n">02</span>log</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#"><span class="cp-n">Q</span>quit</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 04 -->
+    <h2 class="cp-h" data-n="04">frames <small>.card</small></h2>
+    <div class="row g-4 mb-5">
+      <div class="col-md-6">
+        <div class="card"><div class="card-header"><span>.card</span></div><div class="card-body">Thin frame; the header is set into the top line.</div></div>
+      </div>
+      <div class="col-md-6 cp-rose">
+        <div class="card cp-round"><div class="card-header"><span>.cp-round</span><span class="cp-meta">~/about</span></div><div class="card-body">Rounded corners ╭─╮.</div></div>
+      </div>
+      <div class="col-md-6 cp-olive">
+        <div class="card cp-heavy"><div class="card-header"><span>.cp-heavy</span><span class="badge">STATUS</span></div><div class="card-body">Heavy frame ┏━┓.<div class="cp-split"></div>.cp-split is a divider ┣━┫.</div><div class="card-footer">upd: today</div></div>
+      </div>
+      <div class="col-md-6 cp-teal">
+        <div class="card cp-double"><div class="card-header"><span>.cp-double</span></div><div class="card-body">Double frame ╔═╗. Also available: .cp-dashed and .cp-acc-frame.</div></div>
+      </div>
+    </div>
+
+    <!-- 05 -->
+    <h2 class="cp-h" data-n="05">leaders and lists</h2>
+    <div class="row g-4 mb-5">
+      <div class="col-md-6">
+        <p class="cp-muted small mb-1">.list-group + .cp-lead</p>
+        <div class="list-group list-group-flush">
+          <a href="#" class="list-group-item list-group-item-action cp-lead"><span><span class="cp-n">01</span>about me</span><span>about</span></a>
+          <a href="#" class="list-group-item list-group-item-action cp-lead"><span><span class="cp-n">02</span>notes</span><span>log</span></a>
+          <a href="#" class="list-group-item list-group-item-action cp-lead"><span><span class="cp-n">03</span>projects</span><span>projects</span></a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <p class="cp-muted small mb-1">dl.cp-kv</p>
+        <dl class="cp-kv mb-3">
+          <div><dt>handle</dt><dd class="cp-acc">sysop</dd></div>
+          <div><dt>online since</dt><dd>2019</dd></div>
+          <div><dt>speed</dt><dd>14400 baud</dd></div>
+        </dl>
+        <p class="cp-muted small mb-1">ul.cp-tags</p>
+        <ul class="cp-tags"><li>homelab</li><li>film</li><li>retro</li></ul>
+      </div>
+    </div>
+
+    <!-- 06 -->
+    <h2 class="cp-h" data-n="06">status</h2>
+    <div class="demo-row mb-3">
+      <span class="badge">DEFAULT</span>
+      <span class="badge text-bg-warning">ACTIVE</span>
+      <span class="badge text-bg-success">DONE</span>
+      <span class="badge text-bg-danger">BROKEN</span>
+      <span class="badge text-bg-secondary">ARCHIVED</span>
+      <span class="badge cp-outline">outline</span>
+    </div>
+    <div class="cp-progress mb-2"><div class="progress" role="progressbar" aria-label="Example" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar" style="width:65%"></div></div><span>65%</span></div>
+    <div class="cp-progress cp-olive mb-3"><div class="progress" role="progressbar" aria-label="Example" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar" style="width:30%"></div></div><span>30%</span></div>
+    <p class="cp-state mb-3">.cp-state is a current-status line.</p>
+    <div class="alert alert-info" data-cp-label=":: info">Backup finished in 4 min 12 s.</div>
+    <div class="alert alert-danger alert-dismissible fade show" data-cp-label="!! error">Drive sdb is not responding. Check the cable and run a SMART test.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
+    <p class="mb-5"><span class="cp-spin"></span> <span class="cp-muted">.cp-spin replaces the spinner</span></p>
+
+    <!-- 07 -->
+    <h2 class="cp-h" data-n="07">forms</h2>
+    <form class="row g-3 mb-5" onsubmit="return false">
+      <div class="col-md-6">
+        <label class="form-label" for="f1">handle</label>
+        <input class="form-control" id="f1" placeholder="sysop">
+      </div>
+      <div class="col-md-6">
+        <label class="form-label" for="f2">section</label>
+        <select class="form-select" id="f2"><option>log</option><option>projects</option></select>
+      </div>
+      <div class="col-12">
+        <label class="form-label" for="f3">command</label>
+        <div class="input-group cp-prompt"><span class="input-group-text">&gt;</span><input class="form-control" id="f3" placeholder="type a command"></div>
+      </div>
+      <div class="col-12">
+        <label class="form-label" for="f4">message</label>
+        <textarea class="form-control" id="f4" rows="3" placeholder="leave a note in the guestbook"></textarea>
+      </div>
+      <div class="col-12 demo-row">
+        <div class="form-check"><input class="form-check-input" type="checkbox" id="c1" checked><label class="form-check-label" for="c1">subscribe</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="r" id="r1" checked><label class="form-check-label" for="r1">rss</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="r" id="r2"><label class="form-check-label" for="r2">email</label></div>
+        <div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="s1" checked><label class="form-check-label" for="s1">night mode</label></div>
+      </div>
+      <div class="col-12"><button class="btn btn-primary">send message</button></div>
+    </form>
+
+    <!-- 08 -->
+    <h2 class="cp-h" data-n="08">table</h2>
+    <div class="table-responsive mb-5">
+      <table class="table table-hover">
+        <thead><tr><th>drive</th><th>size</th><th>state</th></tr></thead>
+        <tbody>
+          <tr><td>sda</td><td>4 TB</td><td class="cp-acc">ok</td></tr>
+          <tr><td>sdb</td><td>4 TB</td><td style="color:var(--cp-orange)">fail</td></tr>
+          <tr><td>sdc</td><td>2 TB</td><td class="cp-acc">ok</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 09 -->
+    <h2 class="cp-h" data-n="09">navigation</h2>
+    <nav class="mb-3" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#">code437</a></li><li class="breadcrumb-item"><a href="#">log</a></li><li class="breadcrumb-item active" aria-current="page">0x01</li></ol></nav>
+    <ul class="nav nav-pills mb-3"><li class="nav-item"><a class="nav-link active" href="#"><span class="cp-n">01</span>about</a></li><li class="nav-item"><a class="nav-link" href="#"><span class="cp-n">02</span>log</a></li><li class="nav-item"><a class="nav-link" href="#"><span class="cp-n">03</span>projects</a></li></ul>
+    <ul class="nav nav-tabs mb-3"><li class="nav-item"><a class="nav-link active" href="#">tab</a></li><li class="nav-item"><a class="nav-link" href="#">another</a></li></ul>
+    <ul class="pagination mb-5"><li class="page-item disabled"><span class="page-link">‹</span></li><li class="page-item active"><span class="page-link">1</span></li><li class="page-item"><a class="page-link" href="#">2</a></li><li class="page-item"><a class="page-link" href="#">›</a></li></ul>
+
+    <!-- 10 -->
+    <h2 class="cp-h" data-n="10">accordion and modal</h2>
+    <div class="accordion mb-3" id="acc">
+      <div class="accordion-item"><h3 class="accordion-header"><button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#a1">what is NODE-01?</button></h3><div id="a1" class="accordion-collapse collapse show" data-bs-parent="#acc"><div class="accordion-body">A home server in a rack.</div></div></div>
+      <div class="accordion-item"><h3 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#a2">why a modem?</button></h3><div id="a2" class="accordion-collapse collapse" data-bs-parent="#acc"><div class="accordion-body">For a BBS you can dial into.</div></div></div>
+    </div>
+    <button class="btn btn-primary mb-5" data-bs-toggle="modal" data-bs-target="#m1">open modal</button>
+    <div class="modal fade" id="m1" tabindex="-1" aria-labelledby="m1l" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+        <div class="modal-header"><h2 class="modal-title" id="m1l">hang up</h2><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+        <div class="modal-body">Disconnect from the node?</div>
+        <div class="modal-footer"><button class="btn" data-bs-dismiss="modal">stay connected</button><button class="btn btn-danger" data-bs-dismiss="modal">hang up</button></div>
+      </div></div>
+    </div>
+
+    <!-- 11 -->
+    <h2 class="cp-h" data-n="11">textmode utilities</h2>
+    <p class="cp-muted small mb-1">.cp-hex</p>
+    <div class="cp-hex mb-3">00000000: 7f43 5034 3337 0201 0173 7973 6f70 2e73  .CP437...sysop.s</div>
+    <p class="cp-muted small mb-1">.cp-rule / -heavy / -double / -dots</p>
+    <hr class="cp-rule"><hr class="cp-rule-heavy"><hr class="cp-rule-double"><hr class="cp-rule-dots">
+    <div class="row g-4 mb-4">
+      <div class="col-md-8">
+        <p class="cp-muted small mb-1">.ratio.cp-photo[data-label]</p>
+        <figure class="cp-fig"><div class="ratio ratio-16x9 cp-photo" data-label="photo 1600×1000"></div><figcaption>figure.cp-fig adds a caption</figcaption></figure>
+      </div>
+      <div class="col-md-4">
+        <p class="cp-muted small mb-1">.cp-avatar</p>
+        <div class="cp-avatar" role="img" aria-label="Avatar placeholder"></div>
+      </div>
+    </div>
+    <p class="cp-muted small mb-1">article.cp-entry</p>
+    <article class="cp-entry cp-teal" data-off="0x01" data-off-short="01">
+      <div class="cp-meta"><time>2026.09.18</time><span class="cp-tag">#homelab</span></div>
+      <h3>Log entry</h3>
+      <p class="mb-0">Hex gutter on the left, a rule, then text. The gutter gets narrower on mobile.</p>
+    </article>
+    <p class="cp-muted small mb-2">ol.cp-timeline</p>
+    <ol class="cp-timeline cp-orange mb-5">
+      <li><time>2019.03</time>First node</li>
+      <li><time>2023.06</time>Rack</li>
+      <li class="cp-now"><time>2026.09</time>BBS</li>
+    </ol>
+
+    <div class="cp-sig">bootstra-code437 · MIT</div>
+  </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
