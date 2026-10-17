@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en" class="p31" data-bs-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>ARCHIVE-7 · new page</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../dist/bootsys-p31.css" rel="stylesheet">
+</head>
+<body class="p31-crt">
+
+<!-- HEADER: on phones the menu and status bar fold behind buttons -->
+<header class="p31-topbar">
+  <nav class="navbar">
+    <div class="container-xxl flex-wrap">
+      <button class="btn btn-outline-primary btn-sm d-lg-none" type="button"
+              data-bs-toggle="offcanvas" data-bs-target="#side" aria-controls="side">☰ Menu</button>
+      <a class="navbar-brand" href="#">ARCHIVE-7</a>
+      <span class="p31-subtitle d-none d-sm-inline">Operator terminal · Division 7</span>
+      <button class="btn btn-outline-primary btn-sm d-lg-none ms-auto" type="button"
+              data-bs-toggle="collapse" data-bs-target="#status" aria-controls="status" aria-expanded="false">Status</button>
+      <div class="collapse d-lg-flex p31-statusbar ms-lg-auto" id="status">
+        <div><span class="p31-k">Node</span><span class="p31-v">531200631</span></div>
+        <div><span class="p31-k">Terminal</span><span class="p31-v">T-04</span></div>
+        <div><span class="p31-k">Interface</span><span class="p31-v">Connected</span></div>
+        <div><span class="p31-k">Files</span><span class="p31-v">11,925</span></div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="container-xxl">
+  <div class="row">
+
+    <!-- FOLDERS: offcanvas on phones, a column on desktop -->
+    <aside class="col-lg-3 col-xl-2">
+      <div class="offcanvas-lg offcanvas-start p31-side" tabindex="-1" id="side" aria-labelledby="sideLabel">
+        <div class="offcanvas-header">
+          <span class="offcanvas-title" id="sideLabel">Folders</span>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#side" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body pt-lg-4">
+          <span class="p31-label mt-0">Folders</span>
+          <div class="list-group p31-folders">
+            <a href="#" class="list-group-item list-group-item-action">Home</a>
+            <a href="#" class="list-group-item list-group-item-action">Documents <span class="p31-count">6</span></a>
+            <a href="#" class="list-group-item list-group-item-action p31-sub">Research <span class="p31-count">2</span></a>
+            <a href="#" class="list-group-item list-group-item-action p31-sub active" aria-current="page">Recommendations <span class="p31-count">2</span></a>
+            <a href="#" class="list-group-item list-group-item-action p31-sub">Manuals <span class="p31-count">2</span></a>
+            <a href="#" class="list-group-item list-group-item-action">About</a>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="col-lg-9 col-xl-10 py-3 py-lg-4">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Documents</a></li>
+          <li class="breadcrumb-item"><a href="#">Recommendations</a></li>
+          <li class="breadcrumb-item active" aria-current="page">REC-005</li>
+        </ol>
+      </nav>
+
+      <div class="row g-4">
+        <!-- DOCUMENT CARD: folded on narrow screens -->
+        <aside class="col-xl-4 order-xl-2">
+          <button class="btn btn-outline-primary w-100 text-start d-xl-none" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#docMeta" aria-expanded="false" aria-controls="docMeta">▸ Document card</button>
+          <div class="collapse d-xl-block mt-3 mt-xl-0" id="docMeta">
+            <div class="card mb-3">
+              <div class="card-header"><span>Record card</span><span>REC-005</span></div>
+              <div class="card-body">
+                <dl class="p31-kv">
+                  <dt>Section</dt><dd><span class="p31-tag p31-tag-warning">Recommendations</span></dd>
+                  <dt>Clearance</dt><dd><span class="p31-tag p31-tag-warning">Restricted</span></dd>
+                  <dt>Date</dt><dd>2141-05-19</dd>
+                  <dt>Author</dt><dd>Lab Safety Office</dd>
+                </dl>
+              </div>
+            </div>
+            <div class="card p31-accent-info">
+              <div class="card-header"><span>Contents</span></div>
+              <div class="card-body small">1. Scope<br>2. Procedure</div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- DOCUMENT TEXT -->
+        <article class="col-xl-8">
+          <div class="p31-titlebox p31-accent-warning"><small>RE: REC-005</small>Handling class K samples</div>
+          <div class="p31-memo">
+            <div><span>To:</span><span>Division 7 staff</span></div>
+            <div><span>From:</span><span>Lab Safety Office</span></div>
+          </div>
+          <h3>1. Scope</h3>
+          <p>This procedure is mandatory for everyone with access to storage vault S-2.</p>
+          <h3>2. Procedure</h3>
+          <ol class="p31-steps">
+            <li>Close valve V-1.</li>
+            <li>Record both sensor readings and the time.</li>
+            <li>Report to the safety officer on duty.</li>
+          </ol>
+          <div class="alert alert-warning"><h4 class="alert-heading">Prohibited</h4>Opening the chamber by hand.</div>
+        </article>
+      </div>
+    </main>
+  </div>
+</div>
+
+<footer class="p31-keys">
+  <span class="d-none d-lg-inline"><kbd>/</kbd>search</span>
+  <span class="d-none d-lg-inline"><kbd>ESC</kbd>back</span>
+  <span>Division 7 · ARCHIVE-7</span>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ARCHIVE-7 — Division 7 technical encyclopedia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#020704; --bg2:#051009; --line:#1c6337; --grid:#0c2817;
+  --phos:#46ff88; --phos2:#2ccf69; --dim:#79c592; --text:#c8ffd9; --muted:#6c9a7a;
+  --cyan:#66e4ff; --amber:#ffbf4d; --red:#ff6b57; --ink:#021006;
+  --font:"IBM Plex Mono", ui-monospace, "Cascadia Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --hh:60px;
+  color-scheme:dark;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --bg:#020704; } }
+:root[data-theme="dark"]{ --bg:#020704; }
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + var(--hh) + 12px);background:var(--bg)}
+body{margin:0;min-height:100%;background:var(--bg) radial-gradient(ellipse at 50% -10%,#0c2a17 0%,var(--bg) 65%) fixed;color:var(--text);font:14px/1.6 var(--font);text-shadow:0 0 6px rgba(70,255,136,.22);-webkit-text-size-adjust:100%}
+a{color:var(--phos)}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+button{font:inherit}
+img,svg{max-width:100%}
+
+/* CRT overlay */
+.crt{position:fixed;inset:0;pointer-events:none;z-index:100;background:repeating-linear-gradient(to bottom,rgba(0,0,0,0) 0 2px,rgba(0,0,0,.2) 2px 3px)}
+.crt::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 58%,rgba(0,0,0,.5) 100%)}
+
+/* Header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:var(--bg);border-bottom:2px solid var(--phos2)}
+.bar{display:flex;align-items:center;gap:10px;padding:10px 12px}
+.brand{font-weight:700;letter-spacing:.12em;text-decoration:none;color:var(--ink);background:var(--phos);padding:2px 8px;text-shadow:none;box-shadow:0 0 14px rgba(70,255,136,.45);white-space:nowrap}
+.brand-sub{color:var(--dim);font-size:11px;letter-spacing:.14em;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.btn{font-size:12px;letter-spacing:.1em;color:var(--phos);background:transparent;border:1px solid var(--phos2);padding:6px 10px;cursor:pointer;text-shadow:inherit;white-space:nowrap}
+.btn:hover,.btn[aria-expanded="true"]{background:var(--phos);color:var(--ink);text-shadow:none}
+.status{display:none;grid-template-columns:1fr 1fr;gap:4px 14px;padding:8px 12px 10px;border-top:1px solid var(--line);font-size:11px;letter-spacing:.06em}
+.status.open{display:grid}
+.status .k{color:var(--muted);display:block}
+.status .v{color:var(--cyan)}
+
+/* Shell */
+.shell{max-width:1400px;margin:0 auto}
+main{padding:14px 12px 32px;min-width:0}
+
+/* Side navigation (drawer on mobile) */
+.side{position:fixed;top:0;bottom:0;left:0;width:min(86vw,320px);background:var(--bg2);border-right:2px solid var(--phos2);z-index:60;transform:translateX(-105%);transition:transform .22s ease;overflow-y:auto;padding:calc(env(safe-area-inset-top,0px) + 12px) 14px calc(env(safe-area-inset-bottom,0px) + 16px)}
+.side.open{transform:none}
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:55;opacity:0;pointer-events:none;transition:opacity .2s}
+.scrim.show{opacity:1;pointer-events:auto}
+.side-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.side-head span{font-size:11px;letter-spacing:.2em;color:var(--muted)}
+.folder-label{color:var(--phos);font-size:11px;letter-spacing:.2em;margin:16px 0 6px}
+.nav-list{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.nav-list a{position:relative;display:flex;justify-content:space-between;gap:8px;padding:9px 10px;border:1px solid var(--line);text-decoration:none;color:var(--text);letter-spacing:.08em;font-size:13px}
+.nav-list a:hover{border-color:var(--phos)}
+.nav-list a.active{background:var(--phos);color:var(--ink);border-color:var(--phos);text-shadow:none;box-shadow:0 0 14px rgba(70,255,136,.35)}
+.nav-list .sub a{margin-left:16px;font-size:12px;padding:7px 10px}
+.nav-list .count{color:var(--muted)}
+.nav-list a.active .count{color:var(--ink)}
+.session{margin-top:20px;border:1px dashed var(--line);padding:10px;font-size:11px;color:var(--muted);line-height:1.7}
+.session b{color:var(--amber);font-weight:500}
+
+/* Footer */
+.keys{border-top:2px solid var(--phos2);padding:8px 12px;font-size:11px;color:var(--muted);display:flex;gap:16px;flex-wrap:wrap;letter-spacing:.08em}
+.keys b{color:var(--phos);font-weight:500}
+.desk-only{display:none}
+
+/* Panels */
+.panel{border:2px solid var(--phos2);background:rgba(3,16,9,.72);margin-bottom:16px;box-shadow:inset 0 0 30px rgba(70,255,136,.05),0 0 10px rgba(70,255,136,.07)}
+.panel-h{background:var(--phos);color:var(--ink);text-shadow:none;font-weight:700;letter-spacing:.12em;font-size:12px;padding:4px 10px;display:flex;justify-content:space-between;gap:10px}
+.panel-h.cyan{background:var(--cyan)}
+.panel-h.amber{background:var(--amber)}
+.panel-b{padding:14px}
+.crumbs{font-size:12px;color:var(--muted);letter-spacing:.06em;margin:0 0 12px;display:flex;flex-wrap:wrap;gap:6px}
+.crumbs a{color:var(--dim);text-decoration:none}
+.crumbs a:hover{color:var(--phos)}
+h1.page{font-size:20px;line-height:1.3;letter-spacing:.06em;margin:0 0 12px;color:var(--phos);font-weight:700}
+.lead{color:var(--text);max-width:68ch;margin:0 0 14px}
+.muted{color:var(--muted)}
+.cur{display:inline-block;width:.6em;height:1.05em;background:var(--phos);vertical-align:-3px;margin-left:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* Home */
+.hero{display:grid;gap:0}
+.scope{border-bottom:2px solid var(--phos2);background:#010603}
+.scope svg{display:block;width:100%;height:auto;filter:drop-shadow(0 0 3px var(--phos))}
+.hero-text{padding:16px 14px}
+.hero-text h1{font-size:22px;line-height:1.25;margin:0 0 10px;color:var(--phos);letter-spacing:.04em}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border-top:2px solid var(--phos2)}
+.stat{background:var(--bg2);padding:10px 12px}
+.stat .n{font-size:20px;color:var(--cyan);font-weight:700;display:block}
+.stat .l{font-size:11px;color:var(--muted);letter-spacing:.08em}
+.tiles{display:grid;gap:10px}
+.tile{display:block;border:1px solid var(--line);padding:12px;text-decoration:none;color:var(--text);background:rgba(0,0,0,.3)}
+.tile:hover{border-color:var(--phos)}
+.tile .top-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.tile strong{letter-spacing:.1em}
+.log{margin:0;padding:0;list-style:none;font-size:12px}
+.log li{padding:3px 0;border-bottom:1px dashed var(--grid);display:flex;gap:10px}
+.log .t{color:var(--muted);flex:none}
+.log .ok{color:var(--phos)} .log .wr{color:var(--amber)} .log .er{color:var(--red)}
+
+/* Tags */
+.tag{display:inline-block;font-size:11px;letter-spacing:.1em;border:1px solid currentColor;padding:0 6px;line-height:1.7;white-space:nowrap}
+.c-research{color:var(--cyan)} .c-rec{color:var(--amber)} .c-man{color:var(--phos)}
+.cl-open{color:var(--phos)} .cl-dsk{color:var(--amber)} .cl-secret{color:var(--red)}
+
+/* Catalog */
+.tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:10px;scrollbar-width:thin}
+.tabs a{text-decoration:none;flex:none}
+.tabs a.active{background:var(--phos);color:var(--ink);text-shadow:none}
+.cmd{display:flex;align-items:center;border:1px solid var(--phos2);margin-bottom:14px;background:#010603}
+.cmd label{padding:8px 10px;color:var(--ink);background:var(--phos2);font-size:12px;letter-spacing:.1em;text-shadow:none;align-self:stretch;display:flex;align-items:center}
+.cmd input{flex:1;min-width:0;background:transparent;border:0;color:var(--phos);font:inherit;padding:8px 10px;caret-color:var(--phos);text-shadow:inherit}
+.cmd input::placeholder{color:var(--muted)}
+.cmd input:focus{outline:none}
+.cmd:focus-within{box-shadow:0 0 0 1px var(--cyan)}
+.found{font-size:12px;color:var(--muted);margin:-6px 0 10px}
+.cards{display:grid;gap:10px}
+.card{display:block;border:1px solid var(--line);padding:12px;text-decoration:none;color:var(--text);background:rgba(0,0,0,.3)}
+.card:hover{border-color:var(--phos);box-shadow:0 0 14px rgba(70,255,136,.18)}
+.card .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:12px}
+.card .code{color:var(--phos);font-weight:700;letter-spacing:.06em}
+.card h3{margin:8px 0 6px;font-size:15px;line-height:1.35;color:var(--phos);font-weight:500}
+.card p{margin:0 0 8px;font-size:13px;color:var(--dim)}
+.card .foot{font-size:11px;color:var(--muted);display:flex;justify-content:space-between;gap:8px}
+.empty{border:1px dashed var(--amber);color:var(--amber);padding:14px;display:none}
+
+/* Document */
+.doc{display:grid;gap:14px}
+.meta-toggle{width:100%;text-align:left;padding:10px 12px}
+.meta-body{display:none;margin-top:10px}
+.meta.open .meta-body{display:block}
+.kv{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:12px}
+.kv dt{color:var(--muted);letter-spacing:.06em}
+.kv dd{margin:0;color:var(--text)}
+.toc{list-style:none;margin:0;padding:0;font-size:12px}
+.toc button{background:none;border:0;color:var(--dim);padding:4px 0;cursor:pointer;text-align:left;text-shadow:inherit;width:100%}
+.toc button:hover{color:var(--phos)}
+.related{list-style:none;margin:0;padding:0;font-size:12px;display:grid;gap:6px}
+.related a{text-decoration:none}
+.titlebox{border:2px solid var(--phos);padding:10px 14px;font-weight:700;font-size:17px;line-height:1.35;letter-spacing:.04em;color:var(--phos);box-shadow:0 0 16px rgba(70,255,136,.2),inset 0 0 16px rgba(70,255,136,.06);margin-bottom:14px}
+.titlebox .code{display:block;font-size:12px;color:var(--muted);letter-spacing:.12em;font-weight:500;margin-bottom:2px}
+.memo{font-size:13px;margin:0 0 16px;padding:0 0 12px;border-bottom:1px dashed var(--line)}
+.memo div{display:flex;gap:10px}
+.memo span:first-child{color:var(--muted);min-width:5.5em}
+.article{min-width:0}
+.article h2{font-size:14px;letter-spacing:.1em;color:var(--phos);border-bottom:1px solid var(--line);padding-bottom:4px;margin:28px 0 10px;font-weight:700}
+.article p{margin:0 0 12px;max-width:72ch}
+.article ul{padding-left:1.2em;margin:0 0 12px;max-width:70ch}
+.article ul li{margin-bottom:4px}
+.article ul li::marker{content:"› ";color:var(--phos)}
+ol.steps{counter-reset:s;list-style:none;padding:0;margin:0 0 14px;max-width:70ch}
+ol.steps li{counter-increment:s;padding-left:46px;position:relative;margin:0 0 10px}
+ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:1px;border:1px solid var(--phos2);padding:0 5px;font-size:12px;color:var(--phos);line-height:1.6}
+.tbl{overflow-x:auto;margin:10px 0 16px;border:1px solid var(--line)}
+table.data{border-collapse:collapse;width:100%;min-width:440px;font-size:13px}
+table.data th{background:var(--grid);color:var(--phos);text-align:left;font-weight:500;letter-spacing:.06em}
+table.data td,table.data th{border-bottom:1px solid var(--line);border-right:1px solid var(--line);padding:6px 9px;vertical-align:top}
+table.data tr:last-child td{border-bottom:0}
+table.data td:last-child,table.data th:last-child{border-right:0}
+.note{border:1px solid;border-left-width:6px;padding:10px 12px;margin:16px 0;max-width:72ch;font-size:13px}
+.note b{display:block;letter-spacing:.12em;font-size:11px;margin-bottom:4px}
+.note.warn{color:var(--amber);border-color:var(--amber);background:rgba(255,191,77,.05)}
+.note.info{color:var(--cyan);border-color:var(--cyan);background:rgba(102,228,255,.05)}
+.note.crit{color:var(--red);border-color:var(--red);background:rgba(255,107,87,.06)}
+pre.code{background:#010502;border:1px solid var(--line);padding:12px;overflow-x:auto;color:var(--cyan);font-size:13px;margin:10px 0 16px;line-height:1.55}
+pre.code .c{color:var(--muted)}
+.pager{display:grid;gap:8px;margin-top:28px}
+.pager a{display:block;border:1px solid var(--line);padding:10px 12px;text-decoration:none;font-size:13px}
+.pager a:hover{border-color:var(--phos)}
+.pager small{display:block;color:var(--muted);font-size:11px;letter-spacing:.1em}
+
+/* Figures */
+.fig{margin:18px 0;border:1px solid var(--line);background:#010704;--c:var(--phos)}
+.fig.cyan{--c:var(--cyan)} .fig.amber{--c:var(--amber)}
+.fig-h{display:flex;justify-content:space-between;gap:10px;font-size:11px;color:var(--muted);padding:4px 8px;border-bottom:1px solid var(--line);letter-spacing:.08em}
+.fig-h .rec{color:var(--c)}
+.fig svg{display:block;width:100%;height:auto;filter:drop-shadow(0 0 2px var(--c))}
+.fig figcaption{font-size:12px;color:var(--dim);padding:6px 8px;border-top:1px solid var(--line)}
+svg .s{stroke:var(--c,var(--phos));fill:none;stroke-width:1.2}
+svg .sd{stroke:var(--c,var(--phos));fill:none;opacity:.5}
+svg .gr{stroke:#0d3019;stroke-width:1;fill:none}
+svg .t{fill:var(--c,var(--phos));font:13px var(--font)}
+svg .tb{fill:var(--c,var(--phos));font:700 14px var(--font)}
+svg .tm{fill:var(--muted);font:12px var(--font)}
+svg .f{fill:var(--c,var(--phos))}
+svg .fd{fill:var(--c,var(--phos));opacity:.2}
+svg .ti{fill:var(--ink);font:700 13px var(--font)}
+
+/* Desktop */
+@media (min-width:960px){
+  body{font-size:15px}
+  #navBtn,#statBtn,.side-close{display:none}
+  .brand-sub{flex:none}
+  .bar{padding:10px 20px}
+  .status{display:flex!important;flex-wrap:wrap;gap:6px 34px;padding:0;border:0;margin-left:auto;font-size:11px}
+  .status .k{display:inline;margin-right:6px}
+  .top-inner{display:flex;align-items:center;max-width:1400px;margin:0 auto;padding-right:20px}
+  .shell{display:grid;grid-template-columns:250px minmax(0,1fr);gap:26px;padding:0 20px}
+  .side{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--hh));align-self:start;height:calc(100vh - var(--hh) - env(safe-area-inset-top,0px));transform:none;transition:none;background:transparent;border-right:0;z-index:auto;padding:22px 16px 22px 0;width:auto}
+  .side-head{display:none}
+  .nav-list a.active::after{content:"";position:absolute;right:-18px;top:50%;width:16px;height:2px;background:var(--phos);box-shadow:0 0 8px var(--phos)}
+  .scrim{display:none}
+  main{padding:22px 0 44px}
+  h1.page{font-size:24px}
+  .desk-only{display:inline}
+  .mob-only{display:none}
+  .hero{grid-template-columns:1.25fr 1fr}
+  .scope{border-bottom:0;border-right:2px solid var(--phos2)}
+  .hero .stats{grid-column:1 / -1;grid-template-columns:repeat(4,1fr)}
+  .hero-text{padding:22px}
+  .hero-text h1{font-size:26px}
+  .tiles{grid-template-columns:repeat(3,1fr)}
+  .home-cols{display:grid;grid-template-columns:1.4fr 1fr;gap:16px}
+  .cards{grid-template-columns:repeat(auto-fill,minmax(330px,1fr))}
+  .doc{grid-template-columns:minmax(0,1fr) 280px;align-items:start;gap:26px}
+  .meta{order:2;position:sticky;top:calc(var(--hh) + 22px)}
+  .meta-toggle{display:none}
+  .meta-body{display:block!important;margin-top:0}
+  .titlebox{font-size:21px}
+  .pager{grid-template-columns:1fr 1fr}
+  .pager a.next{text-align:right}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<header class="top" id="top">
+  <div class="top-inner">
+    <div class="bar">
+      <button class="btn" id="navBtn" aria-expanded="false" aria-controls="nav">☰ MENU</button>
+      <a class="brand" href="#/">ARCHIVE-7</a>
+      <span class="brand-sub">Operator terminal · Division 7</span>
+      <button class="btn" id="statBtn" aria-expanded="false" aria-controls="status">STATUS</button>
+    </div>
+    <div class="status" id="status">
+      <div><span class="k">NODE</span><span class="v">531200631</span></div>
+      <div><span class="k">TERMINAL</span><span class="v">T-04</span></div>
+      <div><span class="k">EXT. INTERFACE</span><span class="v">CONNECTED</span></div>
+      <div><span class="k">FILES</span><span class="v">11,925</span></div>
+      <div><span class="k">TIME</span><span class="v" id="clock">--:--:--</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+  <nav class="side" id="nav" aria-label="Sections">
+    <div class="side-head"><span>FOLDERS</span><button class="btn side-close" id="navClose">✕ CLOSE</button></div>
+    <div id="navInner"></div>
+  </nav>
+  <main id="view" tabindex="-1"></main>
+</div>
+<div class="scrim" id="scrim"></div>
+
+<footer class="keys">
+  <span class="desk-only"><b>[/]</b> search</span>
+  <span class="desk-only"><b>[ESC]</b> back</span>
+  <span class="mob-only"><b>☰</b> section menu</span>
+  <span>Division 7 · ARCHIVE-7 information system · v3.2</span>
+</footer>
+<div class="crt" aria-hidden="true"></div>
+
+<script>
+(function(){
+"use strict";
+
+/* ---------- helpers ---------- */
+function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function svg(w,h,inner,label){return '<svg viewBox="0 0 '+w+' '+h+'" role="img" aria-label="'+label+'" xmlns="http://www.w3.org/2000/svg">'+inner+'</svg>';}
+function grid(w,h,s){var g='';for(var x=s;x<w;x+=s)g+='M'+x+' 0V'+h;for(var y=s;y<h;y+=s)g+='M0 '+y+'H'+w;return '<path class="gr" d="'+g+'"/>';}
+function fx(n){return n.toFixed(1);}
+function fig(color,head,body,cap){return '<figure class="fig '+color+'"><div class="fig-h"><span>'+head+'</span><span class="rec">● REC</span></div>'+body+'<figcaption>'+cap+'</figcaption></figure>';}
+function box(x,y,w,h,txt,filled){return (filled?'<rect class="f" x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'"/>':'<rect class="s" x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'"/>')+'<text class="'+(filled?'ti':'t')+'" x="'+(x+w/2)+'" y="'+(y+h/2+5)+'" text-anchor="middle">'+txt+'</text>';}
+function badge(n,x,y){return '<circle class="f" cx="'+x+'" cy="'+y+'" r="11"/><text class="ti" x="'+x+'" y="'+(y+5)+'" text-anchor="middle">'+n+'</text>';}
+function tbl(head,rows){return '<div class="tbl"><table class="data"><thead><tr>'+head.map(function(h){return '<th>'+h+'</th>';}).join('')+'</tr></thead><tbody>'+rows.map(function(r){return '<tr>'+r.map(function(c){return '<td>'+c+'</td>';}).join('')+'</tr>';}).join('')+'</tbody></table></div>';}
+
+/* ---------- figures ---------- */
+function waveSVG(){
+  var W=600,H=230,m=105,r=rng(87),d='';
+  for(var x=40;x<=580;x+=2){var t=(x-40)/540;var env=t<.015?t/.015:Math.exp(-(t-.015)*5.2);var a=Math.max(1.2,92*env*(.3+.7*r()));d+='M'+x+' '+fx(m-a)+'V'+fx(m+a);}
+  var lab=[['0',40,'start'],['20000',310,'middle'],['40000',580,'end']].map(function(l){return '<text class="t" x="'+l[1]+'" y="222" text-anchor="'+l[2]+'">'+l[0]+'</text>';}).join('');
+  return svg(W,H,grid(W,H,30)+'<path class="s" stroke-width="1" d="'+d+'"/><path class="sd" stroke-dasharray="4 4" d="M300 8V200"/><path class="s" d="M40 205H580"/>'+lab+'<text class="t" x="572" y="26" text-anchor="end">CH.1 · 44100 Hz</text><text class="tm" x="306" y="24">CURSOR</text>','Pulse oscillogram');
+}
+function stackSVG(){
+  var W=600,H=260,o='';
+  for(var i=11;i>=0;i--){var dx=i*16,base=225-i*14,d='';for(var k=0;k<=160;k++){var u=k/160;var y=base-46*Math.exp(-u*2.4)*Math.sin(u*22+i*.5)*(i%3?1:.8);d+=(k?'L':'M')+fx(40+dx+u*340)+' '+fx(y);}o+='<path class="s" style="opacity:'+(1-i*.06).toFixed(2)+'" d="'+d+'"/>';}
+  return svg(W,H,grid(W,H,30)+o+'<text class="t" x="572" y="28" text-anchor="end">STEP 5 · ASPECT 1:1</text>','Spectrum cascade');
+}
+function crystalSVG(){
+  var W=400,H=320,cx=200,cy=180,d='',L=[],R=[],i;
+  for(var y=14;y<=312;y+=8){var k=1-Math.abs(y-cy)/(y<cy?166:132);var w=2+15*Math.max(0,k);L.push([cx-w,y]);R.push([cx+w,y]);}
+  for(i=0;i<L.length;i++){d+=(i?'L':'M')+fx(L[i][0])+' '+L[i][1];}
+  for(i=0;i<R.length;i++){d+=(i?'L':'M')+fx(R[i][0])+' '+R[i][1];}
+  for(i=0;i<L.length-1;i++){d+='M'+fx(L[i][0])+' '+L[i][1]+'L'+fx(R[i+1][0])+' '+R[i+1][1]+'M'+fx(R[i][0])+' '+R[i][1]+'L'+fx(L[i+1][0])+' '+L[i+1][1];}
+  var S=[[-160,150],[172,168],[148,140],[118,118],[62,126],[28,170],[-6,176],[-34,132],[-122,72],[-58,66]];
+  S.forEach(function(s){var a=s[0]*Math.PI/180,len=s[1],ux=Math.cos(a),uy=Math.sin(a),px=-uy,py=ux,n=9,b=10,w0=6,Lp=[],Rp=[];
+    for(var j=0;j<=n;j++){var q=b+(len-b)*j/n,ww=w0*(1-j/n);Lp.push([cx+ux*q+px*ww,cy+uy*q+py*ww]);Rp.push([cx+ux*q-px*ww,cy+uy*q-py*ww]);}
+    Lp.forEach(function(p,j){d+=(j?'L':'M')+fx(p[0])+' '+fx(p[1]);});
+    Rp.forEach(function(p,j){d+=(j?'L':'M')+fx(p[0])+' '+fx(p[1]);});
+    for(var z=0;z<n;z++){d+='M'+fx(Lp[z][0])+' '+fx(Lp[z][1])+'L'+fx(Rp[z+1][0])+' '+fx(Rp[z+1][1]);}
+  });
+  return svg(W,H,grid(W,H,20)+'<path class="s" stroke-width=".9" d="'+d+'"/><text class="t" x="12" y="24">K-3 · 312 SLICES</text><text class="t" x="12" y="308">STATE: OPEN</text><text class="tm" x="388" y="308" text-anchor="end">20 kPa</text>','Wireframe model of formation K-3');
+}
+function barsSVG(){
+  var W=600,H=270,b=225,sc=3.6,o='';
+  var before=[34,33,33,32,32,33,38,44,47,48,48,47,46,47,48,48,47,46,44,42,40,38,36,35];
+  var after=before.map(function(v,h){return (h>=23||h<6)?Math.round(v*.56):Math.round(v*.97);});
+  o+='<rect class="fd" x="46" y="30" width="135" height="195" style="opacity:.08"/><rect class="fd" x="563.5" y="30" width="22.5" height="195" style="opacity:.08"/><text class="tm" x="52" y="46">NIGHT CYCLE</text>';
+  before.forEach(function(v,h){var x=46+h*22.5+3;o+='<rect class="fd" x="'+x+'" y="'+(b-after[h]*sc)+'" width="16" height="'+(after[h]*sc)+'" style="opacity:.55"/><rect class="s" stroke-dasharray="3 3" x="'+x+'" y="'+fx(b-v*sc)+'" width="16" height="'+fx(v*sc)+'"/>';});
+  o+='<path class="s" d="M46 225H586M46 30V225"/>';
+  for(var h=0;h<24;h+=3){o+='<text class="t" x="'+(46+h*22.5+11)+'" y="246" text-anchor="middle">'+(h<10?'0':'')+h+'</text>';}
+  [0,20,40].forEach(function(v){o+='<text class="tm" x="40" y="'+(b-v*sc+4)+'" text-anchor="end">'+v+'</text>';});
+  o+='<text class="t" x="586" y="264" text-anchor="end">HOURS · kW</text><rect class="s" stroke-dasharray="3 3" x="320" y="36" width="14" height="12"/><text class="t" x="340" y="47">BEFORE</text><rect class="fd" style="opacity:.55" x="420" y="36" width="14" height="12"/><text class="t" x="440" y="47">AFTER</text>';
+  return svg(W,H,grid(W,H,30)+o,'Daily network consumption');
+}
+function flowSVG(){
+  var o='<defs><marker id="arF" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8" orient="auto"><path class="f" d="M0 0L8 4L0 8z"/></marker></defs>';
+  o+=box(60,16,240,44,'PRESSURE DROP DETECTED',true)+box(60,90,240,44,'ISOLATE CHAMBER (V-1)')+box(60,164,240,44,'RECORD READINGS');
+  o+='<path class="s" d="M180 232L270 272L180 312L90 272Z"/><text class="t" x="180" y="277" text-anchor="middle">Δp &gt; 40 kPa ?</text>';
+  o+=box(10,360,160,44,'EVACUATE AREA')+box(190,360,160,44,'NORMAL MODE')+box(60,446,240,44,'REPORT TO DUTY',true);
+  var ar=' marker-end="url(#arF)"';
+  o+='<path class="s" d="M180 60V88"'+ar+'/><path class="s" d="M180 134V162"'+ar+'/><path class="s" d="M180 208V230"'+ar+'/>';
+  o+='<path class="s" d="M90 272H90V358"'+ar+'/><path class="s" d="M270 272V358"'+ar+'/><text class="t" x="80" y="300" text-anchor="end">YES</text><text class="t" x="280" y="300">NO</text>';
+  o+='<path class="s" d="M90 404V425H180V444"'+ar+'/><path class="s" d="M270 404V425H180"/>';
+  return svg(360,506,o,'Depressurisation procedure');
+}
+function panelSVG(){
+  var o='<rect class="s" x="12" y="12" width="576" height="276" rx="8"/><rect class="s" x="34" y="34" width="300" height="170"/>';
+  var d='';for(var x=40;x<=328;x+=3){var y=119+40*Math.sin((x-40)*.06)*Math.exp(-(x-40)/220);d+=(x===40?'M':'L')+x+' '+fx(y);}
+  o+='<path class="gr" d="M34 119H334M184 34V204"/><path class="s" d="'+d+'"/>';
+  [400,470,540].forEach(function(cx,i){o+='<circle class="s" cx="'+cx+'" cy="78" r="24"/><circle class="f" cx="'+cx+'" cy="78" r="4"/>';var a=(-130+i*70)*Math.PI/180;o+='<path class="s" stroke-width="2" d="M'+cx+' 78L'+fx(cx+Math.cos(a)*19)+' '+fx(78+Math.sin(a)*19)+'"/>';for(var t=0;t<8;t++){var b=(-225+t*38.5)*Math.PI/180;o+='<path class="s" d="M'+fx(cx+Math.cos(b)*28)+' '+fx(78+Math.sin(b)*28)+'L'+fx(cx+Math.cos(b)*32)+' '+fx(78+Math.sin(b)*32)+'"/>';}});
+  for(var i=0;i<4;i++){o+=i===1?'<rect class="f" x="'+(372+i*44)+'" y="140" width="36" height="22"/>':'<rect class="s" x="'+(372+i*44)+'" y="140" width="36" height="22"/>';}
+  [400,460].forEach(function(cx){o+='<circle class="s" cx="'+cx+'" cy="240" r="12"/><circle class="s" cx="'+cx+'" cy="240" r="5"/>';});
+  o+='<rect class="s" x="510" y="222" width="56" height="36"/><rect class="f" x="516" y="228" width="22" height="24"/>';
+  o+='<text class="tb" x="34" y="244">AS-80</text><text class="tm" x="34" y="266">No. 0412 · SIGNAL WORKS</text>';
+  o+=badge(1,318,50)+badge(2,400,34)+badge(3,470,34)+badge(4,540,34)+badge(5,562,151)+badge(6,430,214)+badge(7,538,206);
+  return svg(600,300,o,'AS-80 front panel');
+}
+function screenSVG(){
+  var o='<rect class="s" x="10" y="10" width="580" height="280" rx="6"/>';
+  o+='<text class="tm" x="26" y="38">NODE</text><text class="t" x="70" y="38">531200631</text><text class="tm" x="250" y="38">EXT. INTERFACE</text><text class="t" x="574" y="38" text-anchor="end">FILES 11925</text>';
+  o+='<rect class="s" x="26" y="50" width="548" height="30"/><text class="t" x="36" y="70">&gt; FIND SECTION=RES CLEARANCE=RESTR</text><rect class="f" x="330" y="58" width="9" height="16"/>';
+  o+='<rect class="s" x="26" y="94" width="340" height="180"/><rect class="s" x="380" y="94" width="194" height="180"/><rect class="f" x="380" y="94" width="194" height="22"/><text class="ti" x="390" y="110">DESCRIPTION</text>';
+  var rows=['RES-014 COLLECTOR B-2','RES-009 SOIL, LAYER 4','RES-006 BACKGROUND, SECT. E','RES-002 HYDROPHONE TEST'];
+  rows.forEach(function(r,i){var y=106+i*34;o+=i===0?'<rect class="f" x="32" y="'+y+'" width="328" height="26"/><text class="ti" x="40" y="'+(y+18)+'">'+r+'</text>':'<text class="t" x="40" y="'+(y+18)+'">'+r+'</text>';});
+  for(var i=0;i<6;i++){o+='<path class="sd" d="M392 '+(134+i*20)+'H'+(560-(i%3)*30)+'"/>';}
+  return svg(600,300,o,'Workstation query screen');
+}
+function archSVG(){
+  var o='<defs><marker id="arA" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="f" d="M0 0L8 4L0 8z"/></marker></defs>';
+  o+=box(80,16,200,40,'EXT. INTERFACE')+box(90,122,180,54,'CN-1',true)+box(10,244,150,44,'TAPE ARCHIVE')+box(200,244,150,44,'TERMINALS T-01…12');
+  var m=' marker-end="url(#arA)" marker-start="url(#arA)"';
+  o+='<path class="s" d="M180 60V118"'+m+'/><path class="s" d="M140 180L90 240"'+m+'/><path class="s" d="M220 180L270 240"'+m+'/>';
+  o+='<text class="tm" x="188" y="94">9600 baud</text><text class="tm" x="12" y="210">BUS A</text><text class="tm" x="348" y="210" text-anchor="end">BUS B</text>';
+  return svg(360,300,o,'System architecture');
+}
+
+/* ---------- data ---------- */
+var CATS={
+  research:{label:"RESEARCH",code:"RES",desc:"Lab and field-team reports: methods, measurements, conclusions."},
+  rec:{label:"RECOMMENDATIONS",code:"REC",desc:"Procedures, safety protocols and operating guidance for the facility."},
+  man:{label:"MANUALS",code:"MAN",desc:"Operator guides for the division’s instruments and workstations."}
+};
+var CL={open:["OPEN","cl-open"],dsk:["RESTRICTED","cl-dsk"],secret:["SECRET","cl-secret"]};
+
+var DOCS=[
+{id:"res-014",code:"RES-014",cat:"research",cl:"dsk",date:"2141-03-14",size:"14 pp.",author:"Dr O. Marchenko, Acoustics Group",
+ title:"Acoustic signature of collector B-2",
+ summary:"Analysis of periodic low-frequency pulses recorded in drainage collector B-2 over 11 days.",
+ related:["man-003","res-022"],
+ body:
+ '<h2>1. Purpose</h2><p>To find the source of the pulses that duty shifts have been hearing in collector B-2 since February. The initial theory of water hammer in the pumping station did not hold up: the pulses continue when the pumps are stopped.</p>'+
+ '<h2>2. Method</h2><p>Four hydrophones were placed 40 m apart along the collector axis. Recording ran continuously, with automatic capture of segments more than 12 dB above background.</p><ul><li>HP-12 hydrophones, 4 units, channels 1–4</li><li>16-bit, 44,100 Hz, mono per channel</li><li>Analysis on the AS-80, see <a href="#/doc/man-003">MAN-003</a></li></ul>'+
+ fig('cyan','OSC-01 · SEGMENT 87',waveSVG(),'Fig. 1. Oscillogram of pulse no. 87, channel 1. Duration 1.010 s, 44,544 samples. The sharp rise and exponential decay are typical of the whole series.')+
+ '<h2>3. Results</h2><p>412 pulses were recorded over 11 days. The interval between them is not random: it shortens at night and lengthens during the day, which fits poorly with any of the facility’s operating cycles.</p>'+
+ tbl(["Day","Pulses","Mean freq., Hz","Peak, dB","First channel"],[["01","22","31.4","64","4"],["03","35","30.9","67","4"],["06","41","29.8","71","3"],["09","48","28.2","74","3"],["11","57","27.5","78","2"]])+
+ fig('cyan','SPECTRUM · CASCADE',stackSVG(),'Fig. 2. Cascade of spectra of consecutive pulses, step 5. The fundamental frequency drops steadily.')+
+ '<h2>4. Conclusions</h2><p>The source is not stationary. The first detection is moving from channel 4 towards channel 2, that is, towards the residential block, at roughly 7 m per day.</p>'+
+ '<div class="note warn"><b>GROUP RECOMMENDATION</b>Restrict access to collector B-2 until a repeat series of measurements is complete. Working alone in the collector is prohibited.</div>'},
+
+{id:"res-022",code:"RES-022",cat:"research",cl:"secret",date:"2141-05-02",size:"22 pp.",author:"Dr I. Kovalska, Materials Lab",
+ title:"Morphology of formation K-3 under variable pressure",
+ summary:"Behaviour of crystalline formation K-3 in a pressure chamber at 20 to 140 kPa, and an attempt to force it open.",
+ related:["rec-005","res-014"],
+ body:
+ '<h2>1. Sample description</h2><p>Sample K-3 was recovered from layer 4 while drilling borehole B-11. It is an elongated axial body with ten radial spines. The surface has a regular mesh structure, clearly visible in the wireframe reconstruction.</p>'+
+ fig('cyan','MODEL · K-3',crystalSVG(),'Fig. 1. Wireframe model of K-3 in the open state, reconstructed from 312 tomographic slices.')+
+ '<h2>2. Response to pressure</h2><p>Enzymatic breakdown on the surface begins as soon as the sample leaves the borehole. The shell behaves like a sensor of atmospheric pressure and temperature: when conditions become unsuitable or threatening, the spines fold and the sample closes completely.</p>'+
+ tbl(["Pressure, kPa","Temp., °C","State","Response time"],[["20","14","Open","—"],["60","14","Partly closed","48 s"],["100","14","Closed","11 s"],["140","14","Closed, shell microcracks","3 s"]])+
+ '<h2>3. Forced opening attempt</h2><p>A load of up to 70 kg/cm² was applied to the closed sample. The shell did not yield. Once pressure returned to 20 kPa, K-3 opened on its own within 6 min and the microcracks disappeared.</p>'+
+ '<div class="note crit"><b>RESTRICTION</b>Any handling of K-3 outside the pressure chamber is prohibited. For depressurisation, follow <a href="#/doc/rec-005" style="color:inherit">REC-005</a>.</div>'},
+
+{id:"rec-005",code:"REC-005",cat:"rec",cl:"dsk",date:"2141-05-19",size:"6 pp.",author:"Lab Safety Office",
+ title:"Handling class K samples during depressurisation",
+ summary:"What staff must do when pressure changes suddenly in a class K sample storage chamber.",
+ related:["res-022","man-007"],
+ body:
+ '<h2>1. Scope</h2><p>This procedure is mandatory for everyone with access to storage vault S-2 and the Materials Lab. It applies to class K samples whatever their current state.</p>'+
+ '<h2>2. General requirements</h2><ul><li>Samples are kept only in pressure chambers with two independent pressure sensors.</li><li>At least two staff with level B clearance are present at the chamber at all times.</li><li>Readings are logged every hour, including during the night cycle.</li></ul>'+
+ '<h2>3. Procedure</h2>'+
+ fig('amber','CHART · REC-005',flowSVG(),'Fig. 1. Sequence of actions after a pressure drop is detected.')+
+ '<ol class="steps"><li>Close valve V-1. The chamber must be isolated from the main line before anything else.</li><li>Record both sensor readings and the time. Do not round the values.</li><li>If the drop exceeds 40 kPa, leave the area and seal the pressure door from outside.</li><li>Report to the safety officer on duty whatever the outcome.</li></ol>'+
+ '<div class="note warn"><b>PROHIBITED</b>Opening the chamber by hand to check on the sample. A closed sample is safe; an open chamber is not.</div>'+
+ '<h2>4. After an incident</h2><p>The duty officer files form F-12 within two hours. The chamber returns to service only after Instrument Support has checked both sensors.</p>'},
+
+{id:"rec-011",code:"REC-011",cat:"rec",cl:"open",date:"2141-06-07",size:"4 pp.",author:"Technical Services, Eng. P. Hnatiuk",
+ title:"Power-saving mode for the terminal network at night",
+ summary:"How to switch terminals T-01…T-12 to low power between 23:00 and 06:00 without stopping archive operations.",
+ related:["man-007"],
+ body:
+ '<h2>1. Background</h2><p>At night the network draws almost as much power as during the day, even though only 2–3 terminals are in use. Most of the load comes from screens left on with no operator and from unnecessary caching of the tape archive.</p>'+
+ fig('amber','POWER · 24 H',barsSVG(),'Fig. 1. Network consumption over a day, kW: before the change (dashed) and after (filled).')+
+ '<h2>2. Recommendations</h2><ol class="steps"><li>Blank terminal screens after 10 min without input. Any key wakes them.</li><li>Move batch tape copying to 02:00–04:00, when load is lowest.</li><li>Keep only T-01 (duty) and T-04 (archive) in full-power mode.</li></ol>'+
+ '<h2>3. Expected effect</h2>'+
+ tbl(["Metric","Before","After"],[["Night consumption, kWh","232","130"],["Daily consumption, kWh","970","862"],["Archive response at night","1.2 s","1.4 s"]])+
+ '<div class="note info"><b>NOTE</b>This mode does not apply to lab terminals with active instrument recordings.</div>'},
+
+{id:"man-003",code:"MAN-003",cat:"man",cl:"open",date:"2141-01-11",size:"18 pp.",author:"Instrument Support Group",
+ title:"AS-80 spectrum analyser. Operator manual",
+ summary:"Controls, power-up, calibration and common faults of the AS-80 analyser.",
+ related:["res-014","man-007"],
+ body:
+ '<h2>1. Purpose</h2><p>The AS-80 records and analyses acoustic signals from 2 Hz to 20 kHz. It works on its own or as a peripheral of the ARCHIVE-7 system, to which it sends recordings for storage.</p>'+
+ '<h2>2. Front panel</h2>'+
+ fig('','PANEL · AS-80',panelSVG(),'Fig. 1. AS-80 front panel. Numbers match the table below.')+
+ tbl(["No.","Control","Function"],[["1","Screen","Live oscillogram and spectrum"],["2","FREQUENCY knob","Centre frequency of analysis"],["3","GAIN knob","Input level, ±24 dB"],["4","SWEEP knob","Time scale"],["5","Mode buttons","RECORD / ANALYSE / LOOP / EXPORT"],["6","Inputs","Two channels for HP-12 hydrophones"],["7","Power","220 V mains switch"]])+
+ '<h2>3. Power-up and calibration</h2><ol class="steps"><li>Make sure the GAIN knob is at zero.</li><li>Switch on the power (7) and wait 90 s for the screen to warm up.</li><li>Feed a 1 kHz reference tone into input 6 and set the level to 0 dB with knob 3.</li><li>Press RECORD. The light above the button should stay on.</li></ol>'+
+ '<h2>4. Faults</h2>'+
+ tbl(["Symptom","Cause","Action"],[["Screen dark, lights on","Tube not warmed up","Wait another 60 s"],["Constant 50 Hz hum","Hydrophone grounding","Check the cable shield"],["Export stops midway","No link to CN-1","See MAN-007, section 4"]])},
+
+{id:"man-007",code:"MAN-007",cat:"man",cl:"open",date:"2141-06-23",size:"9 pp.",author:"System administrator, O. Lysenko",
+ title:"T-series workstation: querying the archive",
+ summary:"Terminal command-line syntax for finding and exporting documents from ARCHIVE-7.",
+ related:["man-003","rec-011"],
+ body:
+ '<h2>1. Query screen</h2><p>The top line shows the node, the external interface state and the file count. Below it is the command line. Results appear on the left and the selected document’s description on the right.</p>'+
+ fig('cyan','SCREEN · T-04',screenSVG(),'Fig. 1. Query screen of workstation T-04 with search results.')+
+ '<h2>2. Basic commands</h2>'+
+ '<pre class="code"><span class="c">; search by section and clearance</span>\n&gt; FIND SECTION=RES CLEARANCE=RESTRICTED\n\n<span class="c">; open a document</span>\n&gt; OPEN RES-014\n\n<span class="c">; export a recording from the AS-80</span>\n&gt; EXPORT AS-80 CH=1 → RES/014\n\n<span class="c">; check the link to the central node</span>\n&gt; STATUS CN-1</pre>'+
+ '<h2>3. Navigation</h2>'+
+ tbl(["Key","Action"],[["↑ ↓","Select a result line"],["ENTER","Open the selected document"],["ESC","Back to the list"],["F4","Scroll the description"]])+
+ '<h2>4. No link to CN-1</h2><p>If STATUS returns “NO RESPONSE”, check the session’s clearance level. Documents marked SECRET are hidden from results below level A clearance; this is not a fault.</p>'+
+ '<div class="note info"><b>TIP</b>The same syntax works in the “Command” field of this web interface: type part of a title or a document index.</div>'}
+];
+
+/* ---------- utils ---------- */
+var view=document.getElementById('view');
+function byCat(c){return DOCS.filter(function(d){return d.cat===c;});}
+function tag(d){return '<span class="tag c-'+d.cat+'">'+CATS[d.cat].label+'</span>';}
+function clTag(d){var c=CL[d.cl];return '<span class="tag '+c[1]+'">'+c[0]+'</span>';}
+function card(d){return '<a class="card" href="#/doc/'+d.id+'" data-s="'+(d.code+' '+d.title+' '+d.summary+' '+d.author).toLowerCase()+'"><div class="row"><span class="code">'+d.code+'</span>'+tag(d)+clTag(d)+'</div><h3>'+d.title+'</h3><p>'+d.summary+'</p><div class="foot"><span>'+d.author+'</span><span>'+d.date+'</span></div></a>';}
+
+/* ---------- navigation ---------- */
+function buildNav(){
+  var h='<div class="folder-label">FOLDERS</div><ul class="nav-list">';
+  h+='<li><a href="#/" data-r="home">HOME</a></li>';
+  h+='<li><a href="#/docs" data-r="docs">DOCUMENTS <span class="count">'+DOCS.length+'</span></a></li>';
+  Object.keys(CATS).forEach(function(k){h+='<li class="sub"><a href="#/docs/'+k+'" data-r="docs/'+k+'">'+CATS[k].label+' <span class="count">'+byCat(k).length+'</span></a></li>';});
+  h+='<li><a href="#/about" data-r="about">ABOUT</a></li></ul>';
+  h+='<div class="session">SESSION: OPERATOR-04<br>CLEARANCE: <b>LEVEL B</b><br>SHIFT: DAY</div>';
+  document.getElementById('navInner').innerHTML=h;
+}
+function setActive(key){document.querySelectorAll('.nav-list a').forEach(function(a){a.classList.toggle('active',a.getAttribute('data-r')===key);});}
+
+var nav=document.getElementById('nav'),scrim=document.getElementById('scrim'),navBtn=document.getElementById('navBtn');
+function openNav(o){nav.classList.toggle('open',o);scrim.classList.toggle('show',o);navBtn.setAttribute('aria-expanded',o?'true':'false');}
+navBtn.addEventListener('click',function(){openNav(!nav.classList.contains('open'));});
+document.getElementById('navClose').addEventListener('click',function(){openNav(false);});
+scrim.addEventListener('click',function(){openNav(false);});
+var statBtn=document.getElementById('statBtn'),status=document.getElementById('status');
+statBtn.addEventListener('click',function(){var o=!status.classList.contains('open');status.classList.toggle('open',o);statBtn.setAttribute('aria-expanded',o?'true':'false');setHH();});
+
+/* ---------- pages ---------- */
+var scopeRAF=null;
+function home(){
+  var latest=DOCS.slice().sort(function(a,b){return a.date<b.date?1:-1;}).slice(0,3);
+  var h='<section class="panel hero"><div class="scope"><svg id="scope" viewBox="0 0 600 220" role="img" aria-label="Live signal from the AS-80"><path class="gr" d="'+grid(600,220,30).match(/d="([^"]+)"/)[1]+'"/><path id="scopePath" class="s" stroke-width="1.6" d=""/><text class="t" x="14" y="24">AS-80 · CH.1 · LIVE</text><text class="tm" x="586" y="208" text-anchor="end">COLLECTOR B-2</text></svg></div>';
+  h+='<div class="hero-text"><h1>Technical encyclopedia of Research Division 7</h1><p class="lead">Lab reports, safety procedures and instrument manuals live here. Pick a section on the left or find a document by its index.<span class="cur"></span></p><a class="btn" href="#/docs" style="display:inline-block;text-decoration:none">OPEN CATALOGUE</a></div>';
+  h+='<div class="stats"><div class="stat"><span class="n">'+DOCS.length+'</span><span class="l">documents on the web</span></div><div class="stat"><span class="n">11,925</span><span class="l">files in the archive</span></div><div class="stat"><span class="n">12</span><span class="l">terminals online</span></div><div class="stat"><span class="n">B</span><span class="l">your clearance</span></div></div></section>';
+  h+='<div class="panel"><div class="panel-h"><span>SECTIONS</span><span>'+Object.keys(CATS).length+'</span></div><div class="panel-b"><div class="tiles">';
+  Object.keys(CATS).forEach(function(k){h+='<a class="tile" href="#/docs/'+k+'"><div class="top-row"><strong class="c-'+k+'">'+CATS[k].label+'</strong><span class="muted">'+CATS[k].code+' · '+byCat(k).length+'</span></div><span class="muted">'+CATS[k].desc+'</span></a>';});
+  h+='</div></div></div>';
+  h+='<div class="home-cols"><div class="panel"><div class="panel-h"><span>LATEST ARRIVALS</span></div><div class="panel-b"><div class="cards" style="grid-template-columns:1fr">'+latest.map(card).join('')+'</div></div></div>';
+  h+='<div class="panel"><div class="panel-h cyan"><span>SYSTEM LOG</span></div><div class="panel-b"><ul class="log">'+
+    [['06:00','ok','Network in day mode. T-01…T-12 active'],['06:02','ok','Backup of tape no. 44 verified'],['07:41','wr','Collector B-2: 78 dB pulse, channel 2'],['09:15','ok','Document MAN-007 received'],['10:30','er','Chamber K-2: 0.4 kPa sensor mismatch'],['10:33','ok','Chamber K-2: sensors recalibrated']].map(function(l){return '<li><span class="t">'+l[0]+'</span><span class="'+l[1]+'">'+l[2]+'</span></li>';}).join('')+
+    '</ul></div></div></div>';
+  view.innerHTML=h;
+  startScope();
+}
+function startScope(){
+  cancelAnimationFrame(scopeRAF);
+  var p=document.getElementById('scopePath');if(!p)return;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches,t=0,r=rng(3);
+  function draw(){
+    if(!document.body.contains(p))return;
+    var d='';for(var x=0;x<=600;x+=4){var y=110+48*Math.sin(x*.032+t)*Math.cos(x*.006-t*.3)+14*Math.sin(x*.13-t*2.1)+(r()-.5)*5;d+=(x?'L':'M')+x+' '+y.toFixed(1);}
+    p.setAttribute('d',d);t+=.035;if(!reduce)scopeRAF=requestAnimationFrame(draw);
+  }
+  draw();
+}
+function docsList(cat){
+  if(cat&&!CATS[cat])return notFound();
+  var list=cat?byCat(cat):DOCS;
+  var h='<div class="crumbs"><a href="#/">HOME</a><span>/</span>'+(cat?'<a href="#/docs">DOCUMENTS</a><span>/</span><span>'+CATS[cat].label+'</span>':'<span>DOCUMENTS</span>')+'</div>';
+  h+='<h1 class="page">'+(cat?CATS[cat].label:'Document catalogue')+'</h1><p class="lead">'+(cat?CATS[cat].desc:'Every document your clearance allows. Filter by section, or type an index or a word from the title.')+'</p>';
+  h+='<nav class="tabs" aria-label="Section filter"><a class="btn'+(!cat?' active':'')+'" href="#/docs">ALL '+DOCS.length+'</a>'+Object.keys(CATS).map(function(k){return '<a class="btn'+(cat===k?' active':'')+'" href="#/docs/'+k+'">'+CATS[k].label+' '+byCat(k).length+'</a>';}).join('')+'</nav>';
+  h+='<div class="cmd"><label for="q">COMMAND&gt;</label><input id="q" type="search" autocomplete="off" placeholder="e.g. RES-014 or pressure"></div><div class="found" id="found">FOUND: '+list.length+'</div>';
+  h+='<div class="cards" id="cards">'+list.map(card).join('')+'</div><div class="empty" id="empty">Nothing found. Check the index (RES-, REC-, MAN-) or shorten your query.</div>';
+  view.innerHTML=h;
+  var q=document.getElementById('q');
+  q.addEventListener('input',function(){var v=q.value.trim().toLowerCase(),n=0;document.querySelectorAll('#cards .card').forEach(function(c){var ok=!v||c.getAttribute('data-s').indexOf(v)>-1;c.style.display=ok?'':'none';if(ok)n++;});document.getElementById('found').textContent='FOUND: '+n;document.getElementById('empty').style.display=n?'none':'block';});
+}
+function metaToggle(label){
+  var mb=document.getElementById('metaBtn'),meta=document.getElementById('meta');
+  mb.addEventListener('click',function(){var o=!meta.classList.contains('open');meta.classList.toggle('open',o);mb.setAttribute('aria-expanded',o?'true':'false');mb.textContent=(o?'▾ ':'▸ ')+label;});
+}
+function docView(id){
+  var i=-1;DOCS.forEach(function(d,k){if(d.id===id)i=k;});if(i<0)return notFound();
+  var d=DOCS[i],c=CATS[d.cat],prev=DOCS[(i-1+DOCS.length)%DOCS.length],next=DOCS[(i+1)%DOCS.length];
+  var h='<div class="crumbs"><a href="#/">HOME</a><span>/</span><a href="#/docs">DOCUMENTS</a><span>/</span><a href="#/docs/'+d.cat+'">'+c.label+'</a><span>/</span><span>'+d.code+'</span></div>';
+  h+='<div class="doc"><aside class="meta" id="meta"><button class="btn meta-toggle" id="metaBtn" aria-expanded="false">▸ RECORD CARD AND CONTENTS</button><div class="meta-body">';
+  h+='<div class="panel"><div class="panel-h"><span>RECORD CARD</span><span>'+d.code+'</span></div><div class="panel-b"><dl class="kv"><dt>INDEX</dt><dd>'+d.code+'</dd><dt>SECTION</dt><dd>'+tag(d)+'</dd><dt>CLEARANCE</dt><dd>'+clTag(d)+'</dd><dt>DATE</dt><dd>'+d.date+'</dd><dt>LENGTH</dt><dd>'+d.size+'</dd><dt>AUTHOR</dt><dd>'+d.author+'</dd></dl></div></div>';
+  h+='<div class="panel"><div class="panel-h cyan"><span>CONTENTS</span></div><div class="panel-b"><ol class="toc" id="toc"></ol></div></div>';
+  h+='<div class="panel"><div class="panel-h amber"><span>RELATED</span></div><div class="panel-b"><ul class="related">'+d.related.map(function(r){var x=DOCS.filter(function(z){return z.id===r;})[0];return '<li><a href="#/doc/'+x.id+'">'+x.code+' — '+x.title+'</a></li>';}).join('')+'</ul></div></div>';
+  h+='</div></aside><article class="article"><div class="titlebox"><span class="code">RE: '+d.code+'</span>'+d.title+'</div>';
+  h+='<div class="memo"><div><span>TO:</span><span>Division 7 staff</span></div><div><span>FROM:</span><span>'+d.author+'</span></div><div><span>SUMMARY:</span><span>'+d.summary+'</span></div></div>';
+  h+=d.body;
+  h+='<nav class="pager" aria-label="Other documents"><a href="#/doc/'+prev.id+'"><small>◂ PREVIOUS</small>'+prev.code+' — '+prev.title+'</a><a class="next" href="#/doc/'+next.id+'"><small>NEXT ▸</small>'+next.code+' — '+next.title+'</a></nav></article></div>';
+  view.innerHTML=h;
+  var toc=document.getElementById('toc');
+  view.querySelectorAll('.article h2').forEach(function(el,k){el.id='s'+(k+1);var li=document.createElement('li'),b=document.createElement('button');b.textContent=el.textContent;b.addEventListener('click',function(){el.scrollIntoView({behavior:'smooth'});});li.appendChild(b);toc.appendChild(li);});
+  metaToggle('RECORD CARD AND CONTENTS');
+}
+function about(){
+  var h='<div class="crumbs"><a href="#/">HOME</a><span>/</span><span>ABOUT</span></div>';
+  h+='<div class="doc"><aside class="meta" id="meta"><button class="btn meta-toggle" id="metaBtn" aria-expanded="false">▸ SYSTEM PROFILE</button><div class="meta-body"><div class="panel"><div class="panel-h"><span>PROFILE</span></div><div class="panel-b"><dl class="kv"><dt>NAME</dt><dd>ARCHIVE-7</dd><dt>VERSION</dt><dd>3.2</dd><dt>OWNER</dt><dd>Division 7</dd><dt>IN SERVICE</dt><dd>2138-09-12</dd><dt>MAINTAINER</dt><dd>O. Lysenko</dd></dl></div></div></div></aside>';
+  h+='<article class="article"><div class="titlebox"><span class="code">SYSTEM REFERENCE</span>About ARCHIVE-7</div>';
+  h+='<p>ARCHIVE-7 is the information and reference system of Research Division 7. It stores and serves lab documents, takes in instrument recordings and controls access by clearance level. This web interface mirrors the T-series terminal but opens from any device on the division’s network.</p>';
+  h+='<h2>1. Architecture</h2><p>Central node CN-1 handles queries and keeps the index. Full texts and recordings live on the tape archive; frequently requested documents are cached on CN-1’s disks. Terminals and instruments connect over two independent buses.</p>';
+  h+=fig('cyan','DIAGRAM · ARCHIVE-7',archSVG(),'Fig. 1. System block diagram.');
+  h+='<h2>2. Specifications</h2>'+tbl(["Parameter","Value"],[["Central node","CN-1, 2 processors, 64 MB RAM"],["Disk cache","4 × 850 MB, mirrored"],["Tape archive","48 cartridges, up to 2.3 GB each"],["Buses","A and B, 9600 baud, redundant"],["Terminals","T-01…T-12, mono and colour"],["External interface","Gateway to the facility network, read-only"]]);
+  h+='<h2>3. Clearance levels</h2><p>Every document carries a clearance mark. The catalogue shows only the documents your clearance allows.</p>'+tbl(["Mark","Who can see it","Label"],[["OPEN","All facility staff",'<span class="tag cl-open">OPEN</span>'],["RESTRICTED","Division 7 staff, level B and above",'<span class="tag cl-dsk">RESTRICTED</span>'],["SECRET","Group leaders, level A",'<span class="tag cl-secret">SECRET</span>']]);
+  h+='<h2>4. Document indexes</h2><ul><li><b>RES</b> — research: reports with method, data and conclusions.</li><li><b>REC</b> — recommendations: procedures and mandatory instructions.</li><li><b>MAN</b> — manuals: guides for instruments and software.</li></ul><p>The number after the index is assigned on registration and never changes, even when a document is revised.</p>';
+  h+='<h2>5. Version history</h2>'+tbl(["Version","Date","Changes"],[["3.2","2141-06","Web interface for mobile terminals"],["3.0","2140-02","Bus B, CN-1 redundancy"],["2.4","2139-07","Intake of AS-80 recordings"],["1.0","2138-09","Commissioned"]]);
+  h+='<div class="note info"><b>PROTOTYPE</b>All documents, people and figures on this site are fictional and serve as sample content.</div></article></div>';
+  view.innerHTML=h;
+  metaToggle('SYSTEM PROFILE');
+}
+function notFound(){
+  view.innerHTML='<div class="panel"><div class="panel-h amber"><span>ERROR 404</span></div><div class="panel-b"><p>No document or section with this address is registered in ARCHIVE-7.</p><a class="btn" style="display:inline-block;text-decoration:none" href="#/docs">GO TO CATALOGUE</a></div></div>';
+}
+
+/* ---------- router ---------- */
+function route(){
+  var parts=(location.hash.replace(/^#\/?/,'')).split('/').filter(Boolean);
+  openNav(false);
+  if(!parts.length){home();setActive('home');}
+  else if(parts[0]==='docs'){docsList(parts[1]);setActive(parts[1]?'docs/'+parts[1]:'docs');}
+  else if(parts[0]==='doc'){docView(parts[1]);var d=DOCS.filter(function(x){return x.id===parts[1];})[0];setActive(d?'docs/'+d.cat:'');}
+  else if(parts[0]==='about'){about();setActive('about');}
+  else{notFound();setActive('');}
+  window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',route);
+
+document.addEventListener('keydown',function(e){
+  var tgt=e.target.tagName;
+  if(e.key==='Escape'){
+    if(nav.classList.contains('open')){openNav(false);return;}
+    var m=location.hash.match(/^#\/doc\/(.+)/);
+    if(m){var d=DOCS.filter(function(x){return x.id===m[1];})[0];location.hash=d?'#/docs/'+d.cat:'#/docs';}
+    else if(/^#\/docs\/.+/.test(location.hash))location.hash='#/docs';
+  }
+  if(e.key==='/'&&tgt!=='INPUT'&&tgt!=='TEXTAREA'){e.preventDefault();var q=document.getElementById('q');if(q)q.focus();else{location.hash='#/docs';setTimeout(function(){var q2=document.getElementById('q');if(q2)q2.focus();},30);}}
+});
+
+function setHH(){document.documentElement.style.setProperty('--hh',document.getElementById('top').offsetHeight+'px');}
+window.addEventListener('resize',setHH);
+
+function tick(){var n=new Date();function z(v){return (v<10?'0':'')+v;}document.getElementById('clock').textContent=z(n.getHours())+':'+z(n.getMinutes())+':'+z(n.getSeconds());}
+setInterval(tick,1000);tick();
+
+buildNav();route();setHH();
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(setHH);
+})();
+</script>
+</body>
+</html>

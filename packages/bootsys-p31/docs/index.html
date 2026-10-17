@@ -1,0 +1,772 @@
+<!doctype html>
+<html lang="en" class="p31" data-bs-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>bootsys-p31 · a retro terminal theme for Bootstrap 5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/bootsys-p31.css" rel="stylesheet">
+<style>
+/* Documentation page only */
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 4.5rem)}
+.ds-section{padding-top:1.5rem;margin-bottom:2.5rem}
+.ds-section>h2{border-bottom:1px solid var(--p31-line);padding-bottom:.35rem;margin-bottom:.9rem}
+.ds-section>h2 small{font-size:.7rem;color:var(--p31-muted);letter-spacing:.14em;font-weight:500;margin-left:.5rem}
+.ds-intro{color:var(--p31-dim);max-width:70ch;margin-bottom:1rem}
+.p31-demo{border:1px dashed var(--p31-line);padding:1rem;background:rgba(0,0,0,.25)}
+details.p31-code{border:1px dashed var(--p31-line);border-top:0;margin-bottom:1.5rem}
+details.p31-code summary{cursor:pointer;font-size:.7rem;letter-spacing:.14em;color:var(--p31-muted);padding:.35rem .7rem;text-transform:uppercase;list-style:none}
+details.p31-code summary::before{content:"▸ "}
+details.p31-code[open] summary::before{content:"▾ "}
+details.p31-code summary:hover{color:var(--p31-phos)}
+details.p31-code pre{margin:0;border:0;border-top:1px solid var(--p31-line);max-height:420px;font-size:.75rem}
+.swatch{border:1px solid var(--p31-line);height:100%}
+.swatch-chip{height:56px;border-bottom:1px solid var(--p31-line)}
+.swatch-body{padding:.45rem .55rem;font-size:.72rem;line-height:1.5}
+.swatch-body b{display:block;color:var(--p31-phos);font-weight:500}
+.swatch-body span{color:var(--p31-muted)}
+.shell-demo .box{border:1px solid var(--p31-phos-2);padding:.5rem;font-size:.7rem;letter-spacing:.08em;color:var(--p31-dim);text-align:center;height:100%;display:flex;align-items:center;justify-content:center}
+.shell-demo .box.hl{background:rgba(var(--p31-phos-rgb),.08);color:var(--p31-phos)}
+.grid-demo [class^="col-"]>div{border:1px solid var(--p31-line);background:var(--p31-bg-2);padding:.4rem;font-size:.7rem;text-align:center;color:var(--p31-dim)}
+</style>
+</head>
+<body class="p31-crt" data-bs-spy="scroll" data-bs-target="#dsNav" data-bs-root-margin="0px 0px -65%" tabindex="0">
+
+<header class="p31-topbar">
+  <nav class="navbar">
+    <div class="container-xxl flex-wrap">
+      <button class="btn btn-outline-primary btn-sm d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#dsSide" aria-controls="dsSide">☰ Menu</button>
+      <a class="navbar-brand" href="#top">BOOTSYS-P31</a>
+      <span class="p31-subtitle d-none d-sm-inline">Design system · Bootstrap 5.3</span>
+      <div class="d-flex gap-2 ms-auto ms-lg-0 order-lg-last">
+        <div class="dropdown">
+          <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Phosphor</button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><h6 class="dropdown-header">Screen colour</h6></li>
+            <li><button class="dropdown-item active" data-phos="">Green P31</button></li>
+            <li><button class="dropdown-item" data-phos="amber">Amber P3</button></li>
+            <li><button class="dropdown-item" data-phos="cyan">Cyan</button></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><div class="dropdown-item"><div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" id="crtSwitch" checked><label class="form-check-label" for="crtSwitch">Scanlines</label></div></div></li>
+          </ul>
+        </div>
+        <button class="btn btn-outline-primary btn-sm d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#dsStatus" aria-expanded="false" aria-controls="dsStatus">Status</button>
+      </div>
+      <div class="collapse d-lg-flex p31-statusbar ms-lg-auto me-lg-4" id="dsStatus">
+        <div><span class="p31-k">Theme</span><span class="p31-v">bootsys-p31.css</span></div>
+        <div><span class="p31-k">Base</span><span class="p31-v">Bootstrap 5.3.3</span></div>
+        <div><span class="p31-k">Font</span><span class="p31-v">IBM Plex Mono</span></div>
+        <div><span class="p31-k">Time</span><span class="p31-v" id="clock">--:--:--</span></div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="container-xxl" id="top">
+  <div class="row">
+    <aside class="col-lg-3 col-xl-2">
+      <div class="offcanvas-lg offcanvas-start p31-side" tabindex="-1" id="dsSide" aria-labelledby="dsSideLabel">
+        <div class="offcanvas-header">
+          <span class="offcanvas-title" id="dsSideLabel">Sections</span>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#dsSide" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body pt-lg-4">
+          <nav id="dsNav" class="w-100">
+            <span class="p31-label mt-0">Foundations</span>
+            <div class="list-group p31-folders">
+              <a class="list-group-item list-group-item-action" href="#start">Getting started</a>
+              <a class="list-group-item list-group-item-action" href="#colors">Colours</a>
+              <a class="list-group-item list-group-item-action" href="#type">Typography</a>
+              <a class="list-group-item list-group-item-action" href="#layout">Layout</a>
+            </div>
+            <span class="p31-label">Components</span>
+            <div class="list-group p31-folders">
+              <a class="list-group-item list-group-item-action" href="#buttons">Buttons</a>
+              <a class="list-group-item list-group-item-action" href="#forms">Forms</a>
+              <a class="list-group-item list-group-item-action" href="#navs">Navigation</a>
+              <a class="list-group-item list-group-item-action" href="#panels">Panels</a>
+              <a class="list-group-item list-group-item-action" href="#tables">Tables</a>
+              <a class="list-group-item list-group-item-action" href="#feedback">Feedback</a>
+              <a class="list-group-item list-group-item-action" href="#overlays">Overlays</a>
+            </div>
+            <span class="p31-label">Patterns</span>
+            <div class="list-group p31-folders">
+              <a class="list-group-item list-group-item-action" href="#patterns">Document</a>
+              <a class="list-group-item list-group-item-action" href="#figures">Figures</a>
+              <a class="list-group-item list-group-item-action" href="#system">System blocks</a>
+              <a class="list-group-item list-group-item-action" href="#template">Document page</a>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </aside>
+
+    <main class="col-lg-9 col-xl-10 py-3 py-lg-4">
+
+      <!-- HERO -->
+      <section class="card mb-4">
+        <div class="card-header"><span>Design system</span><span>v1.0</span></div>
+        <div class="row g-0">
+          <div class="col-lg-7 p31-screen d-flex align-items-center" style="border:0">
+            <svg id="scope" viewBox="0 0 600 220" role="img" aria-label="Live signal on the screen" style="display:block;width:100%;height:auto;filter:drop-shadow(0 0 3px var(--p31-phos))">
+              <defs><pattern id="g30" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M30 0H0V30" fill="none" stroke="var(--p31-grid)"/></pattern></defs>
+              <rect width="600" height="220" fill="url(#g30)"/>
+              <path id="scopePath" fill="none" stroke="var(--p31-phos)" stroke-width="1.6" d=""/>
+              <text x="14" y="24" fill="var(--p31-phos)" font-size="13" font-family="var(--p31-font)">CH.1 · LIVE</text>
+            </svg>
+          </div>
+          <div class="col-lg-5 p-3 p-lg-4">
+            <h1 class="mb-2">bootsys-p31 for Bootstrap</h1>
+            <p class="mb-3">This theme turns stock Bootstrap 5 components into the screen of an old research terminal. The grid, classes and JavaScript stay the same: you write ordinary Bootstrap markup and get a phosphor display.<span class="p31-cursor"></span></p>
+            <a class="btn btn-primary me-2" href="#start">Get started</a>
+            <a class="btn btn-outline-primary" href="#template">Page template</a>
+          </div>
+        </div>
+        <div class="p31-stats border-top border-2" style="border-color:var(--p31-phos-2)!important">
+          <div class="p31-stat"><span class="p31-stat-n">3</span><span class="p31-stat-l">phosphor colours</span></div>
+          <div class="p31-stat"><span class="p31-stat-n">25+</span><span class="p31-stat-l">restyled components</span></div>
+          <div class="p31-stat"><span class="p31-stat-n">9</span><span class="p31-stat-l">p31-* patterns</span></div>
+          <div class="p31-stat"><span class="p31-stat-n">0 px</span><span class="p31-stat-l">border radius</span></div>
+        </div>
+      </section>
+
+      <!-- START -->
+      <section class="ds-section" id="start">
+        <h2>Getting started <small>START</small></h2>
+        <p class="ds-intro">Load the theme after Bootstrap and add the <code>p31</code> class to the root element. <code>data-bs-theme="dark"</code> is needed so Bootstrap switches its built-in icons to their dark variants.</p>
+        <pre><code id="installCode"></code></pre>
+        <div class="row g-3">
+          <div class="col-md-4"><div class="card p31-tile h-100"><div class="card-body"><span class="p31-tag p31-tag-primary">Root</span><p class="mb-0 mt-2 small"><code>html.p31</code> turns the theme on. Without it the page stays plain Bootstrap.</p></div></div></div>
+          <div class="col-md-4"><div class="card p31-tile h-100"><div class="card-body"><span class="p31-tag p31-tag-info">Phosphor</span><p class="mb-0 mt-2 small"><code>data-p31-phosphor="amber"</code> or <code>"cyan"</code> on <code>html</code> recolours the whole screen.</p></div></div></div>
+          <div class="col-md-4"><div class="card p31-tile h-100"><div class="card-body"><span class="p31-tag p31-tag-warning">CRT</span><p class="mb-0 mt-2 small"><code>body.p31-crt</code> adds scanlines and a vignette on top of everything without catching clicks.</p></div></div></div>
+        </div>
+      </section>
+
+      <!-- COLORS -->
+      <section class="ds-section" id="colors">
+        <h2>Colours <small>TOKENS</small></h2>
+        <p class="ds-intro">The base palette lives in <code>--p31-*</code> variables. Bootstrap’s colours (<code>primary</code>, <code>info</code>, <code>warning</code>…) point at them, so changing the phosphor recolours everything at once.</p>
+        <div class="row g-2 mb-3" id="swatches"></div>
+        <div class="table-responsive p31-framed">
+          <table class="table mb-0">
+            <thead><tr><th>Bootstrap role</th><th>Token</th><th>Used for</th></tr></thead>
+            <tbody>
+              <tr><td><span class="p31-tag p31-tag-primary">primary</span></td><td><code>--p31-phos</code></td><td>Main screen colour, active elements</td></tr>
+              <tr><td><span class="p31-tag p31-tag-info">info</span></td><td><code>--p31-cyan</code></td><td>Data, values, research</td></tr>
+              <tr><td><span class="p31-tag p31-tag-warning">warning</span></td><td><code>--p31-amber</code></td><td>Warnings, recommendations, RESTRICTED</td></tr>
+              <tr><td><span class="p31-tag p31-tag-danger">danger</span></td><td><code>--p31-red</code></td><td>Errors, prohibitions, SECRET</td></tr>
+              <tr><td><span class="p31-tag p31-tag-secondary">secondary</span></td><td><code>--p31-muted</code></td><td>Captions, secondary data</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TYPE -->
+      <section class="ds-section" id="type">
+        <h2>Typography <small>TYPE</small></h2>
+        <p class="ds-intro">One monospaced typeface, IBM Plex Mono. Hierarchy comes from size, weight, letter spacing and colour, not from switching fonts.</p>
+        <div class="p31-demo">
+<h1>Heading level one</h1>
+<h2>Heading level two</h2>
+<h3>Heading level three</h3>
+<h4>Heading level four</h4>
+<h5>Heading level five</h5>
+<h6>Section label</h6>
+<p class="lead">Lead paragraph, a little larger than body text.</p>
+<p>Body text. Inline <code>code</code>, a <kbd>ESC</kbd> key, <mark>highlighted text</mark> and a <a href="#type">link</a>. <small class="text-body-secondary">Small caption.</small></p>
+<ul class="p31-list">
+  <li>Bulleted list with an angle marker</li>
+  <li>Second list item</li>
+</ul>
+<blockquote class="blockquote mb-0">
+  <p>A sealed sample is safe; an open chamber is not.</p>
+  <footer class="blockquote-footer">Lab Safety Office, <cite>REC-005</cite></footer>
+</blockquote>
+        </div>
+      </section>
+
+      <!-- LAYOUT -->
+      <section class="ds-section" id="layout">
+        <h2>Layout <small>LAYOUT</small></h2>
+        <p class="ds-intro">The mobile-first shell is built from stock Bootstrap components. On a phone the menu hides in <code>offcanvas-lg</code>, the status bar in a <code>collapse</code>, and the document card in another <code>collapse</code>. From the <code>lg</code> breakpoint (992 px) everything is open with no buttons.</p>
+        <div class="row g-3 mb-3 shell-demo">
+          <div class="col-md-5">
+            <h6 class="mb-2">Phone</h6>
+            <div class="d-grid gap-1" style="max-width:220px">
+              <div class="box hl" style="min-height:34px">☰ · BOOTSYS · STATUS</div>
+              <div class="box" style="min-height:30px">▸ Document card</div>
+              <div class="box" style="min-height:150px">Content</div>
+              <div class="box" style="min-height:26px">Key hints</div>
+            </div>
+          </div>
+          <div class="col-md-7">
+            <h6 class="mb-2">Desktop</h6>
+            <div class="d-grid gap-1">
+              <div class="box hl" style="min-height:34px">BOOTSYS-P31 · status bar</div>
+              <div class="row g-1">
+                <div class="col-3"><div class="box" style="min-height:180px">Folders</div></div>
+                <div class="col-6"><div class="box" style="min-height:180px">Content</div></div>
+                <div class="col-3"><div class="box" style="min-height:180px">Card</div></div>
+              </div>
+              <div class="box" style="min-height:26px">Key hints</div>
+            </div>
+          </div>
+        </div>
+        <details class="p31-code" style="border-top:1px dashed var(--p31-line)"><summary>Shell markup</summary><pre><code id="shellCode"></code></pre></details>
+        <h6 class="mb-2">The Bootstrap grid works unchanged</h6>
+        <div class="p31-demo grid-demo">
+<div class="row g-2 mb-2">
+  <div class="col-12 col-md-4"><div>col-12 col-md-4</div></div>
+  <div class="col-6 col-md-4"><div>col-6 col-md-4</div></div>
+  <div class="col-6 col-md-4"><div>col-6 col-md-4</div></div>
+</div>
+<div class="row g-2">
+  <div class="col-lg-8"><div>col-lg-8 · text</div></div>
+  <div class="col-lg-4"><div>col-lg-4 · sidebar</div></div>
+</div>
+        </div>
+      </section>
+
+      <!-- BUTTONS -->
+      <section class="ds-section" id="buttons">
+        <h2>Buttons <small>.btn</small></h2>
+        <p class="ds-intro">Solid buttons are for the main action on a screen; outline buttons are for everything else. Labels are always uppercase and letter-spaced, like keys on a console.</p>
+        <div class="p31-demo">
+<div class="d-flex flex-wrap gap-2 mb-3">
+  <button class="btn btn-primary">Open</button>
+  <button class="btn btn-info">Analyse</button>
+  <button class="btn btn-warning">Isolate</button>
+  <button class="btn btn-danger">Evacuate</button>
+  <button class="btn btn-secondary">Archive</button>
+</div>
+<div class="d-flex flex-wrap gap-2 mb-3">
+  <button class="btn btn-outline-primary">Open</button>
+  <button class="btn btn-outline-info">Analyse</button>
+  <button class="btn btn-outline-warning">Isolate</button>
+  <button class="btn btn-outline-danger">Evacuate</button>
+  <button class="btn btn-outline-primary" disabled>Unavailable</button>
+</div>
+<div class="d-flex flex-wrap align-items-center gap-2">
+  <button class="btn btn-primary btn-lg">Large</button>
+  <button class="btn btn-outline-primary btn-sm">Small</button>
+  <div class="btn-group" role="group" aria-label="Mode">
+    <input type="radio" class="btn-check" name="mode" id="m1" checked>
+    <label class="btn btn-outline-primary" for="m1">Record</label>
+    <input type="radio" class="btn-check" name="mode" id="m2">
+    <label class="btn btn-outline-primary" for="m2">Analyse</label>
+    <input type="radio" class="btn-check" name="mode" id="m3">
+    <label class="btn btn-outline-primary" for="m3">Loop</label>
+  </div>
+  <button class="btn btn-link">Link</button>
+</div>
+        </div>
+      </section>
+
+      <!-- FORMS -->
+      <section class="ds-section" id="forms">
+        <h2>Forms <small>.form-*</small></h2>
+        <p class="ds-intro">Fields are “black glass” with a phosphor border. A focused field lights up in the secondary colour. The command line is an ordinary <code>input-group</code>.</p>
+        <div class="p31-demo">
+<div class="input-group mb-3">
+  <span class="input-group-text">Command&gt;</span>
+  <input type="search" class="form-control" placeholder="FIND SECTION=RES CLEARANCE=RESTRICTED">
+  <button class="btn btn-primary" type="button">Run</button>
+</div>
+<div class="row g-3">
+  <div class="col-md-6">
+    <label class="form-label" for="f1">Document index</label>
+    <input class="form-control" id="f1" value="RES-014">
+    <div class="form-text">Format: RES-, REC- or MAN- plus a number.</div>
+  </div>
+  <div class="col-md-6">
+    <label class="form-label" for="f2">Section</label>
+    <select class="form-select" id="f2">
+      <option>Research</option>
+      <option>Recommendations</option>
+      <option>Manuals</option>
+    </select>
+  </div>
+  <div class="col-md-6">
+    <label class="form-label" for="f3">Pressure, kPa</label>
+    <input class="form-control is-invalid" id="f3" value="146">
+    <div class="invalid-feedback">Chamber limit exceeded: 140 kPa.</div>
+  </div>
+  <div class="col-md-6">
+    <label class="form-label" for="f4">Gain: 0 dB</label>
+    <input type="range" class="form-range" id="f4" min="-24" max="24" value="0">
+  </div>
+  <div class="col-12">
+    <label class="form-label" for="f5">Operator note</label>
+    <textarea class="form-control" id="f5" rows="2" placeholder="What happened and when"></textarea>
+  </div>
+  <div class="col-12 d-flex flex-wrap gap-4">
+    <div class="form-check"><input class="form-check-input" type="checkbox" id="c1" checked><label class="form-check-label" for="c1">Hourly log</label></div>
+    <div class="form-check"><input class="form-check-input" type="radio" name="r" id="r1" checked><label class="form-check-label" for="r1">Channel 1</label></div>
+    <div class="form-check"><input class="form-check-input" type="radio" name="r" id="r2"><label class="form-check-label" for="r2">Channel 2</label></div>
+    <div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="s1" checked><label class="form-check-label" for="s1">Night mode</label></div>
+  </div>
+</div>
+        </div>
+      </section>
+
+      <!-- NAVS -->
+      <section class="ds-section" id="navs">
+        <h2>Navigation <small>.nav · .list-group</small></h2>
+        <p class="ds-intro">Sidebar folders are a <code>list-group</code> with the <code>p31-folders</code> modifier. The active item is inverted, and on desktop a connector runs from it to the content.</p>
+        <div class="p31-demo">
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#navs">Home</a></li>
+    <li class="breadcrumb-item"><a href="#navs">Documents</a></li>
+    <li class="breadcrumb-item active" aria-current="page">RES-014</li>
+  </ol>
+</nav>
+<ul class="nav nav-pills p31-scroll-x mb-3">
+  <li class="nav-item"><a class="nav-link active" href="#navs">All 6</a></li>
+  <li class="nav-item"><a class="nav-link" href="#navs">Research 2</a></li>
+  <li class="nav-item"><a class="nav-link" href="#navs">Recommendations 2</a></li>
+  <li class="nav-item"><a class="nav-link" href="#navs">Manuals 2</a></li>
+</ul>
+<ul class="nav nav-tabs mb-3">
+  <li class="nav-item"><a class="nav-link active" href="#navs">Text</a></li>
+  <li class="nav-item"><a class="nav-link" href="#navs">Data</a></li>
+  <li class="nav-item"><a class="nav-link disabled" aria-disabled="true">History</a></li>
+</ul>
+<div class="row g-3 align-items-start">
+  <div class="col-md-5">
+    <div class="list-group p31-folders">
+      <a href="#navs" class="list-group-item list-group-item-action">Home</a>
+      <a href="#navs" class="list-group-item list-group-item-action active">Documents <span class="p31-count">6</span></a>
+      <a href="#navs" class="list-group-item list-group-item-action p31-sub">Research <span class="p31-count">2</span></a>
+      <a href="#navs" class="list-group-item list-group-item-action">About</a>
+    </div>
+  </div>
+  <div class="col-md-7">
+    <nav aria-label="Pages">
+      <ul class="pagination">
+        <li class="page-item disabled"><span class="page-link">◂</span></li>
+        <li class="page-item active"><span class="page-link">1</span></li>
+        <li class="page-item"><a class="page-link" href="#navs">2</a></li>
+        <li class="page-item"><a class="page-link" href="#navs">3</a></li>
+        <li class="page-item"><a class="page-link" href="#navs">▸</a></li>
+      </ul>
+    </nav>
+    <div class="dropdown">
+      <button class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Export</button>
+      <ul class="dropdown-menu">
+        <li><h6 class="dropdown-header">Format</h6></li>
+        <li><a class="dropdown-item active" href="#navs">Tape</a></li>
+        <li><a class="dropdown-item" href="#navs">Print</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#navs">Terminal T-04</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+        </div>
+      </section>
+
+      <!-- PANELS -->
+      <section class="ds-section" id="panels">
+        <h2>Panels <small>.card · .accordion</small></h2>
+        <p class="ds-intro">A panel is a <code>card</code> with a solid header strip. The <code>p31-accent-*</code> class sets its colour, changing the border, strip and title together. For document lists there is the thinner <code>p31-tile</code>.</p>
+        <div class="p31-demo">
+<div class="row g-3">
+  <div class="col-md-6 col-xl-4">
+    <div class="card h-100">
+      <div class="card-header"><span>Record card</span><span>RES-014</span></div>
+      <div class="card-body">
+        <dl class="p31-kv">
+          <dt>Clearance</dt><dd><span class="p31-tag p31-tag-warning">Restricted</span></dd>
+          <dt>Date</dt><dd>2141-03-14</dd>
+          <dt>Length</dt><dd>14 pp.</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-xl-4">
+    <div class="card p31-accent-info h-100">
+      <div class="card-header"><span>Contents</span></div>
+      <div class="card-body small">1. Purpose<br>2. Method<br>3. Results</div>
+    </div>
+  </div>
+  <div class="col-md-6 col-xl-4">
+    <div class="card p31-accent-warning h-100">
+      <div class="card-header"><span>Related</span></div>
+      <div class="card-body small"><a href="#panels">MAN-003 — AS-80 analyser</a></div>
+      <div class="card-footer">Updated 09:15</div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card p31-tile p31-accent-info">
+      <div class="card-body">
+        <div class="d-flex flex-wrap gap-2 align-items-center small">
+          <b class="text-primary">RES-022</b>
+          <span class="p31-tag p31-tag-info">Research</span>
+          <span class="p31-tag p31-tag-danger">Secret</span>
+        </div>
+        <h3 class="card-title"><a class="stretched-link text-decoration-none" href="#panels">Morphology of formation K-3</a></h3>
+        <p class="small text-p31-dim mb-0">Behaviour of the crystalline formation in a pressure chamber at 20–140 kPa.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="accordion" id="acc">
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#a1">Purpose</button></h2>
+        <div id="a1" class="accordion-collapse collapse show" data-bs-parent="#acc"><div class="accordion-body small">The AS-80 records acoustic signals from 2 Hz to 20 kHz.</div></div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#a2">Calibration</button></h2>
+        <div id="a2" class="accordion-collapse collapse" data-bs-parent="#acc"><div class="accordion-body small">Feed a 1 kHz tone and set the level to 0 dB.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+        </div>
+      </section>
+
+      <!-- TABLES -->
+      <section class="ds-section" id="tables">
+        <h2>Tables <small>.table</small></h2>
+        <p class="ds-intro">The table header sits on a darker grid. Wrapping in <code>table-responsive p31-framed</code> adds a frame and horizontal scrolling on phones.</p>
+        <div class="p31-demo">
+<div class="table-responsive p31-framed">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr><th>Day</th><th>Pulses</th><th>Frequency, Hz</th><th>Peak, dB</th><th>State</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>01</td><td>22</td><td>31.4</td><td>64</td><td><span class="p31-tag p31-tag-primary">Normal</span></td></tr>
+      <tr><td>06</td><td>41</td><td>29.8</td><td>71</td><td><span class="p31-tag p31-tag-warning">Watch</span></td></tr>
+      <tr><td>11</td><td>57</td><td>27.5</td><td>78</td><td><span class="p31-tag p31-tag-danger">Critical</span></td></tr>
+    </tbody>
+  </table>
+</div>
+        </div>
+      </section>
+
+      <!-- FEEDBACK -->
+      <section class="ds-section" id="feedback">
+        <h2>Feedback <small>.alert · .badge · .progress</small></h2>
+        <p class="ds-intro">Alerts have a thick left bar and a faint tinted background. <code>p31-tag</code> labels are outlined, for clearance levels and sections; <code>badge</code> is solid, for counters.</p>
+        <div class="p31-demo">
+<div class="alert alert-info"><h4 class="alert-heading">Note</h4>This mode does not apply to terminals with active recordings.</div>
+<div class="alert alert-warning"><h4 class="alert-heading">Group recommendation</h4>Restrict access to collector B-2 until measurements are repeated.</div>
+<div class="alert alert-danger alert-dismissible fade show"><h4 class="alert-heading">Prohibited</h4>Opening the chamber by hand to check on the sample.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
+<div class="d-flex flex-wrap gap-2 align-items-center mb-3">
+  <span class="p31-tag p31-tag-primary">Open</span>
+  <span class="p31-tag p31-tag-warning">Restricted</span>
+  <span class="p31-tag p31-tag-danger">Secret</span>
+  <span class="p31-tag p31-tag-info">Research</span>
+  <span class="badge text-bg-primary">12</span>
+  <span class="badge text-bg-info">New</span>
+  <span class="badge text-bg-danger">3</span>
+  <div class="spinner-border spinner-border-sm text-primary" role="status"><span class="visually-hidden">Loading</span></div>
+</div>
+<div class="progress mb-2" role="progressbar" aria-label="Copying" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100">
+  <div class="progress-bar" style="width:64%">64%</div>
+</div>
+<div class="progress" role="progressbar" aria-label="Archive usage" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100">
+  <div class="progress-bar bg-warning" style="width:88%">88%</div>
+</div>
+        </div>
+      </section>
+
+      <!-- OVERLAYS -->
+      <section class="ds-section" id="overlays">
+        <h2>Overlays <small>.modal · .toast · .tooltip</small></h2>
+        <p class="ds-intro">Modals and toasts share the panel’s header strip. Tooltips are inverted, like a highlighted line on the screen.</p>
+        <div class="p31-demo">
+<div class="d-flex flex-wrap gap-2">
+  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">Open modal</button>
+  <button class="btn btn-outline-primary" id="toastBtn">Show toast</button>
+  <button class="btn btn-outline-info" data-bs-toggle="tooltip" data-bs-title="Knob 3 · ±24 dB">Tooltip</button>
+  <button class="btn btn-outline-info" data-bs-toggle="popover" data-bs-title="AS-80" data-bs-content="Input 6 takes two HP-12 hydrophones.">Popover</button>
+</div>
+
+<div class="modal fade" id="demoModal" tabindex="-1" aria-labelledby="demoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="demoModalLabel">Access check</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Document RES-022 is marked <span class="p31-tag p31-tag-danger">Secret</span>. Enter a level A clearance code.</p>
+        <input class="form-control" type="password" placeholder="Clearance code">
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary" data-bs-dismiss="modal">Open document</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="demoToast" class="toast" role="status" aria-live="polite" aria-atomic="true">
+    <div class="toast-header">
+      <span class="me-auto">System log</span>
+      <small>10:33</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">Chamber K-2: sensors recalibrated.</div>
+  </div>
+</div>
+        </div>
+      </section>
+
+      <!-- PATTERNS: DOCUMENT -->
+      <section class="ds-section" id="patterns">
+        <h2>Document <small>p31-titlebox · p31-memo · p31-steps</small></h2>
+        <p class="ds-intro">Custom classes for technical documents: a framed title, a memo header, numbered steps and a key/value list.</p>
+        <div class="p31-demo">
+<div class="p31-titlebox"><small>RE: REC-005</small>Handling class K samples during depressurisation</div>
+<div class="p31-memo">
+  <div><span>To:</span><span>Division 7 staff</span></div>
+  <div><span>From:</span><span>Lab Safety Office</span></div>
+</div>
+<ol class="p31-steps">
+  <li>Close valve V-1. The chamber must be isolated before anything else.</li>
+  <li>Record both sensor readings and the time.</li>
+  <li>If the drop exceeds 40 kPa, leave the area and seal the pressure door.</li>
+</ol>
+<div class="p31-titlebox p31-accent-danger mb-0"><small>Clearance: secret</small>The accent changes the title frame colour</div>
+        </div>
+      </section>
+
+      <!-- FIGURES -->
+      <section class="ds-section" id="figures">
+        <h2>Figures <small>p31-figure</small></h2>
+        <p class="ds-intro">Diagrams and charts are drawn in SVG with the classes <code>p31-s</code> (stroke), <code>p31-f</code> (fill), <code>p31-t</code> (text) and <code>p31-gr</code> (grid). The colour comes from the accent, so figures always match the screen.</p>
+        <div class="p31-demo">
+<div class="row g-3">
+  <div class="col-lg-7">
+    <figure class="p31-figure p31-accent-info">
+      <div class="p31-figure-head"><span>Osc-01 · channel 1</span><span class="p31-rec">● Rec</span></div>
+      <svg viewBox="0 0 600 200" role="img" aria-label="Oscillogram">
+        <defs><pattern id="fg" width="30" height="30" patternUnits="userSpaceOnUse"><path class="p31-gr" d="M30 0H0V30"/></pattern></defs>
+        <rect width="600" height="200" fill="url(#fg)"/>
+        <path class="p31-s" d="M30 100 Q45 10 60 100 T90 100 T120 100 Q140 30 160 100 T200 100 Q225 55 250 100 T300 100 Q330 75 360 100 T420 100 Q455 88 490 100 T560 100"/>
+        <path class="p31-sd" stroke-dasharray="4 4" d="M300 10V185"/>
+        <text class="p31-t" x="572" y="26" text-anchor="end">44100 Hz</text>
+        <text class="p31-tm" x="306" y="24">Cursor</text>
+      </svg>
+      <figcaption>Fig. 1. Pulse no. 87: a sharp rise and decay.</figcaption>
+    </figure>
+  </div>
+  <div class="col-lg-5">
+    <figure class="p31-figure p31-accent-warning">
+      <div class="p31-figure-head"><span>Chart · REC-005</span><span class="p31-rec">● Rec</span></div>
+      <svg viewBox="0 0 300 200" role="img" aria-label="Action chart">
+        <rect class="p31-f" x="60" y="12" width="180" height="36"/><text class="p31-ti" x="150" y="35" text-anchor="middle">PRESSURE DROP</text>
+        <path class="p31-s" d="M150 48V70"/>
+        <path class="p31-s" d="M150 70L220 104L150 138L80 104Z"/><text class="p31-t" x="150" y="109" text-anchor="middle">Δp &gt; 40 ?</text>
+        <path class="p31-s" d="M80 104H40V160M220 104H260V160"/>
+        <rect class="p31-s" x="4" y="160" width="120" height="30"/><text class="p31-t" x="64" y="180" text-anchor="middle">EVACUATE</text>
+        <rect class="p31-s" x="176" y="160" width="120" height="30"/><text class="p31-t" x="236" y="180" text-anchor="middle">NORMAL</text>
+      </svg>
+      <figcaption>Fig. 2. Action sequence.</figcaption>
+    </figure>
+  </div>
+</div>
+        </div>
+      </section>
+
+      <!-- SYSTEM -->
+      <section class="ds-section" id="system">
+        <h2>System blocks <small>p31-stats · p31-log · p31-keys</small></h2>
+        <p class="ds-intro">Stats, an event log and a key-hint bar: small details that make a page feel like a working screen.</p>
+        <div class="p31-demo">
+<div class="p31-stats mb-3">
+  <div class="p31-stat"><span class="p31-stat-n">11,925</span><span class="p31-stat-l">files in the archive</span></div>
+  <div class="p31-stat"><span class="p31-stat-n">12</span><span class="p31-stat-l">terminals</span></div>
+  <div class="p31-stat"><span class="p31-stat-n">88%</span><span class="p31-stat-l">tape usage</span></div>
+  <div class="p31-stat"><span class="p31-stat-n">B</span><span class="p31-stat-l">clearance level</span></div>
+</div>
+<div class="card p31-accent-info mb-3">
+  <div class="card-header"><span>System log</span></div>
+  <div class="card-body">
+    <ul class="p31-log">
+      <li><time>06:00</time><span class="text-primary">Network in day mode</span></li>
+      <li><time>07:41</time><span class="text-warning">Collector B-2: 78 dB pulse</span></li>
+      <li><time>10:30</time><span class="text-danger">Chamber K-2: sensor mismatch</span></li>
+    </ul>
+  </div>
+</div>
+<div class="p31-keys"><span><kbd>/</kbd>search</span><span><kbd>ESC</kbd>back</span><span>Division 7 · ARCHIVE-7</span></div>
+        </div>
+      </section>
+
+      <!-- TEMPLATE -->
+      <section class="ds-section" id="template">
+        <h2>Document page <small>TEMPLATE</small></h2>
+        <p class="ds-intro">Everything together: breadcrumbs, the document text and a side card. The card sits in <code>collapse d-xl-block</code>: on narrow screens it folds under a button, on wide screens it is always open on the right.</p>
+        <div class="p31-demo">
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#template">Documents</a></li>
+    <li class="breadcrumb-item"><a href="#template">Manuals</a></li>
+    <li class="breadcrumb-item active" aria-current="page">MAN-003</li>
+  </ol>
+</nav>
+<div class="row g-4">
+  <aside class="col-xl-4 order-xl-2">
+    <button class="btn btn-outline-primary w-100 text-start d-xl-none" data-bs-toggle="collapse" data-bs-target="#docMeta" aria-expanded="false" aria-controls="docMeta">▸ Document card</button>
+    <div class="collapse d-xl-block mt-3 mt-xl-0" id="docMeta">
+      <div class="card mb-3">
+        <div class="card-header"><span>Record card</span><span>MAN-003</span></div>
+        <div class="card-body">
+          <dl class="p31-kv">
+            <dt>Section</dt><dd><span class="p31-tag p31-tag-primary">Manuals</span></dd>
+            <dt>Clearance</dt><dd><span class="p31-tag p31-tag-primary">Open</span></dd>
+            <dt>Author</dt><dd>Instrument Support Group</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <article class="col-xl-8">
+    <div class="p31-titlebox"><small>RE: MAN-003</small>AS-80 spectrum analyser</div>
+    <h3>1. Purpose</h3>
+    <p>The AS-80 records and analyses acoustic signals from 2 Hz to 20 kHz and sends recordings to the archive.</p>
+    <h3>2. Power-up</h3>
+    <ol class="p31-steps">
+      <li>Set the gain to zero.</li>
+      <li>Switch on the power and wait 90 s.</li>
+    </ol>
+    <div class="alert alert-info mb-0"><h4 class="alert-heading">Tip</h4>Remote commands are described in MAN-007.</div>
+  </article>
+</div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<footer class="p31-keys">
+  <span class="d-none d-lg-inline"><kbd>/</kbd>search</span>
+  <span class="d-lg-none"><kbd>☰</kbd>sections</span>
+  <span>bootsys-p31 · a Bootstrap 5.3 design system</span>
+</footer>
+
+<textarea hidden id="installSrc"><!-- 1. Document root -->
+<html lang="en" class="p31" data-bs-theme="dark">
+
+<!-- 2. In <head>: font, Bootstrap, theme -->
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="bootsys-p31.min.css" rel="stylesheet">
+
+<!-- 3. Before </body>: Bootstrap JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Optional -->
+<html ... data-p31-phosphor="amber">   <!-- or "cyan" -->
+<body class="p31-crt">                  <!-- scanlines --></textarea>
+
+<textarea hidden id="shellSrc"><body class="p31-crt">
+<header class="p31-topbar">
+  <nav class="navbar">
+    <div class="container-xxl flex-wrap">
+      <button class="btn btn-outline-primary btn-sm d-lg-none"
+              data-bs-toggle="offcanvas" data-bs-target="#side">☰ Menu</button>
+      <a class="navbar-brand" href="#">ARCHIVE-7</a>
+      <span class="p31-subtitle d-none d-sm-inline">Operator terminal</span>
+      <button class="btn btn-outline-primary btn-sm d-lg-none ms-auto"
+              data-bs-toggle="collapse" data-bs-target="#status">Status</button>
+      <div class="collapse d-lg-flex p31-statusbar ms-lg-auto" id="status">
+        <div><span class="p31-k">Node</span><span class="p31-v">531200631</span></div>
+        ...
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="container-xxl">
+  <div class="row">
+    <aside class="col-lg-3 col-xl-2">
+      <div class="offcanvas-lg offcanvas-start p31-side" id="side" tabindex="-1">
+        <div class="offcanvas-header">
+          <span class="offcanvas-title">Folders</span>
+          <button class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#side"></button>
+        </div>
+        <div class="offcanvas-body pt-lg-4">
+          <div class="list-group p31-folders"> ... </div>
+        </div>
+      </div>
+    </aside>
+    <main class="col-lg-9 col-xl-10 py-3 py-lg-4"> ... </main>
+  </div>
+</div>
+
+<footer class="p31-keys"> ... </footer>
+</body></textarea>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(function(){
+  // Code snippets are generated from each demo's own markup
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  function dedent(s){var lines=s.replace(/^\n+|\s+$/g,'').split('\n');var min=Infinity;lines.forEach(function(l){if(l.trim()){var m=l.match(/^ */)[0].length;if(m<min)min=m;}});return lines.map(function(l){return l.slice(min===Infinity?0:min);}).join('\n');}
+  document.querySelectorAll('.p31-demo').forEach(function(d){
+    var det=document.createElement('details');det.className='p31-code';
+    det.innerHTML='<summary>Code</summary><pre><code>'+esc(dedent(d.innerHTML))+'</code></pre>';
+    d.after(det);
+  });
+  document.getElementById('installCode').textContent=document.getElementById('installSrc').value.trim();
+  document.getElementById('shellCode').textContent=document.getElementById('shellSrc').value.trim();
+
+  // Palette
+  var tokens=[['--p31-phos','Phosphor','primary'],['--p31-phos-2','Frames','success'],['--p31-cyan','Data','info'],['--p31-amber','Warning','warning'],['--p31-red','Danger','danger'],['--p31-text','Text',''],['--p31-dim','Dim',''],['--p31-muted','Captions','secondary'],['--p31-line','Lines',''],['--p31-grid','Grid',''],['--p31-bg-2','Panel',''],['--p31-bg','Screen','']];
+  document.getElementById('swatches').innerHTML=tokens.map(function(t){return '<div class="col-6 col-md-4 col-xl-2"><div class="swatch"><div class="swatch-chip" style="background:var('+t[0]+')"></div><div class="swatch-body"><b>'+t[1]+'</b><code>'+t[0]+'</code><br><span data-hex="'+t[0]+'"></span>'+(t[2]?' <span>· '+t[2]+'</span>':'')+'</div></div></div>';}).join('');
+  function paintHex(){var cs=getComputedStyle(document.documentElement);document.querySelectorAll('[data-hex]').forEach(function(s){s.textContent=cs.getPropertyValue(s.getAttribute('data-hex')).trim();});}
+  paintHex();
+
+  // Phosphor and scanline switches
+  document.querySelectorAll('[data-phos]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var v=b.getAttribute('data-phos');
+      if(v)document.documentElement.setAttribute('data-p31-phosphor',v);else document.documentElement.removeAttribute('data-p31-phosphor');
+      document.querySelectorAll('[data-phos]').forEach(function(x){x.classList.toggle('active',x===b);});
+      paintHex();
+    });
+  });
+  var crt=document.getElementById('crtSwitch');
+  crt.addEventListener('change',function(e){document.body.classList.toggle('p31-crt',e.target.checked);});
+  crt.addEventListener('click',function(e){e.stopPropagation();});
+
+  // Bootstrap tooltips, popovers, toast
+  document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(function(el){new bootstrap.Tooltip(el);});
+  document.querySelectorAll('[data-bs-toggle="popover"]').forEach(function(el){new bootstrap.Popover(el);});
+  document.getElementById('toastBtn').addEventListener('click',function(){bootstrap.Toast.getOrCreateInstance(document.getElementById('demoToast')).show();});
+
+  // Gain slider label
+  var rg=document.getElementById('f4');rg.addEventListener('input',function(){document.querySelector('label[for="f4"]').textContent='Gain: '+(rg.value>0?'+':'')+rg.value+' dB';});
+
+  // Close the phone menu after picking a section
+  var side=document.getElementById('dsSide');
+  side.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){if(window.innerWidth<992){var oc=bootstrap.Offcanvas.getInstance(side);if(oc)oc.hide();}});});
+
+  // Header height for the sticky sidebar
+  function hh(){document.documentElement.style.setProperty('--p31-header-h',document.querySelector('.p31-topbar').offsetHeight+'px');}
+  window.addEventListener('resize',hh);hh();
+
+  // Clock
+  function tick(){var n=new Date();function z(v){return(v<10?'0':'')+v;}document.getElementById('clock').textContent=z(n.getHours())+':'+z(n.getMinutes())+':'+z(n.getSeconds());}
+  setInterval(tick,1000);tick();
+
+  // Oscilloscope
+  var p=document.getElementById('scopePath'),t=0,reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function draw(){var d='';for(var x=0;x<=600;x+=4){var y=110+48*Math.sin(x*.032+t)*Math.cos(x*.006-t*.3)+14*Math.sin(x*.13-t*2.1)+(Math.random()-.5)*4;d+=(x?'L':'M')+x+' '+y.toFixed(1);}p.setAttribute('d',d);t+=.035;if(!reduce)requestAnimationFrame(draw);}
+  draw();
+})();
+</script>
+</body>
+</html>
