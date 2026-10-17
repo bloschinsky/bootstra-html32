@@ -59,12 +59,18 @@ export function releaseNotes(root, tag) {
 }
 
 // Checks what `npm pack` would publish and returns the CSS files to attach to the GitHub Release.
+// `npm pack --json` prints an array up to npm 11 and an object keyed by package name from npm 12.
+export function packInfo(json, name) {
+  const data = JSON.parse(json);
+  return (Array.isArray(data) ? data[0] : data[name]) ?? {};
+}
+
 export function releaseAssets(root, tag) {
   const { name, version, dir } = checkTag(root, tag);
   const out = execSync('npm pack --dry-run --json --ignore-scripts', {
     cwd: path.join(root, dir), encoding: 'utf8',
   });
-  const [info] = JSON.parse(out);
+  const info = packInfo(out, name);
   if (info.name !== name || info.version !== version) {
     throw new Error(`npm pack in ${dir} produced ${info.name}@${info.version}, expected ${name}@${version}`);
   }

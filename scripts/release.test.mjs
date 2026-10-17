@@ -6,7 +6,7 @@ import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
-import { checkTag, parseTag, releaseAssets, releaseNotes } from './release.mjs';
+import { checkTag, packInfo, parseTag, releaseAssets, releaseNotes } from './release.mjs';
 import { listWorkspaces } from './workspaces.mjs';
 
 const REPO = { type: 'git', url: 'git+https://github.com/owner/themes.git' };
@@ -79,6 +79,13 @@ test('releaseNotes fails when the section is missing or empty', () => {
   const root = fixture({ 'theme-a': { changelog: '## Unreleased\n\n- Next\n\n## 1.0.0\n\n## 0.9.0\n\n- Old\n' } });
   assert.throws(() => releaseNotes(root, 'theme-a@1.0.0'), /section "## 1.0.0" is empty/);
   assert.throws(() => releaseNotes(fixture({ 'theme-a': { changelog: '## 1.0.0.1\n\n- x\n' } }), 'theme-a@1.0.0'), /no "## 1.0.0" section/);
+});
+
+test('packInfo reads npm pack output from npm 11 and npm 12', () => {
+  const info = { name: 'theme-a', version: '1.0.0', files: [] };
+  assert.deepEqual(packInfo(JSON.stringify([info]), 'theme-a'), info);
+  assert.deepEqual(packInfo(JSON.stringify({ 'theme-a': info }), 'theme-a'), info);
+  assert.deepEqual(packInfo(JSON.stringify({ 'theme-b': info }), 'theme-a'), {});
 });
 
 test('releaseAssets requires the declared entry file', () => {
