@@ -1,0 +1,87 @@
+/* ------------------------------------------------------------------
+   1. Colour schemes (Control Panel > Color palettes)
+   A scheme sets four colours: button face, active title bar, desktop
+   and window background, plus the title's -rgb variant for Bootstrap
+   utilities and the text colour for desktop icon labels. Every other
+   colour (bevels, highlight, menus, workspace) is derived below.
+   ------------------------------------------------------------------ */
+:root,
+[data-w31-scheme="default"]  { --w31-face:#c0c0c0; --w31-title:#000080; --w31-title-rgb:0,0,128;   --w31-desktop:#008080; --w31-window:#ffffff; --w31-desktop-text:#fff; }
+[data-w31-scheme="arizona"]  { --w31-face:#c0c0c0; --w31-title:#008080; --w31-title-rgb:0,128,128; --w31-desktop:#b49a6c; --w31-window:#fffcf0; --w31-desktop-text:#000; }
+[data-w31-scheme="bordeaux"] { --w31-face:#c0c0c0; --w31-title:#800040; --w31-title-rgb:128,0,64;  --w31-desktop:#603048; --w31-window:#ffffff; --w31-desktop-text:#fff; }
+[data-w31-scheme="emerald"]  { --w31-face:#c0c0c0; --w31-title:#008000; --w31-title-rgb:0,128,0;   --w31-desktop:#004000; --w31-window:#f4fff4; --w31-desktop-text:#fff; }
+[data-w31-scheme="ocean"]    { --w31-face:#c0c0c0; --w31-title:#004080; --w31-title-rgb:0,64,128;  --w31-desktop:#000080; --w31-window:#f0ffff; --w31-desktop-text:#fff; }
+[data-w31-scheme="valentine"]{ --w31-face:#d0c0c8; --w31-title:#c00040; --w31-title-rgb:192,0,64;  --w31-desktop:#ff80c0; --w31-window:#fff4fa; --w31-desktop-text:#000; }
+[data-w31-scheme="designer"] { --w31-face:#c0c0c0; --w31-title:#404040; --w31-title-rgb:64,64,64;  --w31-desktop:#808080; --w31-window:#ffffff; --w31-desktop-text:#fff; }
+[data-w31-scheme="leather"]  { --w31-face:#a0a0a0; --w31-title:#000000; --w31-title-rgb:0,0,0;     --w31-desktop:#202020; --w31-window:#ffffff; --w31-desktop-text:#fff; }
+[data-w31-scheme="plasma"]   { --w31-face:#c0c0c0; --w31-title:#800080; --w31-title-rgb:128,0,128; --w31-desktop:#000000; --w31-window:#ffffff; --w31-desktop-text:#fff; }
+[data-w31-scheme="rugby"]    { --w31-face:#c0c0c0; --w31-title:#800000; --w31-title-rgb:128,0,0;   --w31-desktop:#000080; --w31-window:#ffffff; --w31-desktop-text:#fff; }
+[data-w31-scheme="mono"]     { --w31-face:#ffffff; --w31-title:#000000; --w31-title-rgb:0,0,0;     --w31-desktop:#ffffff; --w31-window:#ffffff; --w31-desktop-text:#000; }
+[data-w31-scheme="hotdog"]   { --w31-face:#ffff00; --w31-title:#ff0000; --w31-title-rgb:255,0,0;   --w31-desktop:#ffff00; --w31-window:#ffff00; --w31-desktop-text:#000; }
+
+:root,
+[data-w31-scheme] {
+  /* derived chrome palette */
+  --w31-hi: #ffffff;                                            /* bevel highlight          */
+  --w31-shadow: color-mix(in srgb, var(--w31-face) 67%, #000);  /* bevel shadow   (#808080) */
+  --w31-light: color-mix(in srgb, var(--w31-face) 50%, #fff);   /* light face     (#e0e0e0) */
+  --w31-frame: var(--w31-face);                                 /* sizing border            */
+  --w31-ink: #000000;                                           /* window frame, text       */
+  --w31-title-text: #ffffff;
+  --w31-inactive: var(--w31-window);
+  --w31-inactive-text: #000000;
+  --w31-menu: var(--w31-window);
+  --w31-workspace: var(--w31-window);
+  --w31-hilite: var(--w31-title);
+  --w31-hilite-text: #ffffff;
+  --w31-gray: var(--w31-shadow);                                /* disabled text            */
+  --w31-help: #ffffc0;
+  --w31-link: #008000;                                          /* WinHelp jump green       */
+
+  /* bevels: Win 3.x draws two pixels of light and shade inside a black outline */
+  --w31-out: inset -2px -2px 0 var(--w31-shadow), inset 2px 2px 0 var(--w31-hi);
+  --w31-out-thin: inset -1px -1px 0 var(--w31-shadow), inset 1px 1px 0 var(--w31-hi);
+  --w31-in: inset 1px 1px 0 var(--w31-shadow);
+  --w31-sunken: inset 1px 1px 0 var(--w31-shadow), inset -1px -1px 0 var(--w31-hi);
+
+  --w31-font: "MS Sans Serif", "Microsoft Sans Serif", Arial, Helvetica, sans-serif;
+  --w31-font-mono: Fixedsys, "Fixedsys Excelsior 3.01", "Courier New", Courier, monospace;
+  --w31-font-help: "Times New Roman", Times, Georgia, serif;
+
+  /* Bootstrap hooks */
+  --bs-body-font-family: var(--w31-font);
+  --bs-body-font-size: 14px;
+  --bs-body-line-height: 1.4;
+  --bs-body-color: var(--w31-ink);
+  --bs-body-bg: var(--w31-window);
+  --bs-emphasis-color: #000;
+  --bs-secondary-color: var(--w31-gray);
+  --bs-secondary-bg: var(--w31-face);
+  --bs-tertiary-bg: var(--w31-light);
+  --bs-font-monospace: var(--w31-font-mono);
+  --bs-border-color: var(--w31-ink);
+  --bs-border-radius: 0;
+  --bs-border-radius-sm: 0;
+  --bs-border-radius-lg: 0;
+  --bs-border-radius-xl: 0;
+  --bs-border-radius-xxl: 0;
+  --bs-border-radius-pill: 0;
+  --bs-box-shadow: none;
+  --bs-box-shadow-sm: none;
+  --bs-box-shadow-lg: none;
+  --bs-link-color: var(--w31-link);
+  --bs-link-color-rgb: 0,128,0;
+  --bs-link-hover-color: var(--w31-link);
+  --bs-link-hover-color-rgb: 0,128,0;
+  --bs-focus-ring-color: transparent;
+  --bs-primary: var(--w31-title);
+  --bs-primary-rgb: var(--w31-title-rgb);
+  --bs-secondary: var(--w31-face);
+  --bs-success: #008000;   --bs-success-rgb: 0,128,0;
+  --bs-info: #008080;      --bs-info-rgb: 0,128,128;
+  --bs-warning: #ffff00;   --bs-warning-rgb: 255,255,0;
+  --bs-danger: #800000;    --bs-danger-rgb: 128,0,0;
+  --bs-dark: #000000;      --bs-dark-rgb: 0,0,0;
+  --bs-light: #ffffff;     --bs-light-rgb: 255,255,255;
+  color-scheme: light;
+}

@@ -1,0 +1,26 @@
+/* Showcase-only helpers for index.html — not part of the theme. */
+:root { box-sizing: border-box; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+.demo-code { display: block; margin-top: 6px; padding: 3px 6px; font: 12px "Courier New", monospace; color: #000; background: #fff; border: 1px solid #000; overflow-x: auto; white-space: nowrap; }
+.demo-label { margin: 12px 0 4px; font: 700 13px var(--w31-font); }
+.demo-label:first-child { margin-top: 0; }
+.demo-preview { position: relative; height: 180px; border: 1px solid #000; overflow: hidden; }
+.demo-preview .w31-window { position: absolute; font-size: 12px; }
+.demo-preview .p-inactive { left: 6%; top: 10px; width: 58%; }
+.demo-preview .p-active { left: 24%; top: 46px; width: 70%; }
+.demo-hscroll { overflow-x: auto; }
+.demo-max { position: fixed !important; inset: env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px) 0; z-index: 1040; margin: 0 !important; }
+.demo-max > .w31-window-body, .demo-max > .w31-workspace { max-height: none !important; }
+.demo-hidden { display: none !important; }
+.demo-clock { display: block; width: 100%; max-width: 220px; margin: 0 auto; aspect-ratio: 1; }
+.demo-masthead { padding: 18px 12px 10px; color: var(--w31-desktop-text); text-align: center; }
+.demo-masthead h1 { margin: 0; font: 700 clamp(26px, 5vw, 44px)/1 var(--w31-font); letter-spacing: 1px; }
+.demo-masthead p { margin: 6px 0 0; font: 700 13px var(--w31-font); }
+.demo-help { font-family: var(--w31-font-help); font-size: 16px; line-height: 1.45; }
+.demo-help h2 { font-family: var(--w31-font-help); font-size: 22px; }
+.demo-help h3 { font-family: var(--w31-font-help); font-size: 18px; margin-top: 16px; }
+.demo-help code { font-size: 13px; }
+.demo-help .table { font-family: var(--w31-font); }
+.demo-scroll { max-height: 340px; }
+.demo-footer { padding: 18px 8px 8px; color: var(--w31-desktop-text); text-align: center; font: 700 12px var(--w31-font); }
+.demo-footer a { color: inherit; }

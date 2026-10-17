@@ -1,0 +1,118 @@
+/* ------------------------------------------------------------------
+   12. List boxes, accordion, dialogs (modals), offcanvas
+   In title bars (modal, toast, offcanvas headers) .btn-close turns into
+   the control-menu box on the left, as in a 3.x dialog.
+   ------------------------------------------------------------------ */
+.list-group {
+  --bs-list-group-color: #000;
+  --bs-list-group-bg: var(--w31-window);
+  --bs-list-group-border-color: transparent;
+  --bs-list-group-border-width: 0;
+  --bs-list-group-border-radius: 0;
+  --bs-list-group-item-padding-x: 5px;
+  --bs-list-group-item-padding-y: 1px;
+  --bs-list-group-action-color: #000;
+  --bs-list-group-action-hover-color: #000;
+  --bs-list-group-action-hover-bg: var(--w31-window);
+  --bs-list-group-action-active-color: #000;
+  --bs-list-group-action-active-bg: var(--w31-window);
+  --bs-list-group-active-color: var(--w31-hilite-text);
+  --bs-list-group-active-bg: var(--w31-hilite);
+  --bs-list-group-active-border-color: var(--w31-hilite);
+  --bs-list-group-disabled-color: var(--w31-gray);
+  --bs-list-group-disabled-bg: var(--w31-window);
+  border: 1px solid var(--w31-ink);
+  font-size: 13px;
+}
+.list-group-flush { border: 0; }
+.list-group-item-action:focus-visible { outline: 1px dotted currentColor; outline-offset: -1px; }
+
+.accordion {
+  --bs-accordion-color: #000;
+  --bs-accordion-bg: var(--w31-window);
+  --bs-accordion-border-color: var(--w31-ink);
+  --bs-accordion-border-radius: 0;
+  --bs-accordion-inner-border-radius: 0;
+  --bs-accordion-btn-padding-x: 8px;
+  --bs-accordion-btn-padding-y: 4px;
+  --bs-accordion-btn-color: #000;
+  --bs-accordion-btn-bg: var(--w31-face);
+  --bs-accordion-active-color: var(--w31-hilite-text);
+  --bs-accordion-active-bg: var(--w31-hilite);
+  --bs-accordion-btn-focus-box-shadow: none;
+  --bs-accordion-btn-icon-width: 9px;
+  --bs-accordion-btn-icon-transition: none;
+  --bs-accordion-btn-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='7' height='4' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h7v1H6v1H5v1H4v1H3V3H2V2H1V1H0z'/%3E%3C/svg%3E");
+  --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='7' height='4' shape-rendering='crispEdges'%3E%3Cpath fill='%23fff' d='M0 0h7v1H6v1H5v1H4v1H3V3H2V2H1V1H0z'/%3E%3C/svg%3E");
+  --bs-accordion-body-padding-x: 10px;
+  --bs-accordion-body-padding-y: 8px;
+}
+.accordion-button { font: 700 13px var(--w31-font); box-shadow: var(--w31-out-thin); }
+.accordion-button::after { background-size: 7px 4px; background-position: center; image-rendering: pixelated; }
+.accordion-button:not(.collapsed) { box-shadow: none; }
+.accordion-button:focus { box-shadow: var(--w31-out-thin); }
+.accordion-button:not(.collapsed):focus { box-shadow: none; }
+.accordion-button:focus-visible { outline: 1px dotted currentColor; outline-offset: -4px; }
+
+/* dialog boxes */
+.modal {
+  --bs-modal-bg: var(--w31-window);
+  --bs-modal-color: #000;
+  --bs-modal-border-color: var(--w31-ink);
+  --bs-modal-border-width: 1px;
+  --bs-modal-border-radius: 0;
+  --bs-modal-inner-border-radius: 0;
+  --bs-modal-box-shadow: none;
+  --bs-modal-padding: 14px;
+  --bs-modal-header-padding: 0;
+  --bs-modal-header-border-color: var(--w31-ink);
+  --bs-modal-header-border-width: 1px;
+  --bs-modal-title-line-height: 19px;
+  --bs-modal-footer-border-width: 0;
+  --bs-modal-footer-gap: 8px;
+}
+.modal-backdrop { --bs-backdrop-bg: #000; --bs-backdrop-opacity: .25; }
+.modal-content { padding: 4px; background: var(--w31-frame); }
+.modal-header, .offcanvas-header {
+  align-items: stretch; height: 21px; padding: 0;
+  color: var(--w31-title-text); background: var(--w31-title);
+  border: 1px solid var(--w31-ink);
+}
+.modal-title, .offcanvas-title {
+  flex: 1; min-width: 0; padding: 0 4px;
+  overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+  text-align: center; font: 700 13px/19px var(--w31-font);
+}
+.modal-body { background: var(--w31-window); border: 1px solid var(--w31-ink); border-top: 0; }
+.modal-body:has(+ .modal-footer) { border-bottom: 0; }
+.modal-footer { justify-content: center; background: var(--w31-window); border: 1px solid var(--w31-ink); border-top: 0; padding-top: 0; }
+.modal-footer > * { margin: 0; }
+.modal-footer .btn { min-width: 88px; }
+.w31-3d .modal-body, .w31-3d .modal-footer { background: var(--w31-face); }
+
+/* title-bar close button = control-menu box */
+.modal-header .btn-close, .offcanvas-header .btn-close, .toast-header .btn-close {
+  order: -1; align-self: stretch;
+  width: 20px; height: auto; margin: 0 !important; padding: 0;
+  background:
+    linear-gradient(var(--w31-hi) 0 0) center / 13px 3px no-repeat,
+    linear-gradient(var(--w31-ink) 0 0) calc(50% + 1px) calc(50% + 1px) / 13px 3px no-repeat,
+    var(--w31-face);
+  border: 0; border-right: 1px solid var(--w31-ink); border-radius: 0; box-shadow: none;
+}
+.toast-header .btn-close { width: 18px; margin-right: 4px !important; background-size: 9px 2px, 9px 2px, auto; }
+.modal-header .btn-close:active, .offcanvas-header .btn-close:active, .toast-header .btn-close:active { background-color: var(--w31-hilite); box-shadow: none; }
+.modal-header .btn-close:focus-visible, .offcanvas-header .btn-close:focus-visible, .toast-header .btn-close:focus-visible { outline: 1px dotted #000; outline-offset: -3px; }
+
+/* offcanvas: a window docked to the edge */
+.offcanvas {
+  --bs-offcanvas-bg: var(--w31-frame);
+  --bs-offcanvas-color: #000;
+  --bs-offcanvas-border-color: var(--w31-ink);
+  --bs-offcanvas-border-width: 1px;
+  --bs-offcanvas-box-shadow: none;
+  --bs-offcanvas-padding-x: 12px;
+  --bs-offcanvas-padding-y: 10px;
+  padding: 3px;
+}
+.offcanvas-body { background: var(--w31-window); border: 1px solid var(--w31-ink); border-top: 0; }

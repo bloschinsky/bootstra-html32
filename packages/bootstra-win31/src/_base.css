@@ -1,0 +1,33 @@
+/* ------------------------------------------------------------------
+   3. Base
+   ------------------------------------------------------------------ */
+body { background: transparent; padding: 12px; }
+a { color: var(--w31-link); text-decoration: underline; }
+a:hover { color: var(--w31-link); }
+a:visited { color: var(--w31-link); }
+.w31-popup-link { text-decoration: underline dotted; text-underline-offset: 2px; }
+h1,h2,h3,h4,h5,h6 { font-family: var(--w31-font); font-weight: 700; line-height: 1.2; }
+h1 { font-size: 1.75rem; } h2 { font-size: 1.45rem; } h3 { font-size: 1.2rem; } h4,h5,h6 { font-size: 1rem; }
+b, strong { font-weight: 700; }
+code, kbd, samp, pre { font-family: var(--w31-font-mono); }
+code { color: var(--w31-title); font-size: .92em; }
+pre { padding: 6px 8px; color: #000; background: var(--w31-window); border: 1px solid var(--w31-ink); }
+kbd { padding: 1px 6px; color: #000; background: var(--w31-face); border: 1px solid var(--w31-ink); border-radius: 2px; box-shadow: var(--w31-out-thin); font: 700 12px var(--w31-font); }
+hr { border: 0; border-top: 1px solid var(--w31-ink); opacity: 1; margin: 10px 0; }
+mark { background: var(--w31-hilite); color: var(--w31-hilite-text); padding: 0 2px; }
+::selection { color: var(--w31-hilite-text); background: var(--w31-hilite); }
+:focus-visible { outline: 1px dotted var(--w31-ink); outline-offset: 1px; }
+.text-body-secondary, .text-muted { color: var(--w31-gray) !important; }
+
+/* system font: bold chrome text, as drawn by the 3.x System font */
+.w31-sys { font: 700 13px/1.3 var(--w31-font); }
+
+/* bevel utilities */
+.w31-raised { background: var(--w31-face); border: 1px solid var(--w31-ink); box-shadow: var(--w31-out); }
+.w31-sunken { background: var(--w31-face); box-shadow: var(--w31-sunken); }
+.w31-field  { background: var(--w31-window); border: 1px solid var(--w31-ink); }
+.w31-face   { background: var(--w31-face); }
+
+/* centred page frame for websites: a maximised window */
+.w31-page { max-width: 1000px; margin: 0 auto; }
+.w31-page-narrow { max-width: 720px; margin: 0 auto; }

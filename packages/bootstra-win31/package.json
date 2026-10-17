@@ -1,0 +1,60 @@
+{
+  "name": "bootstra-win31",
+  "version": "0.1.0",
+  "description": "A Bootstrap 5 theme inspired by Windows 3.1, Program Manager, File Manager and early-90s desktop GUIs.",
+  "themeCollection": {
+    "id": "bootstra-win31",
+    "name": "Win31",
+    "description": "Windows 3.1 and Program Manager: bevelled grey dialogs, navy title bars, control-menu boxes, 8×8 desktop patterns.",
+    "demo": "_site",
+    "preview": "screenshots/screenshot.png"
+  },
+  "style": "dist/bootstra-win31.css",
+  "main": "dist/bootstra-win31.css",
+  "files": [
+    "dist/",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "build:css": "node scripts/build.mjs --css",
+    "dev": "node scripts/build.mjs --watch",
+    "lint": "stylelint \"src/**/*.css\" \"site/**/*.css\"",
+    "test": "npm run lint && npm run build",
+    "prepublishOnly": "npm test"
+  },
+  "keywords": [
+    "bootstrap",
+    "bootstrap5",
+    "theme",
+    "css",
+    "retro",
+    "90s",
+    "windows31",
+    "win31",
+    "program-manager"
+  ],
+  "author": "Artem Bloschinsky",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bloschinsky/bootstra-themes.git",
+    "directory": "packages/bootstra-win31"
+  },
+  "homepage": "https://bloschinsky.github.io/bootstra-themes/themes/bootstra-win31/",
+  "bugs": {
+    "url": "https://github.com/bloschinsky/bootstra-themes/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "peerDependencies": {
+    "bootstrap": "^5.3.0"
+  },
+  "devDependencies": {
+    "lightningcss": "^1.33.0",
+    "stylelint": "^17.16.0",
+    "stylelint-config-recommended": "^18.0.0"
+  }
+}

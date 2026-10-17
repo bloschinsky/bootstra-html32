@@ -1,0 +1,118 @@
+/* ------------------------------------------------------------------
+   7. Forms
+   Flat white fields with a one-pixel black outline, checkboxes with an
+   X, combo boxes with a separate arrow button. Add .w31-3d to a
+   container for the later "3-D controls" look (grey dialogs, sunken
+   fields).
+   ------------------------------------------------------------------ */
+.form-label, .col-form-label, legend { font: 700 13px/1.3 var(--w31-font); }
+.form-text { color: var(--w31-gray); font-size: 12px; }
+.form-control, .form-select {
+  padding: 3px 5px;
+  color: #000; background-color: var(--w31-window);
+  border: 1px solid var(--w31-ink); border-radius: 0;
+  font: 400 14px/1.3 var(--w31-font);
+}
+.form-control:focus, .form-select:focus { color: #000; background-color: var(--w31-window); border-color: var(--w31-ink); box-shadow: none; outline: 0; }
+.form-control:disabled, .form-select:disabled { color: var(--w31-gray); background-color: var(--w31-face); }
+.form-control::placeholder { color: var(--w31-gray); }
+.form-control-sm, .form-select-sm { padding: 1px 4px; font-size: 13px; }
+.form-control-lg, .form-select-lg { padding: 6px 8px; font-size: 16px; }
+.form-control::file-selector-button {
+  margin: -3px 6px -3px -5px; padding: 3px 10px;
+  color: #000; background: var(--w31-face); border: 0; border-right: 1px solid var(--w31-ink);
+  box-shadow: var(--w31-out); font: 700 13px var(--w31-font);
+}
+.form-control:hover:not(:disabled):not([readonly])::file-selector-button { background: var(--w31-face); }
+textarea.form-control { font-family: var(--w31-font-mono); }
+
+/* drop-down list: arrow button with an underline, as in the drive list */
+.form-select {
+  padding-right: 26px;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='7' height='6' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h7v1H6v1H5v1H2V2H1V1H0zM3 3h1v1H3zM0 5h7v1H0z'/%3E%3C/svg%3E") right 5px center / 7px 6px no-repeat,
+    linear-gradient(var(--w31-hi) 0 0) right 16px top 0 / 1px 100% no-repeat,
+    linear-gradient(var(--w31-hi) 0 0) right 0 top 0 / 17px 1px no-repeat,
+    linear-gradient(var(--w31-shadow) 0 0) right 0 top 0 / 1px 100% no-repeat,
+    linear-gradient(var(--w31-shadow) 0 0) right 0 bottom 0 / 17px 1px no-repeat,
+    linear-gradient(var(--w31-face) 0 0) right 0 top 0 / 17px 100% no-repeat,
+    linear-gradient(var(--w31-ink) 0 0) right 17px top 0 / 1px 100% no-repeat,
+    var(--w31-window);
+  image-rendering: pixelated;
+}
+.form-select[multiple], .form-select[size]:not([size="1"]) { padding-right: 5px; background: var(--w31-window); }
+.form-select option:checked { color: var(--w31-hilite-text); background: var(--w31-hilite); }
+
+/* checkboxes and radio buttons */
+.form-check { min-height: 20px; }
+.form-check-label { font: 700 13px/20px var(--w31-font); }
+.form-check-input {
+  width: 13px; height: 13px; margin-top: 3px;
+  background-color: var(--w31-window); border: 1px solid var(--w31-ink);
+  image-rendering: pixelated;
+}
+.form-check-input[type="checkbox"] { border-radius: 0; }
+.form-check-input:focus { border-color: var(--w31-ink); box-shadow: none; }
+.form-check-input:focus-visible + .form-check-label { outline: 1px dotted var(--w31-ink); outline-offset: -1px; }
+.form-check-input:checked { background-color: var(--w31-window); border-color: var(--w31-ink); }
+.form-check-input:checked[type="checkbox"] {
+  --bs-form-check-bg-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 11'%3E%3Cpath d='M0 0l11 11M11 0L0 11' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E");
+  background-size: 11px 11px;
+}
+.form-check-input:indeterminate { --bs-form-check-bg-image: none; background-color: var(--w31-shadow); border-color: var(--w31-ink); box-shadow: inset 0 0 0 2px var(--w31-window); }
+.form-check-input:checked[type="radio"] { --bs-form-check-bg-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3E%3Ccircle r='2.2'/%3E%3C/svg%3E"); }
+.form-check-input:disabled ~ .form-check-label { color: var(--w31-gray); opacity: 1; }
+.form-check-input:disabled { opacity: 1; filter: none; background-color: var(--w31-face); }
+
+/* switch: a little slider with a bevelled thumb */
+.form-switch .form-check-input {
+  --bs-form-switch-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 12'%3E%3Crect x='.5' y='.5' width='9' height='11' fill='%23c0c0c0' stroke='%23000'/%3E%3Cpath d='M1 11V1h8' fill='none' stroke='%23fff'/%3E%3C/svg%3E");
+  width: 30px; height: 14px; margin-top: 3px; border-radius: 0;
+  background-size: auto 100%; background-color: var(--w31-window);
+}
+.form-switch .form-check-input:focus { --bs-form-switch-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 12'%3E%3Crect x='.5' y='.5' width='9' height='11' fill='%23c0c0c0' stroke='%23000'/%3E%3Cpath d='M1 11V1h8' fill='none' stroke='%23fff'/%3E%3C/svg%3E"); }
+.form-switch .form-check-input:checked { --bs-form-switch-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 12'%3E%3Crect x='.5' y='.5' width='9' height='11' fill='%23c0c0c0' stroke='%23000'/%3E%3Cpath d='M1 11V1h8' fill='none' stroke='%23fff'/%3E%3C/svg%3E"); background-color: var(--w31-hilite); background-image: var(--bs-form-switch-bg); }
+
+/* range: a horizontal scroll bar */
+.form-range { height: 18px; }
+.form-range:focus { box-shadow: none; }
+.form-range:focus-visible { outline: 1px dotted var(--w31-ink); }
+.form-range::-webkit-slider-runnable-track { height: 18px; background: var(--w31-light); border: 1px solid var(--w31-ink); border-radius: 0; }
+.form-range::-webkit-slider-thumb {
+  width: 16px; height: 16px; margin-top: 0;
+  background: var(--w31-face); border: 1px solid var(--w31-ink); border-radius: 0; box-shadow: var(--w31-out-thin);
+  -webkit-appearance: none; appearance: none;
+}
+.form-range::-webkit-slider-thumb:active { background: var(--w31-face); }
+.form-range::-moz-range-track { height: 16px; background: var(--w31-light); border: 1px solid var(--w31-ink); border-radius: 0; }
+.form-range::-moz-range-thumb { width: 14px; height: 14px; background: var(--w31-face); border: 1px solid var(--w31-ink); border-radius: 0; box-shadow: var(--w31-out-thin); }
+.form-range:focus::-webkit-slider-thumb { box-shadow: var(--w31-out-thin); }
+.form-range:focus::-moz-range-thumb { box-shadow: var(--w31-out-thin); }
+
+/* input groups */
+.input-group-text { padding: 3px 8px; color: #000; background: var(--w31-face); border: 1px solid var(--w31-ink); border-radius: 0; font: 700 13px var(--w31-font); }
+.input-group > .btn { border-radius: 0; }
+
+/* validation */
+.form-control.is-invalid, .was-validated .form-control:invalid,
+.form-select.is-invalid, .was-validated .form-select:invalid { border-color: #ff0000; box-shadow: inset 0 0 0 1px #ff0000; background-image: none; padding-right: 5px; }
+.form-control.is-valid, .was-validated .form-control:valid { border-color: #008000; box-shadow: inset 0 0 0 1px #008000; background-image: none; padding-right: 5px; }
+.invalid-feedback { color: #800000; font: 700 12px var(--w31-font); }
+.valid-feedback { color: #008000; font: 700 12px var(--w31-font); }
+
+/* group box: one black rectangle with the caption cut into it */
+fieldset.w31-groupbox, .w31-groupbox {
+  position: relative; margin: 10px 0 8px; padding: 12px 10px 8px;
+  border: 1px solid var(--w31-ink);
+}
+.w31-groupbox > legend, .w31-groupbox-caption {
+  float: none; width: auto; position: absolute; top: -9px; left: 7px;
+  margin: 0; padding: 0 3px; background: var(--w31-window);
+  font: 700 13px/16px var(--w31-font);
+}
+.w31-face .w31-groupbox > legend, .w31-3d .w31-groupbox > legend, .w31-face .w31-groupbox-caption, .w31-3d .w31-groupbox-caption { background: var(--w31-face); }
+
+/* 3-D controls: grey dialogs with sunken fields */
+.w31-3d.w31-window-body, .w31-3d .w31-window-body, .modal.w31-3d .modal-body { background: var(--w31-face); }
+.w31-3d .form-control, .w31-3d .form-select:not([multiple]) { border-color: var(--w31-shadow) var(--w31-hi) var(--w31-hi) var(--w31-shadow); box-shadow: inset 1px 1px 0 var(--w31-ink); }
+.w31-3d .w31-groupbox { border-color: var(--w31-shadow); box-shadow: 1px 1px 0 var(--w31-hi), inset 1px 1px 0 var(--w31-hi); }

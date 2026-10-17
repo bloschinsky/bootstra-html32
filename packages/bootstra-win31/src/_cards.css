@@ -1,0 +1,27 @@
+/* ------------------------------------------------------------------
+   8. Cards
+   A card is a plain child window: black outline, title-bar header,
+   grey footer. .card.w31-help is a yellow help note.
+   ------------------------------------------------------------------ */
+.card {
+  --bs-card-border-width: 1px;
+  --bs-card-border-color: var(--w31-ink);
+  --bs-card-border-radius: 0;
+  --bs-card-inner-border-radius: 0;
+  --bs-card-bg: var(--w31-window);
+  --bs-card-color: #000;
+  --bs-card-cap-bg: var(--w31-title);
+  --bs-card-cap-color: var(--w31-title-text);
+  --bs-card-cap-padding-y: 0;
+  --bs-card-cap-padding-x: 6px;
+  --bs-card-spacer-y: 10px;
+  --bs-card-spacer-x: 12px;
+}
+.card-header { min-height: 20px; border-bottom: 1px solid var(--w31-ink); font: 700 13px/19px var(--w31-font); text-align: center; }
+.card-header.is-inactive { color: var(--w31-inactive-text); background: var(--w31-inactive); }
+.card-footer { background: var(--w31-face); border-top: 1px solid var(--w31-ink); padding: 6px 10px; }
+.card-title { font-size: 15px; }
+.card-subtitle { color: var(--w31-gray) !important; font-size: 13px; }
+.card-img-top { border-bottom: 1px solid var(--w31-ink); }
+.card.w31-help { --bs-card-bg: var(--w31-help); }
+.card.w31-face { --bs-card-bg: var(--w31-face); }

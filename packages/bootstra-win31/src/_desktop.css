@@ -1,0 +1,43 @@
+/* ------------------------------------------------------------------
+   2. Desktop: colour, 8x8 patterns and wallpapers
+   Put .w31-desktop on <html> (or any element) and add one pattern or
+   wallpaper class. Patterns are drawn in black over the desktop colour,
+   doubled to 16 px so the pixels stay visible on modern screens.
+   ------------------------------------------------------------------ */
+.w31-desktop {
+  --w31-pattern: none;
+  --w31-pattern-size: 16px;
+  min-height: 100%;
+  background: var(--w31-pattern) 0 0 / var(--w31-pattern-size) var(--w31-pattern-size) repeat, var(--w31-desktop);
+  image-rendering: pixelated;
+}
+.w31-desktop * { image-rendering: auto; }
+
+.w31-pattern-fifty    { --w31-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h1v1H0zM2 0h1v1H2zM4 0h1v1H4zM6 0h1v1H6zM1 1h1v1H1zM3 1h1v1H3zM5 1h1v1H5zM7 1h1v1H7zM0 2h1v1H0zM2 2h1v1H2zM4 2h1v1H4zM6 2h1v1H6zM1 3h1v1H1zM3 3h1v1H3zM5 3h1v1H5zM7 3h1v1H7zM0 4h1v1H0zM2 4h1v1H2zM4 4h1v1H4zM6 4h1v1H6zM1 5h1v1H1zM3 5h1v1H3zM5 5h1v1H5zM7 5h1v1H7zM0 6h1v1H0zM2 6h1v1H2zM4 6h1v1H4zM6 6h1v1H6zM1 7h1v1H1zM3 7h1v1H3zM5 7h1v1H5zM7 7h1v1H7z'/%3E%3C/svg%3E"); } /* 50% grey dither */
+.w31-pattern-boxes    { --w31-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h8v1H0zM0 1h1v1H0zM7 1h1v1H7zM0 2h1v1H0zM2 2h4v1H2zM7 2h1v1H7zM0 3h1v1H0zM2 3h1v1H2zM5 3h1v1H5zM7 3h1v1H7zM0 4h1v1H0zM2 4h1v1H2zM5 4h1v1H5zM7 4h1v1H7zM0 5h1v1H0zM2 5h4v1H2zM7 5h1v1H7zM0 6h1v1H0zM7 6h1v1H7zM0 7h8v1H0z'/%3E%3C/svg%3E"); } /* nested boxes */
+.w31-pattern-diamonds { --w31-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M3 0h1v1H3zM2 1h1v1H2zM4 1h1v1H4zM1 2h1v1H1zM5 2h1v1H5zM0 3h1v1H0zM6 3h1v1H6zM1 4h1v1H1zM5 4h1v1H5zM2 5h1v1H2zM4 5h1v1H4zM3 6h1v1H3z'/%3E%3C/svg%3E"); } /* diamond lattice */
+.w31-pattern-weave    { --w31-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h1v1H0zM4 0h1v1H4zM1 1h1v1H1zM3 1h1v1H3zM5 1h1v1H5zM2 2h1v1H2zM6 2h1v1H6zM1 3h1v1H1zM5 3h1v1H5zM7 3h1v1H7zM0 4h1v1H0zM4 4h1v1H4zM3 5h1v1H3zM5 5h1v1H5zM7 5h1v1H7zM2 6h1v1H2zM6 6h1v1H6zM1 7h1v1H1zM3 7h1v1H3zM7 7h1v1H7z'/%3E%3C/svg%3E"); } /* basket weave */
+.w31-pattern-thatches { --w31-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h5v1H0zM1 1h3v1H1zM5 1h1v1H5zM2 2h1v1H2zM6 2h1v1H6zM1 3h1v1H1zM5 3h3v1H5zM0 4h1v1H0zM4 4h4v1H4zM3 5h1v1H3zM5 5h3v1H5zM2 6h1v1H2zM6 6h1v1H6zM1 7h3v1H1zM7 7h1v1H7z'/%3E%3C/svg%3E"); } /* thatched roof */
+.w31-pattern-waffle   { --w31-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 4h1v1H0zM0 5h1v1H0zM0 6h1v1H0zM0 7h5v1H0z'/%3E%3C/svg%3E"); } /* waffle grid */
+.w31-pattern-zigzag   { --w31-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h1v1H0zM7 0h1v1H7zM1 1h1v1H1zM6 1h1v1H6zM2 2h1v1H2zM5 2h1v1H5zM3 3h2v1H3zM0 4h1v1H0zM7 4h1v1H7zM1 5h1v1H1zM6 5h1v1H6zM2 6h1v1H2zM5 6h1v1H5zM3 7h2v1H3z'/%3E%3C/svg%3E"); } /* chevrons */
+.w31-pattern-spinner  { --w31-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M3 0h1v1H3zM5 0h1v1H5zM4 1h2v1H4zM0 2h2v1H0zM4 2h1v1H4zM1 3h4v1H1zM7 3h1v1H7zM0 4h1v1H0zM3 4h4v1H3zM3 5h1v1H3zM6 5h2v1H6zM2 6h2v1H2zM2 7h1v1H2zM4 7h1v1H4z'/%3E%3C/svg%3E"); } /* pinwheels */
+
+/* wallpapers: full-colour tiles that ignore the desktop colour */
+.w31-wall-tartan {
+  background:
+    repeating-linear-gradient(90deg, rgba(0,0,0,.35) 0 4px, transparent 4px 16px, rgba(255,255,0,.45) 16px 18px, transparent 18px 32px),
+    repeating-linear-gradient(0deg, rgba(0,0,0,.35) 0 4px, transparent 4px 16px, rgba(255,255,0,.45) 16px 18px, transparent 18px 32px),
+    #006040;
+}
+.w31-wall-redbrick {
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='16' shape-rendering='crispEdges'%3E%3Cpath fill='%23c0c0c0' d='M0 7h32v1H0zM0 15h32v1H0zM15 0h1v7h-1zM31 8h1v7h-1z'/%3E%3Cpath fill='%23600000' d='M0 6h15v1H0zM16 6h15v1H16zM0 14h31v1H0z'/%3E%3C/svg%3E") 0 0 / 64px 32px,
+    #a00000;
+  image-rendering: pixelated;
+}
+.w31-wall-rivets {
+  background:
+    radial-gradient(circle at 9px 9px, #fff 0 1.5px, #404040 2px 3.5px, transparent 4px) 0 0 / 32px 32px,
+    linear-gradient(135deg, rgba(255,255,255,.18) 25%, transparent 25% 50%, rgba(255,255,255,.18) 50% 75%, transparent 75%) 0 0 / 8px 8px,
+    #707880;
+}

@@ -1,0 +1,15 @@
+/* ------------------------------------------------------------------
+   14. Narrow screens and reduced motion
+   ------------------------------------------------------------------ */
+@media (max-width: 575.98px) {
+  body { padding: 6px; }
+  .w31-window-body { padding: 8px; }
+  .w31-split { grid-template-columns: 1fr; }
+  .w31-split > * + * { border-left: 0; border-top: 1px solid var(--w31-ink); }
+  .w31-icons { grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); }
+  .w31-desktop-icons .w31-icon { width: 72px; }
+  .modal-dialog { margin: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .spinner-border, .spinner-grow { animation: none; }
+}

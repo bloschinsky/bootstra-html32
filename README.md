@@ -6,6 +6,7 @@
 | --- | --- | --- | --- |
 | **HTML32**: mid-90s web pages and desktop UI chrome | [`bootstra-html32`](https://www.npmjs.com/package/bootstra-html32) | [README](packages/bootstra-html32/README.md) | [▶ Live demo](https://bloschinsky.github.io/bootstra-themes/themes/bootstra-html32/) |
 | **Code437**: ANSI art, BBS boards and DOS-era terminals | [`bootstra-code437`](https://www.npmjs.com/package/bootstra-code437) | [README](packages/bootstra-code437/README.md) | [▶ Live demo](https://bloschinsky.github.io/bootstra-themes/themes/bootstra-code437/) |
+| **Win31**: Windows 3.1 and Program Manager | [`bootstra-win31`](https://www.npmjs.com/package/bootstra-win31) | [README](packages/bootstra-win31/README.md) | [▶ Live demo](https://bloschinsky.github.io/bootstra-themes/themes/bootstra-win31/) |
 
 Browse them all on the **[collection site](https://bloschinsky.github.io/bootstra-themes/)**. Install and usage instructions live in each theme's README.
 

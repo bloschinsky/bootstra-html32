@@ -1,0 +1,26 @@
+/*!
+ * bootstra-win31 — A Bootstrap 5 theme inspired by Windows 3.1,
+ * Program Manager, File Manager and early-90s desktop GUIs.
+ * Sister theme of bootstra-html32. Load AFTER bootstrap.min.css.
+ *
+ *   <html data-w31-scheme="default" class="w31-desktop w31-pattern-none">
+ *
+ * Schemes:   default arizona bordeaux emerald ocean valentine designer leather plasma rugby mono hotdog
+ * Patterns:  w31-pattern-fifty -boxes -diamonds -weave -thatches -waffle -zigzag -spinner
+ * Wallpaper: w31-wall-tartan w31-wall-redbrick w31-wall-rivets
+ */
+
+@import "_schemes.css";
+@import "_desktop.css";
+@import "_base.css";
+@import "_window.css";
+@import "_icons.css";
+@import "_buttons.css";
+@import "_forms.css";
+@import "_cards.css";
+@import "_tables.css";
+@import "_navigation.css";
+@import "_feedback.css";
+@import "_overlays.css";
+@import "_scrollbars.css";
+@import "_responsive.css";

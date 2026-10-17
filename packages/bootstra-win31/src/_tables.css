@@ -1,0 +1,31 @@
+/* ------------------------------------------------------------------
+   9. Tables
+   A white list with raised column headers. .table-active rows are
+   highlighted like a selected list item.
+   ------------------------------------------------------------------ */
+.table {
+  --bs-table-color: #000;
+  --bs-table-bg: var(--w31-window);
+  --bs-table-border-color: var(--w31-light);
+  --bs-table-striped-bg: var(--w31-light);
+  --bs-table-striped-color: #000;
+  --bs-table-hover-bg: var(--w31-light);
+  --bs-table-hover-color: #000;
+  --bs-table-active-bg: var(--w31-hilite);
+  --bs-table-active-color: var(--w31-hilite-text);
+  border: 1px solid var(--w31-ink);
+  font-size: 13px;
+}
+.table > :not(caption) > * > * { padding: 3px 7px; }
+.table > thead > tr > *, .table > thead th {
+  --bs-table-bg: var(--w31-face); --bs-table-color: #000;
+  font: 700 13px var(--w31-font); text-align: left;
+  border-bottom: 1px solid var(--w31-ink);
+  box-shadow: inset -1px -1px 0 var(--w31-shadow), inset 1px 1px 0 var(--w31-hi);
+}
+.table > thead > tr > * + * { border-left: 1px solid var(--w31-ink); }
+.table > :not(:first-child) { border-top: 0; }
+.table tr.table-active > *, .table > tbody > tr > .table-active { --bs-table-color-state: var(--w31-hilite-text); --bs-table-bg-state: var(--w31-hilite); }
+.table caption { color: var(--w31-gray); font-size: 12px; }
+.table-bordered > :not(caption) > * > * { border-color: var(--w31-ink); }
+.table-dark { --bs-table-bg: #000; --bs-table-color: #fff; --bs-table-border-color: #808080; }

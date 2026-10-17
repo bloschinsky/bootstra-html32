@@ -1,0 +1,148 @@
+/* ------------------------------------------------------------------
+   11. Feedback: message boxes (alerts), badges, progress, the Setup
+   gauge, the hourglass spinner, toasts, tooltips, popovers
+   ------------------------------------------------------------------ */
+.alert {
+  --bs-alert-padding-x: 12px;
+  --bs-alert-padding-y: 10px;
+  --bs-alert-color: #000;
+  --bs-alert-bg: var(--w31-window);
+  --bs-alert-border-color: var(--w31-ink);
+  --bs-alert-border-radius: 0;
+  --bs-alert-link-color: var(--w31-link);
+  position: relative;
+  min-height: 54px;
+}
+.alert-heading { font-size: 14px; }
+.alert-link { font-weight: 700; }
+.alert-primary { --bs-alert-bg: color-mix(in srgb, var(--w31-title) 10%, var(--w31-window)); }
+.alert-secondary { --bs-alert-bg: var(--w31-face); }
+.alert-light { --bs-alert-bg: var(--w31-window); }
+.alert-dark { --bs-alert-bg: #000; --bs-alert-color: #fff; --bs-alert-border-color: #000; }
+/* message-box symbol on the left */
+.alert-info, .alert-warning, .alert-danger, .alert-success { padding-left: 58px; }
+.alert-info::before, .alert-warning::before, .alert-danger::before, .alert-success::before {
+  position: absolute; left: 12px; top: 10px;
+  display: grid; place-items: center; width: 32px; height: 32px;
+  color: var(--w31-title); background: #fff; border: 2px solid #000; border-radius: 50%;
+  font: italic 700 22px/1 var(--w31-font-help);
+}
+.alert-info::before { content: "i"; }
+.alert-success::before { content: "\2713"; color: #008000; font-style: normal; font-size: 18px; }
+.alert-warning::before { content: "!"; color: #000; background: #ffff00; font-style: normal; }
+.alert-danger::before {
+  content: "STOP"; color: #fff; background: #ff0000; border: 0; border-radius: 0;
+  clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
+  font: 700 9px/1 var(--w31-font); letter-spacing: .3px;
+}
+.alert-dismissible { padding-right: 40px; }
+.alert-dismissible .btn-close { top: 8px; right: 8px; padding: 0; }
+
+/* badges */
+.badge {
+  --bs-badge-padding-x: 5px;
+  --bs-badge-padding-y: 2px;
+  --bs-badge-font-size: 11px;
+  --bs-badge-font-weight: 700;
+  --bs-badge-color: #000;
+  --bs-badge-border-radius: 0;
+  border: 1px solid var(--w31-ink);
+}
+.badge:not([class*="bg-"]) { background: var(--w31-face); box-shadow: var(--w31-out-thin); }
+.btn .badge { border-color: currentColor; }
+
+/* progress */
+.progress, .progress-stacked {
+  --bs-progress-height: 20px;
+  --bs-progress-font-size: 12px;
+  --bs-progress-bg: var(--w31-window);
+  --bs-progress-border-radius: 0;
+  --bs-progress-box-shadow: none;
+  --bs-progress-bar-color: var(--w31-hilite-text);
+  --bs-progress-bar-bg: var(--w31-hilite);
+  --bs-progress-bar-transition: none;
+  border: 1px solid var(--w31-ink);
+  font-weight: 700;
+}
+
+/* Setup gauge: the percentage flips colour where the bar passes it
+   <div class="w31-gauge" style="--value:42" data-label="42%" role="progressbar" aria-valuenow="42" aria-valuemin="0" aria-valuemax="100"></div> */
+.w31-gauge {
+  --value: 0;
+  position: relative; height: 22px;
+  color: var(--w31-hilite); background: var(--w31-window);
+  border: 1px solid var(--w31-ink);
+  font: 700 13px/20px var(--w31-font); text-align: center;
+}
+.w31-gauge::before { content: attr(data-label); }
+.w31-gauge::after {
+  content: attr(data-label); position: absolute; inset: 0;
+  color: var(--w31-hilite-text); background: var(--w31-hilite);
+  clip-path: inset(0 calc(100% - var(--value) * 1%) 0 0);
+}
+
+/* spinners become the hourglass */
+.spinner-border, .spinner-grow {
+  --bs-spinner-width: 16px;
+  --bs-spinner-height: 24px;
+  --bs-spinner-animation-speed: 2s;
+  --bs-spinner-animation-name: w31-hourglass;
+  border: 0; border-radius: 0; opacity: 1;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 24' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h16v3H0zM0 21h16v3H0z'/%3E%3Cpath d='M2.5 3.5v3l4.5 5.5-4.5 5.5v3h11v-3L9 12l4.5-5.5v-3z' fill='%23fff' stroke='%23000'/%3E%3Cpath d='M5 7h6l-3 4zM4 20v-1.5l4-3.5 4 3.5V20z'/%3E%3C/svg%3E") center / contain no-repeat;
+  image-rendering: pixelated;
+}
+.spinner-border-sm, .spinner-grow-sm { --bs-spinner-width: 11px; --bs-spinner-height: 16px; }
+@keyframes w31-hourglass { 0%, 42% { transform: none; } 50%, 92% { transform: rotate(180deg); } 100% { transform: rotate(360deg); } }
+
+/* toasts: a small window */
+.toast {
+  --bs-toast-bg: var(--w31-frame);
+  --bs-toast-color: #000;
+  --bs-toast-border-color: var(--w31-ink);
+  --bs-toast-border-width: 1px;
+  --bs-toast-border-radius: 0;
+  --bs-toast-box-shadow: none;
+  --bs-toast-padding-x: 10px;
+  --bs-toast-padding-y: 8px;
+  --bs-toast-header-color: var(--w31-title-text);
+  --bs-toast-header-bg: var(--w31-title);
+  --bs-toast-header-border-color: var(--w31-ink);
+  padding: 3px;
+  font-size: 13px;
+}
+.toast-header { min-height: 20px; padding: 0 4px 0 0; border: 1px solid var(--w31-ink); font: 700 13px/19px var(--w31-font); }
+.toast-header small { color: inherit; font-weight: 400; }
+.toast-body { background: var(--w31-window); border: 1px solid var(--w31-ink); border-top: 0; }
+.toast-body:only-child { border-top: 1px solid var(--w31-ink); }
+
+/* tooltips and popovers */
+.tooltip {
+  --bs-tooltip-bg: var(--w31-help);
+  --bs-tooltip-color: #000;
+  --bs-tooltip-opacity: 1;
+  --bs-tooltip-border-radius: 0;
+  --bs-tooltip-padding-x: 5px;
+  --bs-tooltip-padding-y: 2px;
+  --bs-tooltip-font-size: 12px;
+  --bs-tooltip-arrow-height: 0;
+  --bs-tooltip-arrow-width: 0;
+  font-family: var(--w31-font);
+}
+.tooltip-inner { border: 1px solid var(--w31-ink); text-align: left; }
+.popover {
+  --bs-popover-bg: var(--w31-window);
+  --bs-popover-border-color: var(--w31-ink);
+  --bs-popover-border-radius: 0;
+  --bs-popover-inner-border-radius: 0;
+  --bs-popover-box-shadow: 2px 2px 0 var(--w31-ink);
+  --bs-popover-font-size: 13px;
+  --bs-popover-header-bg: var(--w31-title);
+  --bs-popover-header-color: var(--w31-title-text);
+  --bs-popover-header-padding-y: 1px;
+  --bs-popover-header-padding-x: 6px;
+  --bs-popover-header-font-size: 13px;
+  --bs-popover-body-padding-y: 8px;
+  --bs-popover-body-padding-x: 10px;
+  font-family: var(--w31-font);
+}
+.popover-header { border-bottom: 1px solid var(--w31-ink); text-align: center; }

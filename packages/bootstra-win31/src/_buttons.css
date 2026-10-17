@@ -1,0 +1,94 @@
+/* ------------------------------------------------------------------
+   6. Buttons
+   Black outline, rounded corner pixels, two pixels of bevel. The
+   default (.btn-primary) push button gets the thick black border.
+   Pressing shifts the label one pixel down and right.
+   ------------------------------------------------------------------ */
+.btn {
+  --w31-btn-face: var(--w31-face);
+  --w31-btn-text: #000;
+  --bs-btn-padding-x: 14px;
+  --bs-btn-padding-y: 4px;
+  --bs-btn-font-family: var(--w31-font);
+  --bs-btn-font-size: 13px;
+  --bs-btn-font-weight: 700;
+  --bs-btn-line-height: 1.25;
+  --bs-btn-border-width: 1px;
+  --bs-btn-border-radius: 3px;
+  --bs-btn-box-shadow: none;
+  --bs-btn-focus-box-shadow: none;
+  --bs-btn-color: var(--w31-btn-text);
+  --bs-btn-bg: var(--w31-btn-face);
+  --bs-btn-border-color: var(--w31-ink);
+  --bs-btn-hover-color: var(--w31-btn-text);
+  --bs-btn-hover-bg: var(--w31-btn-face);
+  --bs-btn-hover-border-color: var(--w31-ink);
+  --bs-btn-active-color: var(--w31-btn-text);
+  --bs-btn-active-bg: var(--w31-btn-face);
+  --bs-btn-active-border-color: var(--w31-ink);
+  --bs-btn-disabled-color: color-mix(in srgb, var(--w31-btn-face) 67%, #000);
+  --bs-btn-disabled-bg: var(--w31-btn-face);
+  --bs-btn-disabled-border-color: var(--w31-ink);
+  --bs-btn-disabled-opacity: 1;
+  min-width: 2.25rem;
+  box-shadow: inset -2px -2px 0 color-mix(in srgb, var(--w31-btn-face) 67%, #000), inset 2px 2px 0 var(--w31-hi);
+  transition: none;
+  cursor: default;
+}
+.btn:active, .btn.active, .btn.show,
+.btn:first-child:active, :not(.btn-check) + .btn:active,
+.btn-check:checked + .btn, .btn-check:active + .btn {
+  box-shadow: inset 1px 1px 0 color-mix(in srgb, var(--w31-btn-face) 67%, #000);
+  padding: calc(var(--bs-btn-padding-y) + 1px) calc(var(--bs-btn-padding-x) - 1px) calc(var(--bs-btn-padding-y) - 1px) calc(var(--bs-btn-padding-x) + 1px);
+}
+.btn:focus-visible, .btn-check:focus-visible + .btn { outline: 1px dotted #000; outline-offset: -5px; box-shadow: inset -2px -2px 0 color-mix(in srgb, var(--w31-btn-face) 67%, #000), inset 2px 2px 0 var(--w31-hi); }
+.btn:disabled, .btn.disabled { box-shadow: inset -2px -2px 0 color-mix(in srgb, var(--w31-btn-face) 67%, #000), inset 2px 2px 0 var(--w31-hi); }
+.btn-sm { --bs-btn-padding-x: 8px; --bs-btn-padding-y: 2px; --bs-btn-font-size: 12px; }
+.btn-lg { --bs-btn-padding-x: 22px; --bs-btn-padding-y: 7px; --bs-btn-font-size: 15px; }
+/* dialog button: the classic 75-dialog-unit OK / Cancel width */
+.w31-btn-dialog { min-width: 88px; }
+
+/* default push button: thick black border */
+.btn-primary { --bs-btn-border-width: 2px; }
+
+/* colour variants use the 16-colour VGA palette */
+.btn-secondary, .btn-light { /* = button face */ }
+.btn-light   { --w31-btn-face: var(--w31-window); }
+.btn-success { --w31-btn-face: #008000; --w31-btn-text: #fff; }
+.btn-danger  { --w31-btn-face: #800000; --w31-btn-text: #fff; }
+.btn-warning { --w31-btn-face: #ffff00; }
+.btn-info    { --w31-btn-face: #008080; --w31-btn-text: #fff; }
+.btn-dark    { --w31-btn-face: #808080; --w31-btn-text: #fff; }
+.btn-success:disabled, .btn-danger:disabled, .btn-info:disabled, .btn-dark:disabled { --bs-btn-disabled-color: color-mix(in srgb, var(--w31-btn-face) 40%, #fff); }
+
+[class*="btn-outline-"] { --w31-btn-face: var(--w31-face); }
+.btn-outline-primary { --w31-btn-text: var(--w31-title); }
+.btn-outline-success { --w31-btn-text: #008000; }
+.btn-outline-danger  { --w31-btn-text: #800000; }
+.btn-outline-info    { --w31-btn-text: #008080; }
+.btn-outline-warning { --w31-btn-text: #808000; }
+
+.btn-link {
+  --bs-btn-color: var(--w31-link); --bs-btn-hover-color: var(--w31-link); --bs-btn-active-color: var(--w31-link);
+  --bs-btn-bg: transparent; --bs-btn-hover-bg: transparent; --bs-btn-active-bg: transparent;
+  --bs-btn-border-color: transparent; --bs-btn-hover-border-color: transparent; --bs-btn-active-border-color: transparent;
+  font-weight: 400; text-decoration: underline; box-shadow: none !important;
+}
+
+/* button groups keep each button's own outline */
+.btn-group > .btn, .btn-group-vertical > .btn { border-radius: 3px; }
+.btn-group > :not(.btn-check:first-child) + .btn, .btn-group > .btn-group:not(:first-child) { margin-left: 2px; }
+.btn-group-vertical > .btn ~ .btn { margin-top: 2px; }
+
+/* close button: a small push button with an X */
+.btn-close {
+  --bs-btn-close-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h2v1h1v1h2V1h1V0h2v1H7v1H6v1H5v2h1v1h1v1h1v1H6V7H5V6H3v1H2v1H0V7h1V6h1V5h1V3H2V2H1V1H0z'/%3E%3C/svg%3E");
+  --bs-btn-close-opacity: 1; --bs-btn-close-hover-opacity: 1; --bs-btn-close-focus-shadow: none;
+  width: 20px; height: 18px; padding: 0; box-sizing: border-box;
+  background: var(--w31-face) var(--bs-btn-close-bg) center / 8px 8px no-repeat;
+  border: 1px solid var(--w31-ink); border-radius: 2px; box-shadow: var(--w31-out-thin); opacity: 1;
+  image-rendering: pixelated;
+}
+.btn-close:active { box-shadow: var(--w31-in); background-position: calc(50% + 1px) calc(50% + 1px); }
+.btn-close:focus { box-shadow: var(--w31-out-thin); }
+.btn-close:focus-visible { outline: 1px dotted #000; outline-offset: 1px; }

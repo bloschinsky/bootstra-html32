@@ -1,0 +1,141 @@
+/* ------------------------------------------------------------------
+   4. Windows: frame, title bar, menu bar, workspace, status bar
+   <div class="w31-window">
+     <div class="w31-titlebar"> .w31-sysmenu  .w31-title  .w31-ctl-min .w31-ctl-max </div>
+     <nav class="w31-menubar">…</nav>
+     <div class="w31-window-body">…</div>
+   </div>
+   ------------------------------------------------------------------ */
+.w31-window {
+  --w31-tick: linear-gradient(var(--w31-ink) 0 0);
+  position: relative;
+  display: flex; flex-direction: column;
+  min-width: 0;
+  padding: 3px;
+  color: var(--w31-ink);
+  background: var(--w31-frame);
+  border: 1px solid var(--w31-ink);
+}
+/* the black corner notches cut into the sizing border */
+.w31-window::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    var(--w31-tick) 22px 0 / 1px 3px no-repeat,
+    var(--w31-tick) calc(100% - 22px) 0 / 1px 3px no-repeat,
+    var(--w31-tick) 22px 100% / 1px 3px no-repeat,
+    var(--w31-tick) calc(100% - 22px) 100% / 1px 3px no-repeat,
+    var(--w31-tick) 0 22px / 3px 1px no-repeat,
+    var(--w31-tick) 100% 22px / 3px 1px no-repeat,
+    var(--w31-tick) 0 calc(100% - 22px) / 3px 1px no-repeat,
+    var(--w31-tick) 100% calc(100% - 22px) / 3px 1px no-repeat;
+}
+.w31-window > * { border-left: 1px solid var(--w31-ink); border-right: 1px solid var(--w31-ink); }
+.w31-window > :first-child { border-top: 1px solid var(--w31-ink); }
+.w31-window > :last-child { border-bottom: 1px solid var(--w31-ink); }
+/* a fixed dialog frame has no sizing notches */
+.w31-window.w31-dialog::before { content: none; }
+.w31-window.w31-dialog { padding: 4px; border-width: 1px; }
+/* maximised: no frame at all */
+.w31-window.w31-maximized { padding: 0; }
+.w31-window.w31-maximized::before { content: none; }
+.w31-window.w31-maximized > * { border-left: 0; border-right: 0; }
+
+/* title bar */
+.w31-titlebar {
+  display: flex; align-items: stretch; flex: none;
+  height: 20px;
+  color: var(--w31-title-text);
+  background: var(--w31-title);
+  border-bottom: 1px solid var(--w31-ink);
+  font: 700 13px/19px var(--w31-font);
+  user-select: none;
+}
+.w31-title, .w31-titlebar > h1, .w31-titlebar > h2, .w31-titlebar > h3 {
+  flex: 1; min-width: 0; margin: 0; padding: 0 4px;
+  overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+  text-align: center; font: inherit;
+}
+.w31-window.is-inactive > .w31-titlebar, .w31-titlebar.is-inactive { color: var(--w31-inactive-text); background: var(--w31-inactive); }
+
+/* control-menu box (left) and min / max / restore buttons (right) */
+.w31-sysmenu, .w31-ctl {
+  position: relative; flex: none; display: grid; place-items: center;
+  width: 20px; height: 19px; padding: 0; margin: 0;
+  color: #000; background: var(--w31-face);
+  border: 0; border-radius: 0; cursor: default;
+}
+.w31-sysmenu { border-right: 1px solid var(--w31-ink); }
+.w31-sysmenu::before {
+  content: ""; width: 13px; height: 3px;
+  background: var(--w31-hi); box-shadow: 1px 1px 0 var(--w31-ink), 0 0 0 1px var(--w31-shadow);
+}
+.w31-workspace .w31-sysmenu::before, .w31-sysmenu-sm::before { width: 9px; height: 2px; }
+.w31-sysmenu:active, .w31-sysmenu.show { background: var(--w31-hilite); }
+.w31-ctl { width: 21px; border-left: 1px solid var(--w31-ink); box-shadow: var(--w31-out); }
+.w31-ctl::before, .w31-ctl::after {
+  content: ""; width: 0; height: 0;
+  border-left: 4px solid transparent; border-right: 4px solid transparent;
+}
+.w31-ctl-min::before { border-top: 4px solid #000; }
+.w31-ctl-max::before { border-bottom: 4px solid #000; }
+.w31-ctl-restore { grid-template-rows: auto auto; align-content: center; gap: 1px; }
+.w31-ctl-restore::before { border-bottom: 4px solid #000; }
+.w31-ctl-restore::after  { border-top: 4px solid #000; }
+.w31-ctl-min::after, .w31-ctl-max::after { content: none; }
+.w31-ctl:active { box-shadow: var(--w31-in); padding: 1px 0 0 1px; }
+.w31-sysmenu:focus-visible, .w31-ctl:focus-visible { outline: 1px dotted #000; outline-offset: -4px; }
+
+/* menu bar */
+.w31-menubar {
+  display: flex; flex-wrap: wrap; align-items: stretch; flex: none;
+  min-height: 19px; padding: 0 1px; margin: 0;
+  color: #000; background: var(--w31-menu);
+  border-bottom: 1px solid var(--w31-ink);
+  font: 700 13px/1 var(--w31-font);
+}
+.w31-menubar.navbar { --bs-navbar-padding-y: 0; --bs-navbar-padding-x: 1px; --bs-navbar-nav-link-padding-x: 7px; }
+.w31-menubar .navbar-nav { flex-direction: row; flex-wrap: wrap; }
+.w31-menubar > a, .w31-menubar > .dropdown > a, .w31-menubar > button,
+.w31-menubar .nav-link, .w31-menubar > .dropdown > button {
+  display: block; padding: 3px 7px; margin: 0;
+  color: #000; background: transparent; border: 0; border-radius: 0;
+  font: inherit; line-height: 13px; text-decoration: none;
+}
+.w31-menubar .dropdown-toggle::after { content: none; }
+.w31-menubar a:hover { color: #000; }
+.w31-menubar a.show, .w31-menubar button.show, .w31-menubar a:active,
+.w31-menubar .nav-link.show, .w31-menubar .nav-link.active, .w31-menubar .nav-link:focus-visible {
+  color: var(--w31-hilite-text); background: var(--w31-hilite); outline: 0;
+}
+.w31-menubar u, .dropdown-item u { text-underline-offset: 1px; }
+.w31-menubar .dropdown-menu { margin-top: 0 !important; }
+
+/* window contents */
+.w31-window-body { flex: 1 1 auto; min-height: 0; padding: 10px 12px; background: var(--w31-window); overflow: auto; }
+.w31-window-body.w31-face { background: var(--w31-face); }
+.w31-workspace {
+  position: relative; flex: 1 1 auto; min-height: 0;
+  padding: 6px; background: var(--w31-workspace); overflow: auto;
+}
+.w31-workspace > .w31-window + .w31-window { margin-top: 6px; }
+/* split pane, as in File Manager's tree | contents view */
+.w31-split { display: grid; grid-template-columns: minmax(150px, 40%) 1fr; gap: 0; min-height: 0; background: var(--w31-window); }
+.w31-split > * { min-width: 0; overflow: auto; padding: 4px 6px; }
+.w31-split > * + * { border-left: 1px solid var(--w31-ink); }
+
+/* toolbar and drive bar */
+.w31-toolbar {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 2px; flex: none;
+  padding: 3px 4px; background: var(--w31-face); border-bottom: 1px solid var(--w31-ink);
+}
+.w31-toolbar .btn { --bs-btn-padding-x: 5px; --bs-btn-padding-y: 1px; min-width: 0; min-height: 22px; }
+.w31-toolbar-sep { width: 8px; flex: none; }
+
+/* status bar */
+.w31-statusbar {
+  display: flex; flex-wrap: wrap; gap: 4px; flex: none;
+  padding: 2px 3px; background: var(--w31-face);
+  font: 700 12px/1.2 var(--w31-font);
+}
+.w31-status { flex: 1 1 auto; padding: 2px 5px; box-shadow: var(--w31-sunken); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.w31-status-fixed { flex: 0 0 auto; }

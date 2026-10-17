@@ -1,0 +1,94 @@
+/* ------------------------------------------------------------------
+   5. Icons: program icons, minimised groups, file glyphs, tree view,
+   message-box symbols. All glyphs are inline SVG or CSS shapes.
+   ------------------------------------------------------------------ */
+.w31-icons {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+  gap: 10px 4px; padding: 6px 2px; margin: 0; list-style: none;
+}
+.w31-icon {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  min-width: 0; padding: 0; text-align: center;
+  color: inherit; background: none; border: 0;
+  font: 400 12px/1.2 var(--w31-font); text-decoration: none; cursor: default;
+}
+.w31-icon:hover { color: inherit; }
+.w31-icon-img { display: grid; place-items: center; width: 32px; height: 32px; flex: none; }
+.w31-icon-img > img, .w31-icon-img > svg { max-width: 32px; max-height: 32px; image-rendering: pixelated; }
+.w31-icon-label { padding: 0 2px; overflow-wrap: anywhere; }
+.w31-icon:focus { outline: 0; }
+.w31-icon.active .w31-icon-label, .w31-icon:focus .w31-icon-label { color: var(--w31-hilite-text); background: var(--w31-hilite); }
+.w31-icon:focus-visible .w31-icon-label { outline: 1px dotted var(--w31-ink); outline-offset: 1px; }
+
+/* icons sitting on the desktop (minimised windows) */
+.w31-desktop-icons { display: flex; flex-wrap: wrap; gap: 8px 14px; padding: 8px 4px; }
+.w31-desktop-icons .w31-icon { width: 84px; color: var(--w31-desktop-text); }
+
+/* minimised program group: a tiny window full of tiny icons */
+.w31-glyph-group {
+  width: 32px; height: 28px;
+  background:
+    linear-gradient(var(--w31-title) 0 0) 1px 1px / 30px 4px no-repeat,
+    conic-gradient(#ff0000 0 25%, #008000 0 50%, #0000ff 0 75%, #808000 0) 4px 8px / 5px 5px no-repeat,
+    conic-gradient(#008080 0 25%, #ffff00 0 50%, #800080 0 75%, #000 0) 13px 8px / 5px 5px no-repeat,
+    conic-gradient(#000080 0 50%, #ff0000 0) 22px 8px / 5px 5px no-repeat,
+    conic-gradient(#808080 0 25%, #00ffff 0 50%, #800000 0 75%, #00ff00 0) 4px 18px / 5px 5px no-repeat,
+    conic-gradient(#ffff00 0 50%, #000 0) 13px 18px / 5px 5px no-repeat,
+    conic-gradient(#0000ff 0 25%, #ffffff 0 50%, #ff0000 0 75%, #008000 0) 22px 18px / 5px 5px no-repeat,
+    #fff;
+  border: 1px solid #000;
+}
+
+/* 16 px file glyphs: .w31-file + one of -folder -open -doc -app -drive -up */
+.w31-file {
+  --w31-file-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 1.5h7l3 3v10h-10z' fill='%23fff' stroke='%23000'/%3E%3Cpath d='M10.5 1.5v3h3' fill='none' stroke='%23000'/%3E%3C/svg%3E");
+  display: inline-block; max-width: 100%;
+  padding: 1px 3px 1px 21px;
+  color: inherit; background: var(--w31-file-icon) 1px 50% / 16px 16px no-repeat;
+  font: 400 13px/18px var(--w31-font); text-decoration: none; white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis; vertical-align: top; cursor: default;
+}
+a.w31-file:hover { color: inherit; }
+.w31-file.active, a.w31-file:focus {
+  color: var(--w31-hilite-text); outline: 0;
+  background: var(--w31-file-icon) 1px 50% / 16px 16px no-repeat, linear-gradient(var(--w31-hilite) 0 0) 19px 0 / calc(100% - 19px) 100% no-repeat;
+}
+a.w31-file:focus-visible { outline: 1px dotted var(--w31-ink); outline-offset: -1px; }
+.w31-file-folder { --w31-file-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 3.5h5l1 1.5h7v8.5h-13z' fill='%23ffff00' stroke='%23000' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+.w31-file-open   { --w31-file-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 13.5v-10h5l1 1.5h5v2.5' fill='%23ffff00' stroke='%23000' stroke-linejoin='round'/%3E%3Cpath d='M1.5 13.5l2.5-6h11.5l-2.5 6z' fill='%23ffffa0' stroke='%23000' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+.w31-file-doc    { --w31-file-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 1.5h7l3 3v10h-10z' fill='%23fff' stroke='%23000'/%3E%3Cpath d='M10.5 1.5v3h3M5 7.5h6M5 9.5h6M5 11.5h4' fill='none' stroke='%23000'/%3E%3C/svg%3E"); }
+.w31-file-app    { --w31-file-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.5' y='2.5' width='13' height='11' fill='%23fff' stroke='%23000'/%3E%3Cpath d='M2 3h12v2H2z' fill='%23000080'/%3E%3C/svg%3E"); }
+.w31-file-drive  { --w31-file-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.5' y='5.5' width='13' height='6' fill='%23c0c0c0' stroke='%23000'/%3E%3Cpath d='M3 8h2v1H3z' fill='%2300c000'/%3E%3Cpath d='M8 9.5h5' stroke='%23808080'/%3E%3C/svg%3E"); }
+.w31-file-up     { --w31-file-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 13V4h7' fill='none' stroke='%23000' stroke-width='2'/%3E%3Cpath d='M9 1l4 3-4 3z'/%3E%3C/svg%3E"); }
+
+/* file list (contents pane) */
+.w31-files {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0 10px; align-content: start; padding: 2px 4px; margin: 0; list-style: none; background: var(--w31-window);
+}
+
+/* directory tree with connecting lines */
+.w31-tree, .w31-tree ul { list-style: none; margin: 0; padding: 0; }
+.w31-tree ul { padding-left: 20px; }
+.w31-tree li { position: relative; }
+.w31-tree ul > li::before { content: ""; position: absolute; left: -11px; top: 0; bottom: 0; border-left: 1px solid var(--w31-ink); }
+.w31-tree ul > li:last-child::before { bottom: auto; height: 10px; }
+.w31-tree ul > li::after { content: ""; position: absolute; left: -11px; top: 10px; width: 10px; border-top: 1px solid var(--w31-ink); }
+
+/* message-box symbols */
+.w31-msgicon {
+  display: inline-grid; place-items: center; flex: none;
+  width: 32px; height: 32px; color: #000; background: #fff;
+  border: 2px solid #000; border-radius: 50%;
+  font: 700 22px/1 var(--w31-font-help);
+}
+.w31-msgicon-info::before     { content: "i"; color: var(--w31-title); font-style: italic; }
+.w31-msgicon-question::before { content: "?"; color: var(--w31-title); }
+.w31-msgicon-warning { background: #ffff00; }
+.w31-msgicon-warning::before  { content: "!"; }
+.w31-msgicon-stop {
+  border: 0; border-radius: 0; color: #fff; background: #ff0000;
+  clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
+  font: 700 9px/1 var(--w31-font); letter-spacing: .3px;
+}
+.w31-msgicon-stop::before { content: "STOP"; }

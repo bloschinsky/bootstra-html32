@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en" data-w31-scheme="default" class="w31-desktop">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>bootstra-win31 — A Bootstrap 5 theme inspired by Windows 3.1</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="dist/bootstra-win31.css">
+<link rel="stylesheet" href="demo.css">
+</head>
+<body>
+
+<header class="demo-masthead">
+  <h1>bootstra-win31</h1>
+  <p>A Bootstrap 5 theme inspired by Windows 3.1, Program Manager and File Manager. Plain Bootstrap markup, 1992 chrome.</p>
+</header>
+
+<div class="container-xl px-0">
+
+<!-- PROGRAM MANAGER ============================================= -->
+<section class="w31-window mb-3" id="progman" aria-labelledby="pm-title">
+  <div class="w31-titlebar">
+    <button class="w31-sysmenu" type="button" aria-label="Control menu"></button>
+    <h2 class="w31-title" id="pm-title">Program Manager</h2>
+    <button class="w31-ctl w31-ctl-min" type="button" aria-label="Minimize" data-demo-min></button>
+    <button class="w31-ctl w31-ctl-max" type="button" aria-label="Maximize" data-demo-max></button>
+  </div>
+  <nav class="w31-menubar" aria-label="Program Manager menu">
+    <div class="dropdown">
+      <a href="#" data-bs-toggle="dropdown" aria-expanded="false"><u>F</u>ile</a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">New… </a></li>
+        <li><a class="dropdown-item" href="#">Open <span class="w31-key">Enter</span></a></li>
+        <li><a class="dropdown-item" href="#">Move… <span class="w31-key">F7</span></a></li>
+        <li><a class="dropdown-item" href="#">Copy… <span class="w31-key">F8</span></a></li>
+        <li><a class="dropdown-item disabled" href="#" aria-disabled="true">Delete <span class="w31-key">Del</span></a></li>
+        <li><a class="dropdown-item" href="#">Properties… <span class="w31-key">Alt+Enter</span></a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#runModal">Run…</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exitModal">Exit Windows…</a></li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <a href="#" data-bs-toggle="dropdown" aria-expanded="false"><u>O</u>ptions</a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item active" href="#">Auto Arrange</a></li>
+        <li><a class="dropdown-item" href="#">Minimize on Use</a></li>
+        <li><a class="dropdown-item active" href="#">Save Settings on Exit</a></li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <a href="#" data-bs-toggle="dropdown" aria-expanded="false"><u>W</u>indow</a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#color">1 Control Panel</a></li>
+        <li><a class="dropdown-item" href="#winfile">2 File Manager</a></li>
+        <li><a class="dropdown-item" href="#controls">3 Controls</a></li>
+        <li><a class="dropdown-item" href="#help">4 Help</a></li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <a href="#" data-bs-toggle="dropdown" aria-expanded="false"><u>H</u>elp</a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#help">Contents</a></li>
+        <li><a class="dropdown-item" href="#install">Search for Help On…</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#aboutModal">About bootstra-win31…</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="w31-workspace" style="min-height:300px">
+    <div class="row g-2">
+      <div class="col-lg-7">
+        <div class="w31-window">
+          <div class="w31-titlebar">
+            <button class="w31-sysmenu" type="button" aria-label="Control menu"></button>
+            <h3 class="w31-title">Main</h3>
+            <button class="w31-ctl w31-ctl-min" type="button" aria-label="Minimize"></button>
+            <button class="w31-ctl w31-ctl-max" type="button" aria-label="Maximize"></button>
+          </div>
+          <div class="w31-window-body py-1">
+            <ul class="w31-icons">
+              <li><a class="w31-icon" href="#color"><span class="w31-icon-img"><svg width="32" height="32" viewBox="0 0 32 32" shape-rendering="crispEdges" aria-hidden="true"><rect x="3.5" y="3.5" width="25" height="19" fill="#c0c0c0" stroke="#000"/><rect x="6.5" y="6.5" width="19" height="13" fill="#008080" stroke="#000"/><rect x="9" y="9" width="4" height="4" fill="#ff0000"/><rect x="14" y="9" width="4" height="4" fill="#ffff00"/><rect x="19" y="9" width="4" height="4" fill="#0000ff"/><rect x="9" y="14" width="14" height="3" fill="#000080"/><path d="M11.5 22.5h9v3h5v3h-19v-3h5z" fill="#808080" stroke="#000"/></svg></span><span class="w31-icon-label">Control Panel</span></a></li>
+              <li><a class="w31-icon" href="#winfile"><span class="w31-icon-img"><svg width="32" height="32" viewBox="0 0 32 32" shape-rendering="crispEdges" aria-hidden="true"><rect x="6.5" y="2.5" width="19" height="27" fill="#c0c0c0" stroke="#000"/><rect x="8.5" y="5.5" width="15" height="10" fill="#ffffc0" stroke="#000"/><rect x="8.5" y="17.5" width="15" height="10" fill="#ffffc0" stroke="#000"/><rect x="13" y="9" width="6" height="3" fill="#000"/><rect x="13" y="21" width="6" height="3" fill="#000"/></svg></span><span class="w31-icon-label">File Manager</span></a></li>
+              <li><a class="w31-icon" href="#controls"><span class="w31-icon-img"><svg width="32" height="32" viewBox="0 0 32 32" shape-rendering="crispEdges" aria-hidden="true"><rect x="3.5" y="5.5" width="25" height="21" fill="#c0c0c0" stroke="#000"/><rect x="4" y="6" width="24" height="3" fill="#000080"/><rect x="6.5" y="12.5" width="9" height="5" fill="#c0c0c0" stroke="#000"/><path d="M7 17V13h8" stroke="#fff" fill="none"/><rect x="18.5" y="12.5" width="7" height="7" fill="#fff" stroke="#000"/><path d="M19 13l6 6M25 13l-6 6" stroke="#000"/><rect x="6.5" y="20.5" width="10" height="3" fill="#fff" stroke="#000"/></svg></span><span class="w31-icon-label">Controls</span></a></li>
+              <li><a class="w31-icon" href="#feedback"><span class="w31-icon-img"><svg width="32" height="32" viewBox="0 0 32 32" shape-rendering="crispEdges" aria-hidden="true"><rect x="2.5" y="8.5" width="27" height="17" fill="#c0c0c0" stroke="#000"/><rect x="5.5" y="11.5" width="21" height="7" fill="#fff" stroke="#000"/><rect x="6" y="12" width="13" height="6" fill="#0000ff"/><rect x="11.5" y="20.5" width="9" height="3" fill="#c0c0c0" stroke="#000"/></svg></span><span class="w31-icon-label">Setup</span></a></li>
+              <li><a class="w31-icon" href="#clock"><span class="w31-icon-img"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect x="2.5" y="2.5" width="27" height="27" fill="#c0c0c0" stroke="#000"/><circle cx="16" cy="16" r="11" fill="#fff" stroke="#000"/><path d="M16 16V8M16 16l6 3" stroke="#000" stroke-width="2"/><g fill="#000080"><rect x="15" y="6" width="2" height="2"/><rect x="15" y="24" width="2" height="2"/><rect x="6" y="15" width="2" height="2"/><rect x="24" y="15" width="2" height="2"/></g></svg></span><span class="w31-icon-label">Clock</span></a></li>
+              <li><a class="w31-icon" href="#help"><span class="w31-icon-img"><svg width="32" height="32" viewBox="0 0 32 32" shape-rendering="crispEdges" aria-hidden="true"><path d="M5.5 4.5h20v24h-20z" fill="#008000" stroke="#000"/><path d="M8.5 4.5v24" stroke="#004000"/><rect x="11.5" y="8.5" width="11" height="15" fill="#ffffc0" stroke="#000"/><text x="17" y="21" font-family="Times New Roman,serif" font-weight="700" font-size="13" text-anchor="middle" fill="#000">?</text></svg></span><span class="w31-icon-label">Help</span></a></li>
+              <li><a class="w31-icon" href="#" data-bs-toggle="modal" data-bs-target="#runModal"><span class="w31-icon-img"><svg width="32" height="32" viewBox="0 0 32 32" shape-rendering="crispEdges" aria-hidden="true"><rect x="3.5" y="3.5" width="25" height="25" fill="#000" stroke="#000"/><rect x="3.5" y="3.5" width="25" height="4" fill="#808080" stroke="#000"/><text x="6" y="17" font-family="Courier New,monospace" font-weight="700" font-size="8" fill="#c0c0c0">C:\&gt;_</text></svg></span><span class="w31-icon-label">MS-DOS Prompt</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="w31-window is-inactive h-100">
+          <div class="w31-titlebar">
+            <button class="w31-sysmenu" type="button" aria-label="Control menu"></button>
+            <h3 class="w31-title">Read Me</h3>
+            <button class="w31-ctl w31-ctl-min" type="button" aria-label="Minimize"></button>
+            <button class="w31-ctl w31-ctl-max" type="button" aria-label="Maximize"></button>
+          </div>
+          <div class="w31-window-body">
+            <p class="mb-2">Everything on this page is Bootstrap 5.3 markup. The grid, utilities, components and JavaScript plugins work as documented; only the look changes.</p>
+            <p class="mb-2">Change the colour scheme and the desktop pattern in <a href="#color">Control Panel</a>. Click a window to activate it, minimise it to the desktop, or maximise it.</p>
+            <p class="mb-0">Links are green, like jumps in a Help file. <a href="#" class="w31-popup-link" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-title="Popup" data-bs-content="A dotted underline marks a popup definition.">Dotted ones</a> open a popup.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w31-desktop-icons pb-0" style="--w31-desktop-text:#000">
+      <a class="w31-icon" href="#controls"><span class="w31-icon-img"><span class="w31-glyph-group"></span></span><span class="w31-icon-label">Controls</span></a>
+      <a class="w31-icon" href="#lists"><span class="w31-icon-img"><span class="w31-glyph-group"></span></span><span class="w31-icon-label">Lists</span></a>
+      <a class="w31-icon" href="#dialogs"><span class="w31-icon-img"><span class="w31-glyph-group"></span></span><span class="w31-icon-label">Dialogs</span></a>
+      <a class="w31-icon" href="#nav"><span class="w31-icon-img"><span class="w31-glyph-group"></span></span><span class="w31-icon-label">Navigation</span></a>
+    </div>
+  </div>
+</section>
+
+<div class="row g-3">
+
+<!-- CONTROL PANEL: COLOR ======================================== -->
+<div class="col-lg-7">
+<section class="w31-window w31-dialog h-100" id="color" aria-labelledby="color-title">
+  <div class="w31-titlebar">
+    <button class="w31-sysmenu" type="button" aria-label="Control menu"></button>
+    <h2 class="w31-title" id="color-title">Color</h2>
+  </div>
+  <div class="w31-window-body">
+    <div class="row g-3">
+      <div class="col-sm-6">
+        <label class="form-label mb-1" for="schemeSelect">Color <u>S</u>chemes</label>
+        <select class="form-select mb-2" id="schemeSelect">
+          <option value="default">Windows Default</option>
+          <option value="arizona">Arizona</option>
+          <option value="bordeaux">Bordeaux</option>
+          <option value="emerald">Emerald City</option>
+          <option value="ocean">Ocean</option>
+          <option value="valentine">Valentine</option>
+          <option value="designer">Designer</option>
+          <option value="leather">Black Leather Jacket</option>
+          <option value="plasma">Plasma Power Saver</option>
+          <option value="rugby">Rugby</option>
+          <option value="mono">Monochrome</option>
+          <option value="hotdog">Hotdog Stand</option>
+        </select>
+        <label class="form-label mb-1" for="patternSelect">Desktop <u>P</u>attern</label>
+        <select class="form-select mb-2" id="patternSelect">
+          <option value="">(None)</option>
+          <option value="w31-pattern-fifty">50% Gray</option>
+          <option value="w31-pattern-boxes">Boxes</option>
+          <option value="w31-pattern-diamonds">Diamonds</option>
+          <option value="w31-pattern-weave">Weave</option>
+          <option value="w31-pattern-thatches">Thatches</option>
+          <option value="w31-pattern-waffle">Waffle</option>
+          <option value="w31-pattern-zigzag">Zigzag</option>
+          <option value="w31-pattern-spinner">Spinner</option>
+        </select>
+        <label class="form-label mb-1" for="wallSelect"><u>W</u>allpaper</label>
+        <select class="form-select" id="wallSelect">
+          <option value="">(None)</option>
+          <option value="w31-wall-tartan">Tartan</option>
+          <option value="w31-wall-redbrick">Redbrick</option>
+          <option value="w31-wall-rivets">Rivets</option>
+        </select>
+        <code class="demo-code" id="htmlSnippet">&lt;html data-w31-scheme="default" class="w31-desktop"&gt;</code>
+      </div>
+      <div class="col-sm-6">
+        <div class="demo-label">Preview</div>
+        <div class="demo-preview w31-desktop" id="preview">
+          <div class="w31-window is-inactive p-inactive">
+            <div class="w31-titlebar"><span class="w31-sysmenu"></span><span class="w31-title">Inactive</span></div>
+            <div class="w31-window-body p-1">&nbsp;</div>
+          </div>
+          <div class="w31-window p-active">
+            <div class="w31-titlebar"><span class="w31-sysmenu"></span><span class="w31-title">Active</span><span class="w31-ctl w31-ctl-min"></span><span class="w31-ctl w31-ctl-max"></span></div>
+            <div class="w31-menubar"><span class="px-2"><u>F</u>ile</span><span class="px-2"><u>E</u>dit</span></div>
+            <div class="w31-window-body p-2">Window Text <mark>Highlight</mark><div class="mt-2"><span class="btn btn-sm btn-primary">OK</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="d-flex flex-wrap gap-2 justify-content-center">
+      <button class="btn btn-primary w31-btn-dialog" type="button" id="schemeOk">OK</button>
+      <button class="btn w31-btn-dialog" type="button" id="schemeReset">Cancel</button>
+      <button class="btn w31-btn-dialog" type="button" data-bs-toggle="modal" data-bs-target="#aboutModal">Help</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- CLOCK ======================================================== -->
+<div class="col-sm-6 col-lg-5">
+<section class="w31-window h-100" id="clock" aria-labelledby="clock-title">
+  <div class="w31-titlebar">
+    <button class="w31-sysmenu" type="button" aria-label="Control menu"></button>
+    <h2 class="w31-title" id="clock-title">Clock</h2>
+    <button class="w31-ctl w31-ctl-min" type="button" aria-label="Minimize" data-demo-min></button>
+    <button class="w31-ctl w31-ctl-max" type="button" aria-label="Maximize" data-demo-max></button>
+  </div>
+  <nav class="w31-menubar" aria-label="Clock menu">
+    <div class="dropdown">
+      <a href="#" data-bs-toggle="dropdown" aria-expanded="false"><u>S</u>ettings</a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item active" href="#" data-clock="analog">Analog</a></li>
+        <li><a class="dropdown-item" href="#" data-clock="digital">Digital</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item active" href="#">Seconds</a></li>
+        <li><a class="dropdown-item" href="#">Date</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="w31-window-body d-grid align-items-center w31-face">
+    <svg class="demo-clock" id="clockFace" viewBox="-50 -50 100 100" role="img" aria-label="Analog clock">
+      <g id="clockTicks"></g>
+      <path id="hHand" d="M0 4 L-3.5 0 L0 -24 L3.5 0Z" fill="var(--w31-title)" stroke="#000"/>
+      <path id="mHand" d="M0 4 L-3 0 L0 -36 L3 0Z" fill="var(--w31-title)" stroke="#000"/>
+      <line id="sHand" x1="0" y1="6" x2="0" y2="-38" stroke="#000" stroke-width="1"/>
+    </svg>
+    <div class="text-center d-none" id="clockDigital" style="font:700 44px/1.1 var(--w31-font-mono)"></div>
+  </div>
+</section>
+</div>
+
+<!-- FILE MANAGER ================================================= -->
+<div class="col-12">
+<section class="w31-window" id="winfile" aria-labelledby="fm-title">
+  <div class="w31-titlebar">
+    <button class="w31-sysmenu" type="button" aria-label="Control menu"></button>
+    <h2 class="w31-title" id="fm-title">File Manager</h2>
+    <button class="w31-ctl w31-ctl-min" type="button" aria-label="Minimize" data-demo-min></button>
+    <button class="w31-ctl w31-ctl-max" type="button" aria-label="Maximize" data-demo-max></button>
+  </div>
+  <nav class="navbar navbar-expand w31-menubar" aria-label="File Manager menu">
+    <ul class="navbar-nav">
+      <li class="nav-item"><a class="nav-link" href="#"><u>F</u>ile</a></li>
+      <li class="nav-item"><a class="nav-link" href="#"><u>D</u>isk</a></li>
+      <li class="nav-item"><a class="nav-link" href="#"><u>T</u>ree</a></li>
+      <li class="nav-item"><a class="nav-link" href="#"><u>V</u>iew</a></li>
+      <li class="nav-item"><a class="nav-link" href="#"><u>O</u>ptions</a></li>
+      <li class="nav-item"><a class="nav-link" href="#"><u>W</u>indow</a></li>
+      <li class="nav-item"><a class="nav-link" href="#"><u>H</u>elp</a></li>
+    </ul>
+  </nav>
+  <div class="w31-toolbar">
+    <select class="form-select form-select-sm" style="width:auto" aria-label="Drive"><option>[C:] SYSTEM</option><option>[D:] DATA</option><option>[E:] CD-ROM</option></select>
+    <span class="w31-toolbar-sep"></span>
+    <div class="btn-group" role="group" aria-label="Drives">
+      <input type="radio" class="btn-check" name="drive" id="drvA" autocomplete="off"><label class="btn btn-sm" for="drvA">a</label>
+      <input type="radio" class="btn-check" name="drive" id="drvC" autocomplete="off" checked><label class="btn btn-sm" for="drvC">c</label>
+      <input type="radio" class="btn-check" name="drive" id="drvD" autocomplete="off"><label class="btn btn-sm" for="drvD">d</label>
+    </div>
+    <span class="w31-toolbar-sep"></span>
+    <button class="btn btn-sm" type="button" data-bs-toggle="tooltip" data-bs-title="Copy">Copy</button>
+    <button class="btn btn-sm" type="button" data-bs-toggle="tooltip" data-bs-title="Move">Move</button>
+    <button class="btn btn-sm" type="button" data-bs-toggle="tooltip" data-bs-title="Delete" disabled>Delete</button>
+  </div>
+  <div class="w31-workspace p-1" style="background:var(--w31-face)">
+    <div class="w31-window" style="max-height:340px">
+      <div class="w31-titlebar">
+        <button class="w31-sysmenu" type="button" aria-label="Control menu"></button>
+        <span class="w31-title">C:\WINDOWS\SYSTEM\*.*</span>
+        <button class="w31-ctl w31-ctl-min" type="button" aria-label="Minimize"></button>
+        <button class="w31-ctl w31-ctl-restore" type="button" aria-label="Restore"></button>
+      </div>
+      <div class="w31-split" style="min-height:220px">
+        <ul class="w31-tree">
+          <li><a href="#" class="w31-file w31-file-open">C:\</a>
+            <ul>
+              <li><a href="#" class="w31-file w31-file-folder">DOS</a></li>
+              <li><a href="#" class="w31-file w31-file-folder">GAMES</a></li>
+              <li><a href="#" class="w31-file w31-file-folder">TEMP</a></li>
+              <li><a href="#" class="w31-file w31-file-open">WINDOWS</a>
+                <ul>
+                  <li><a href="#" class="w31-file w31-file-folder">MSAPPS</a></li>
+                  <li><a href="#" class="w31-file w31-file-open active">SYSTEM</a></li>
+                  <li><a href="#" class="w31-file w31-file-folder">TEMP</a></li>
+                </ul>
+              </li>
+              <li><a href="#" class="w31-file w31-file-folder">WORK</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="w31-files">
+          <li><a href="#" class="w31-file w31-file-up">..</a></li>
+          <li><a href="#" class="w31-file w31-file-folder">COLOR</a></li>
+          <li><a href="#" class="w31-file w31-file-app">CLOCK.EXE</a></li>
+          <li><a href="#" class="w31-file w31-file-app">PROGMAN.EXE</a></li>
+          <li><a href="#" class="w31-file w31-file-app">WINFILE.EXE</a></li>
+          <li><a href="#" class="w31-file w31-file-doc">README.TXT</a></li>
+          <li><a href="#" class="w31-file w31-file-doc">SYSTEM.INI</a></li>
+          <li><a href="#" class="w31-file w31-file-doc">WIN.INI</a></li>
+          <li><a href="#" class="w31-file">VGA.DRV</a></li>
+          <li><a href="#" class="w31-file">SOUND.DRV</a></li>
+          <li><a href="#" class="w31-file w31-file-drive">DRIVE.SYS</a></li>
+          <li><a href="#" class="w31-file w31-file-doc">CHANGES.TXT</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="w31-statusbar">
+    <span class="w31-status">C: 19.5MB free, 120MB total</span>
+    <span class="w31-status">Total 12 file(s) (436KB)</span>
+  </div>
+</section>
+</div>
+
+<!-- CONTROLS ===================================================== -->
+<div class="col-lg-6">
+<section class="w31-window h-100" id="controls" aria-labelledby="ctl-title">
+  <div class="w31-titlebar">
+    <button class="w31-sysmenu" type="button" aria-label="Control menu"></button>
+    <h2 class="w31-title" id="ctl-title">Controls — Buttons</h2>
+    <button class="w31-ctl w31-ctl-min" type="button" aria-label="Minimize" data-demo-min></button>
+    <button class="w31-ctl w31-ctl-max" type="button" aria-label="Maximize" data-demo-max></button>
+  </div>
+  <div class="w31-window-body">
+    <div class="demo-label">Push buttons</div>
+    <div class="d-flex flex-wrap gap-2">
+      <button class="btn btn-primary w31-btn-dialog" type="button">OK</button>
+      <button class="btn w31-btn-dialog" type="button">Cancel</button>
+      <button class="btn" type="button">Browse…</button>
+      <button class="btn" type="button" disabled>Disabled</button>
+    </div>
+    <code class="demo-code">.btn-primary = default button (thick border) &nbsp; .w31-btn-dialog = 88px</code>
+    <div class="demo-label">VGA colours</div>
+    <div class="d-flex flex-wrap gap-2">
+      <button class="btn btn-success" type="button">Success</button>
+      <button class="btn btn-danger" type="button">Danger</button>
+      <button class="btn btn-warning" type="button">Warning</button>
+      <button class="btn btn-info" type="button">Info</button>
+      <button class="btn btn-dark" type="button">Dark</button>
+      <button class="btn btn-light" type="button">Light</button>
+      <button class="btn btn-outline-primary" type="button">Outline</button>
+      <button class="btn btn-link" type="button">Link</button>
+    </div>
+    <div class="demo-label">Sizes, groups, toggles</div>
+    <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+      <button class="btn btn-sm" type="button">Small</button>
+      <button class="btn" type="button">Normal</button>
+      <button class="btn btn-lg" type="button">Large</button>
+      <button class="btn" type="button">Inbox <span class="badge">4</span></button>
+    </div>
+    <div class="d-flex flex-wrap align-items-center gap-2">
+      <div class="btn-group" role="group" aria-label="Alignment">
+        <input type="radio" class="btn-check" name="al" id="alL" autocomplete="off" checked><label class="btn" for="alL">Left</label>
+        <input type="radio" class="btn-check" name="al" id="alC" autocomplete="off"><label class="btn" for="alC">Center</label>
+        <input type="radio" class="btn-check" name="al" id="alR" autocomplete="off"><label class="btn" for="alR">Right</label>
+      </div>
+      <input type="checkbox" class="btn-check" id="tgB" autocomplete="off" checked><label class="btn" for="tgB"><b>B</b></label>
+      <input type="checkbox" class="btn-check" id="tgI" autocomplete="off"><label class="btn" for="tgI"><i>I</i></label>
+      <button type="button" class="btn-close" aria-label="Close"></button>
+    </div>
+    <div class="demo-label">Message-box symbols</div>
+    <div class="d-flex gap-3">
+      <span class="w31-msgicon w31-msgicon-info" role="img" aria-label="Information"></span>
+      <span class="w31-msgicon w31-msgicon-question" role="img" aria-label="Question"></span>
+      <span class="w31-msgicon w31-msgicon-warning" role="img" aria-label="Warning"></span>
+      <span class="w31-msgicon w31-msgicon-stop" role="img" aria-label="Stop"></span>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- FORMS ======================================================== -->
+<div class="col-lg-6">
+<section class="w31-window h-100" id="forms" aria-labelledby="frm-title">
+  <div class="w31-titlebar">
+    <button class="w31-sysmenu" type="button" aria-label="Control menu"></button>
+    <h2 class="w31-title" id="frm-title">Controls — Forms</h2>
+    <button class="w31-ctl w31-ctl-min" type="button" aria-label="Minimize" data-demo-min></button>
+    <button class="w31-ctl w31-ctl-max" type="button" aria-label="Maximize" data-demo-max></button>
+  </div>
+  <div class="w31-window-body" id="formsBody">
+    <div class="form-check form-switch float-end mb-0">
+      <input class="form-check-input" type="checkbox" role="switch" id="ctl3d">
+      <label class="form-check-label" for="ctl3d">3-D controls</label>
+    </div>
+    <div class="row g-2">
+      <div class="col-sm-6">
+        <label class="form-label mb-1" for="fName">File <u>N</u>ame:</label>
+        <input class="form-control" id="fName" value="*.txt">
+      </div>
+      <div class="col-sm-6">
+        <label class="form-label mb-1" for="fType">List Files of <u>T</u>ype:</label>
+        <select class="form-select" id="fType"><option>Text Files (*.TXT)</option><option>All Files (*.*)</option></select>
+      </div>
+      <div class="col-sm-6">
+        <label class="form-label mb-1" for="fDir"><u>D</u>irectories:</label>
+        <select class="form-select" id="fDir" size="4"><option>c:\</option><option selected>windows</option><option>system</option><option>temp</option></select>
+      </div>
+      <div class="col-sm-6">
+        <fieldset class="w31-groupbox mt-3 mb-0">
+          <legend>Orientation</legend>
+          <div class="form-check"><input class="form-check-input" type="radio" name="or" id="orP" checked><label class="form-check-label" for="orP">Portrait</label></div>
+          <div class="form-check"><input class="form-check-input" type="radio" name="or" id="orL"><label class="form-check-label" for="orL">Landscape</label></div>
+          <div class="form-check"><input class="form-check-input" type="radio" name="or" id="orX" disabled><label class="form-check-label" for="orX">Disabled</label></div>
+        </fieldset>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-check"><input class="form-check-input" type="checkbox" id="cbRO" checked><label class="form-check-label" for="cbRO"><u>R</u>ead Only</label></div>
+        <div class="form-check"><input class="form-check-input" type="checkbox" id="cbBk"><label class="form-check-label" for="cbBk">Make <u>B</u>ackup</label></div>
+        <div class="form-check"><input class="form-check-input" type="checkbox" id="cbDs" disabled><label class="form-check-label" for="cbDs">Disabled</label></div>
+      </div>
+      <div class="col-sm-6">
+        <label class="form-label mb-1" for="spd">Mouse <u>T</u>racking Speed</label>
+        <input type="range" class="form-range" id="spd" value="40">
+        <div class="d-flex justify-content-between small"><span>Slow</span><span>Fast</span></div>
+      </div>
+      <div class="col-sm-6">
+        <div class="input-group">
+          <span class="input-group-text">C:\</span>
+          <input class="form-control" aria-label="Path" value="WINDOWS">
+          <button class="btn" type="button">Go</button>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <input class="form-control is-invalid" aria-label="Invalid" value="CON.TXT">
+        <div class="invalid-feedback">Not a valid file name.</div>
+      </div>
+      <div class="col-12">
+        <label class="form-label mb-1" for="notes">Notes (textarea uses the fixed-pitch font)</label>
+        <textarea class="form-control" id="notes" rows="2">[boot]
+shell=progman.exe</textarea>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- FEEDBACK ===================================================== -->
+<div class="col-lg-6">
+<section class="w31-window h-100" id="feedback" aria-labelledby="fb-title">
+  <div class="w31-titlebar">
+    <button class="w31-sysmenu" type="button" aria-label="Control menu"></button>
+    <h2 class="w31-title" id="fb-title">Setup — Feedback</h2>
+    <button class="w31-ctl w31-ctl-min" type="button" aria-label="Minimize" data-demo-min></button>
+    <button class="w31-ctl w31-ctl-max" type="button" aria-label="Maximize" data-demo-max></button>
+  </div>
+  <div class="w31-window-body">
+    <div class="demo-label">Setup gauge (<code>.w31-gauge</code>)</div>
+    <p class="small mb-1" id="gaugeFile">Copying: PROGMAN.EXE</p>
+    <div class="w31-gauge" id="gauge" style="--value:42" data-label="42%" role="progressbar" aria-label="Copying files" aria-valuenow="42" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="demo-label">Bootstrap progress</div>
+    <div class="progress mb-2" role="progressbar" aria-label="Disk usage" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar" style="width:65%">65%</div></div>
+    <div class="progress" role="progressbar" aria-label="Striped" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar progress-bar-striped bg-success" style="width:30%"></div></div>
+    <div class="demo-label">Hourglass spinner &amp; badges</div>
+    <div class="d-flex flex-wrap align-items-center gap-3">
+      <div class="spinner-border" role="status"><span class="visually-hidden">Loading…</span></div>
+      <div class="spinner-grow spinner-grow-sm" role="status"><span class="visually-hidden">Loading…</span></div>
+      <span class="badge">386 Enhanced</span>
+      <span class="badge text-bg-primary">NEW</span>
+      <span class="badge text-bg-warning">BETA</span>
+      <span class="badge text-bg-danger">ERROR</span>
+    </div>
+    <div class="demo-label">Message boxes (<code>.alert</code>)</div>
+    <div class="alert alert-info" role="alert"><b>Setup</b> has finished copying files. Remove the disk from drive A:.</div>
+    <div class="alert alert-warning alert-dismissible" role="alert">This will close all running applications. <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
+    <div class="alert alert-danger" role="alert"><b>Application Error</b><br>An error has occurred in your application. If you choose Ignore, you should save your work in a new file.</div>
+    <div class="alert alert-success mb-0" role="alert">Settings saved to <code>WIN.INI</code>.</div>
+  </div>
+</section>
+</div>
+
+<!-- NAVIGATION =================================================== -->
+<div class="col-lg-6">
+<section class="w31-window h-100" id="nav" aria-labelledby="nav-title">
+  <div class="w31-titlebar">
+    <button class="w31-sysmenu" type="button" aria-label="Control menu"></button>
+    <h2 class="w31-title" id="nav-title">Navigation</h2>
+    <button class="w31-ctl w31-ctl-min" type="button" aria-label="Minimize" data-demo-min></button>
+    <button class="w31-ctl w31-ctl-max" type="button" aria-label="Maximize" data-demo-max></button>
+  </div>
+  <div class="w31-window-body">
+    <div class="demo-label">Navbar = menu bar</div>
+    <nav class="navbar navbar-expand-sm">
+      <div class="container-fluid px-0">
+        <a class="navbar-brand" href="#">Write</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#writeNav" aria-controls="writeNav" aria-expanded="false" aria-label="Toggle menu"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="writeNav">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Document</a></li>
+            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Character</a>
+              <ul class="dropdown-menu"><li><a class="dropdown-item active" href="#">Regular <span class="w31-key">F5</span></a></li><li><a class="dropdown-item" href="#">Bold <span class="w31-key">Ctrl+B</span></a></li><li><a class="dropdown-item" href="#">Italic <span class="w31-key">Ctrl+I</span></a></li></ul></li>
+            <li class="nav-item"><a class="nav-link disabled" aria-disabled="true">Picture</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="demo-label">Tabs</div>
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item" role="presentation"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tabA" type="button" role="tab" aria-selected="true">Desktop</button></li>
+      <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabB" type="button" role="tab" aria-selected="false">Mouse</button></li>
+      <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabC" type="button" role="tab" aria-selected="false">Keyboard</button></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane fade show active" id="tabA" role="tabpanel">Icon spacing: 75 pixels. Wrap title: on.</div>
+      <div class="tab-pane fade" id="tabB" role="tabpanel">Double-click speed: medium. Swap buttons: off.</div>
+      <div class="tab-pane fade" id="tabC" role="tabpanel">Repeat rate: fast. Delay: short.</div>
+    </div>
+    <div class="demo-label">Pills</div>
+    <ul class="nav nav-pills">
+      <li class="nav-item"><a class="nav-link active" href="#">Tile</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Cascade</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Arrange Icons</a></li>
+    </ul>
+    <div class="demo-label">Breadcrumb = path</div>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a href="#">C:</a></li>
+        <li class="breadcrumb-item"><a href="#">Windows</a></li>
+        <li class="breadcrumb-item active" aria-current="page">System</li>
+      </ol>
+    </nav>
+    <div class="demo-label">Pagination</div>
+    <nav aria-label="Pages">
+      <ul class="pagination mb-0">
+        <li class="page-item disabled"><a class="page-link" aria-disabled="true">&lt;&lt; Back</a></li>
+        <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next &gt;&gt;</a></li>
+      </ul>
+    </nav>
+  </div>
+</section>
+</div>
+
+<!-- LISTS & TABLES =============================================== -->
+<div class="col-lg-7">
+<section class="w31-window h-100" id="lists" aria-labelledby="ls-title">
+  <div class="w31-titlebar">
+    <button class="w31-sysmenu" type="button" aria-label="Control menu"></button>
+    <h2 class="w31-title" id="ls-title">Lists &amp; Tables</h2>
+    <button class="w31-ctl w31-ctl-min" type="button" aria-label="Minimize" data-demo-min></button>
+    <button class="w31-ctl w31-ctl-max" type="button" aria-label="Maximize" data-demo-max></button>
+  </div>
+  <div class="w31-window-body">
+    <div class="row g-3">
+      <div class="col-sm-5">
+        <div class="demo-label">List box</div>
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action">Accessories</a>
+          <a href="#" class="list-group-item list-group-item-action active" aria-current="true">Games</a>
+          <a href="#" class="list-group-item list-group-item-action">Main</a>
+          <a href="#" class="list-group-item list-group-item-action">StartUp</a>
+          <a class="list-group-item list-group-item-action disabled" aria-disabled="true">Network</a>
+        </div>
+      </div>
+      <div class="col-sm-7">
+        <div class="demo-label">Accordion</div>
+        <div class="accordion" id="acc">
+          <div class="accordion-item">
+            <h3 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#accA" aria-expanded="true" aria-controls="accA">386 Enhanced</button></h3>
+            <div id="accA" class="accordion-collapse collapse show" data-bs-parent="#acc"><div class="accordion-body">Virtual memory: 8,192 KB permanent swap file on drive C:.</div></div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accB" aria-expanded="false" aria-controls="accB">Ports</button></h3>
+            <div id="accB" class="accordion-collapse collapse" data-bs-parent="#acc"><div class="accordion-body">COM1: 9600 baud, 8 data bits, no parity.</div></div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accC" aria-expanded="false" aria-controls="accC">Printers</button></h3>
+            <div id="accC" class="accordion-collapse collapse" data-bs-parent="#acc"><div class="accordion-body">Default printer: Generic / Text Only on LPT1:.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="demo-label">Table (details view)</div>
+        <div class="table-responsive">
+          <table class="table table-hover mb-0">
+            <thead><tr><th scope="col">Name</th><th scope="col">Size</th><th scope="col">Date</th><th scope="col">Attr</th></tr></thead>
+            <tbody>
+              <tr><td><span class="w31-file w31-file-app">PROGMAN.EXE</span></td><td>115,312</td><td>3/10/92</td><td>a</td></tr>
+              <tr class="table-active"><td><span class="w31-file w31-file-app">WINFILE.EXE</span></td><td>146,864</td><td>3/10/92</td><td>a</td></tr>
+              <tr><td><span class="w31-file w31-file-doc">SYSTEM.INI</span></td><td>2,201</td><td>6/14/93</td><td>a</td></tr>
+              <tr><td><span class="w31-file w31-file-doc">WIN.INI</span></td><td>4,889</td><td>6/14/93</td><td>a</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- DIALOGS ====================================================== -->
+<div class="col-lg-5">
+<section class="w31-window h-100" id="dialogs" aria-labelledby="dlg-title">
+  <div class="w31-titlebar">
+    <button class="w31-sysmenu" type="button" aria-label="Control menu"></button>
+    <h2 class="w31-title" id="dlg-title">Dialogs &amp; Overlays</h2>
+    <button class="w31-ctl w31-ctl-min" type="button" aria-label="Minimize" data-demo-min></button>
+    <button class="w31-ctl w31-ctl-max" type="button" aria-label="Maximize" data-demo-max></button>
+  </div>
+  <div class="w31-window-body">
+    <p class="small">Modal headers, toasts and offcanvas get a title bar. Their close button becomes the control-menu box on the left.</p>
+    <div class="d-grid gap-2">
+      <button class="btn" type="button" data-bs-toggle="modal" data-bs-target="#runModal">Run… (modal)</button>
+      <button class="btn" type="button" data-bs-toggle="modal" data-bs-target="#exitModal">Exit Windows (message box)</button>
+      <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#notepad" aria-controls="notepad">Notepad (offcanvas)</button>
+      <button class="btn" type="button" id="toastBtn">Show toast</button>
+      <div class="d-flex gap-2">
+        <button class="btn flex-fill" type="button" data-bs-toggle="tooltip" data-bs-title="Tooltips are yellow help notes.">Tooltip</button>
+        <button class="btn flex-fill" type="button" data-bs-toggle="popover" data-bs-title="Popover" data-bs-content="A small window with a title bar.">Popover</button>
+      </div>
+    </div>
+    <div class="demo-label mt-3">Card</div>
+    <div class="card">
+      <div class="card-header">Card Title</div>
+      <div class="card-body"><p class="card-text mb-0">A card is a plain child window with a title bar.</p></div>
+      <div class="card-footer text-end"><button class="btn btn-sm" type="button">Details…</button></div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- HELP ========================================================= -->
+<div class="col-12">
+<section class="w31-window" id="help" aria-labelledby="help-title">
+  <div class="w31-titlebar">
+    <button class="w31-sysmenu" type="button" aria-label="Control menu"></button>
+    <h2 class="w31-title" id="help-title">bootstra-win31 Help</h2>
+    <button class="w31-ctl w31-ctl-min" type="button" aria-label="Minimize" data-demo-min></button>
+    <button class="w31-ctl w31-ctl-max" type="button" aria-label="Maximize" data-demo-max></button>
+  </div>
+  <nav class="w31-menubar" aria-label="Help menu"><a href="#help"><u>F</u>ile</a><a href="#help"><u>E</u>dit</a><a href="#help">Book<u>m</u>ark</a><a href="#help"><u>H</u>elp</a></nav>
+  <div class="w31-toolbar">
+    <a class="btn btn-sm" href="#help">Contents</a>
+    <a class="btn btn-sm" href="#install">Search</a>
+    <a class="btn btn-sm" href="#progman">Back</a>
+    <a class="btn btn-sm" href="#classes">History</a>
+  </div>
+  <div class="w31-window-body demo-help demo-scroll">
+    <h2 id="install">Getting Started</h2>
+    <p>The theme is one CSS file with no images, fonts or JavaScript. Load Bootstrap 5.3 first, then the theme:</p>
+<pre>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstra-win31@0.1/dist/bootstra-win31.min.css"&gt;</pre>
+    <p>Pick a <a href="#color">colour scheme</a> and a desktop on <code>&lt;html&gt;</code>, then write normal Bootstrap markup:</p>
+<pre>&lt;html data-w31-scheme="default" class="w31-desktop w31-pattern-weave"&gt;</pre>
+    <p>A window is three blocks inside <code>.w31-window</code>: a title bar, an optional <a href="#" class="w31-popup-link" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-content="Any Bootstrap dropdown works inside .w31-menubar. Wrap the access key in a u element.">menu bar</a>, and a body or workspace.</p>
+<pre>&lt;div class="w31-window"&gt;
+  &lt;div class="w31-titlebar"&gt;
+    &lt;button class="w31-sysmenu" aria-label="Control menu"&gt;&lt;/button&gt;
+    &lt;span class="w31-title"&gt;Notepad&lt;/span&gt;
+    &lt;button class="w31-ctl w31-ctl-min" aria-label="Minimize"&gt;&lt;/button&gt;
+    &lt;button class="w31-ctl w31-ctl-max" aria-label="Maximize"&gt;&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;nav class="w31-menubar"&gt;&lt;a href="#"&gt;&lt;u&gt;F&lt;/u&gt;ile&lt;/a&gt;&lt;/nav&gt;
+  &lt;div class="w31-window-body"&gt;…&lt;/div&gt;
+&lt;/div&gt;</pre>
+    <h3 id="classes">Theme classes</h3>
+    <div class="table-responsive">
+      <table class="table mb-2">
+        <thead><tr><th>Class</th><th>What it is</th></tr></thead>
+        <tbody>
+          <tr><td><code>.w31-desktop</code>, <code>.w31-pattern-*</code>, <code>.w31-wall-*</code></td><td>Desktop colour with an 8×8 pattern or a wallpaper</td></tr>
+          <tr><td><code>.w31-window</code> (<code>.is-inactive</code>, <code>.w31-dialog</code>, <code>.w31-maximized</code>)</td><td>Window with sizing border and corner notches</td></tr>
+          <tr><td><code>.w31-titlebar</code>, <code>.w31-title</code>, <code>.w31-sysmenu</code>, <code>.w31-ctl-min/max/restore</code></td><td>Title bar and its buttons</td></tr>
+          <tr><td><code>.w31-menubar</code></td><td>Menu bar (links, dropdowns, or <code>.navbar.w31-menubar</code>)</td></tr>
+          <tr><td><code>.w31-window-body</code>, <code>.w31-workspace</code>, <code>.w31-split</code></td><td>Window body, MDI workspace, two-pane split</td></tr>
+          <tr><td><code>.w31-toolbar</code>, <code>.w31-statusbar</code> &gt; <code>.w31-status</code></td><td>Tool bar and sunken status panes</td></tr>
+          <tr><td><code>.w31-icons</code> &gt; <code>.w31-icon</code>, <code>.w31-desktop-icons</code>, <code>.w31-glyph-group</code></td><td>Program icons, minimised icons, program-group glyph</td></tr>
+          <tr><td><code>.w31-file-*</code>, <code>.w31-files</code>, <code>.w31-tree</code></td><td>File glyphs, file list, directory tree</td></tr>
+          <tr><td><code>.w31-msgicon-*</code></td><td>Information, question, warning and stop symbols</td></tr>
+          <tr><td><code>.w31-gauge</code></td><td>Setup gauge with colour-flipping percentage</td></tr>
+          <tr><td><code>.w31-groupbox</code>, <code>.w31-3d</code>, <code>.w31-btn-dialog</code></td><td>Group box, 3-D controls look, dialog-width button</td></tr>
+          <tr><td><code>.w31-raised</code>, <code>.w31-sunken</code>, <code>.w31-field</code>, <code>.w31-key</code>, <code>.w31-popup-link</code></td><td>Bevel utilities, menu shortcut, popup link</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="mb-0">Bootstrap components need no extra classes: buttons, forms, cards, tables, navbar, dropdowns, tabs, pills, breadcrumb, pagination, alerts, badges, progress, spinners, list groups, accordion, modals, offcanvas, toasts, tooltips and popovers are all restyled.</p>
+  </div>
+</section>
+</div>
+
+</div><!-- /row -->
+
+<div class="w31-desktop-icons mt-2" id="desktopIcons" aria-label="Minimized windows"></div>
+
+<footer class="demo-footer">bootstra-win31 0.1 · MIT · Built on Bootstrap 5.3 · Sister theme of <a href="https://bloschinsky.github.io/bootstra-themes/themes/bootstra-html32/">bootstra-html32</a></footer>
+</div><!-- /container -->
+
+<!-- MODALS ======================================================= -->
+<div class="modal" id="runModal" tabindex="-1" aria-labelledby="runTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="runTitle">Run</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label class="form-label mb-1" for="runCmd">Command Line:</label>
+        <input class="form-control mb-2" id="runCmd" value="WRITE.EXE README.WRI">
+        <div class="form-check"><input class="form-check-input" type="checkbox" id="runMin"><label class="form-check-label" for="runMin">Run <u>M</u>inimized</label></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" type="button" data-bs-dismiss="modal">OK</button>
+        <button class="btn" type="button" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn" type="button">Browse…</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="exitModal" tabindex="-1" aria-labelledby="exitTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exitTitle">Exit Windows</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body d-flex gap-3 align-items-center">
+        <span class="w31-msgicon w31-msgicon-warning" aria-hidden="true"></span>
+        <span>This will end your Windows session.</span>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" type="button" data-bs-dismiss="modal">OK</button>
+        <button class="btn" type="button" data-bs-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="aboutModal" tabindex="-1" aria-labelledby="aboutTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="aboutTitle">About bootstra-win31</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body d-flex gap-3">
+        <span class="w31-glyph-group flex-none" aria-hidden="true"></span>
+        <div>
+          <p class="mb-1"><b>bootstra-win31</b> Version 0.1</p>
+          <p class="mb-1">A Bootstrap 5 theme inspired by Windows 3.1.</p>
+          <p class="mb-2">Copyright © 2026 Artem Bloschinsky. MIT License.</p>
+          <hr>
+          <p class="mb-0 small">386 Enhanced Mode<br>Memory: 640 KB conventional, 3,744 KB free<br>System Resources: 81% Free</p>
+        </div>
+      </div>
+      <div class="modal-footer"><button class="btn btn-primary" type="button" data-bs-dismiss="modal">OK</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="notepad" aria-labelledby="notepadTitle">
+  <div class="offcanvas-header">
+    <h2 class="offcanvas-title" id="notepadTitle">Notepad - README.TXT</h2>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body p-0 d-flex">
+    <textarea class="form-control border-0 flex-fill" aria-label="Notepad text" style="resize:none">README.TXT
+
+This offcanvas panel is a window docked to the
+edge of the screen. Its close button is the
+control-menu box in the title bar.</textarea>
+  </div>
+</div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div class="toast" id="demoToast" role="status" aria-live="polite" aria-atomic="true">
+    <div class="toast-header">
+      <strong class="me-auto ps-1">Print Manager</strong>
+      <small>just now</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">README.TXT has been sent to LPT1:.</div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(function () {
+  var root = document.documentElement;
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var store = { get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+                set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
+
+  /* Control Panel: scheme, pattern, wallpaper */
+  var sel = { scheme: document.getElementById("schemeSelect"), pattern: document.getElementById("patternSelect"), wall: document.getElementById("wallSelect") };
+  var preview = document.getElementById("preview"), snippet = document.getElementById("htmlSnippet");
+  var saved = { scheme: store.get("w31-scheme") || "default", pattern: store.get("w31-pattern") || "", wall: store.get("w31-wall") || "" };
+  function apply(save) {
+    var s = sel.scheme.value, p = sel.pattern.value, w = sel.wall.value;
+    root.setAttribute("data-w31-scheme", s);
+    root.className = ["w31-desktop", w || p].filter(Boolean).join(" ");
+    preview.className = ["demo-preview w31-desktop", w || p].filter(Boolean).join(" ");
+    snippet.textContent = '<html data-w31-scheme="' + s + '" class="' + root.className + '">';
+    if (save) { store.set("w31-scheme", s); store.set("w31-pattern", p); store.set("w31-wall", w); saved = { scheme: s, pattern: p, wall: w }; }
+  }
+  function load() { sel.scheme.value = saved.scheme; sel.pattern.value = saved.pattern; sel.wall.value = saved.wall; apply(false); }
+  sel.scheme.addEventListener("change", function () { apply(false); });
+  sel.pattern.addEventListener("change", function () { sel.wall.value = ""; apply(false); });
+  sel.wall.addEventListener("change", function () { apply(false); });
+  document.getElementById("schemeOk").addEventListener("click", function () { apply(true); });
+  document.getElementById("schemeReset").addEventListener("click", load);
+  load();
+
+  /* active / inactive windows */
+  var wins = document.querySelectorAll(".container-xl > .row > div > .w31-window, #progman");
+  document.addEventListener("pointerdown", function (e) {
+    var w = e.target.closest(".container-xl > .row > div > .w31-window, #progman");
+    if (!w) return;
+    wins.forEach(function (o) { o.classList.toggle("is-inactive", o !== w); });
+  });
+
+  /* minimise to the desktop, maximise to the screen */
+  var tray = document.getElementById("desktopIcons");
+  document.querySelectorAll("[data-demo-min]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var w = b.closest(".w31-window"), col = w.parentElement.classList.contains("container-xl") ? w : w.parentElement;
+      var title = w.querySelector(".w31-title").textContent;
+      var icon = document.createElement("button");
+      icon.type = "button"; icon.className = "w31-icon";
+      icon.innerHTML = '<span class="w31-icon-img"><span class="w31-glyph-group"></span></span><span class="w31-icon-label"></span>';
+      icon.querySelector(".w31-icon-label").textContent = title;
+      icon.addEventListener("click", function () { col.classList.remove("demo-hidden"); icon.remove(); w.scrollIntoView({ block: "nearest" }); });
+      tray.appendChild(icon); col.classList.add("demo-hidden");
+    });
+  });
+  document.querySelectorAll("[data-demo-max]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var w = b.closest(".w31-window"), on = w.classList.toggle("demo-max");
+      w.classList.toggle("w31-maximized", on);
+      b.classList.toggle("w31-ctl-max", !on); b.classList.toggle("w31-ctl-restore", on);
+      b.setAttribute("aria-label", on ? "Restore" : "Maximize");
+      document.body.style.overflow = on ? "hidden" : "";
+    });
+  });
+
+  /* 3-D controls toggle */
+  document.getElementById("ctl3d").addEventListener("change", function (e) {
+    document.getElementById("formsBody").classList.toggle("w31-3d", e.target.checked);
+    document.getElementById("formsBody").classList.toggle("w31-face", e.target.checked);
+  });
+
+  /* Clock */
+  var ticks = document.getElementById("clockTicks"), ns = "http://www.w3.org/2000/svg";
+  for (var i = 0; i < 60; i++) {
+    var a = i * Math.PI / 30, big = i % 5 === 0, r = 43, s = big ? 4 : 1.6;
+    var t = document.createElementNS(ns, "rect");
+    t.setAttribute("x", (Math.sin(a) * r - s / 2).toFixed(2)); t.setAttribute("y", (-Math.cos(a) * r - s / 2).toFixed(2));
+    t.setAttribute("width", s); t.setAttribute("height", s);
+    t.setAttribute("fill", big ? "var(--w31-title)" : "#000");
+    if (big) t.setAttribute("transform", "rotate(45 " + (Math.sin(a) * r).toFixed(2) + " " + (-Math.cos(a) * r).toFixed(2) + ")");
+    ticks.appendChild(t);
+  }
+  var hH = document.getElementById("hHand"), mH = document.getElementById("mHand"), sH = document.getElementById("sHand"), dig = document.getElementById("clockDigital"), face = document.getElementById("clockFace");
+  function tick() {
+    var d = new Date(), s = d.getSeconds(), m = d.getMinutes() + s / 60, h = d.getHours() % 12 + m / 60;
+    hH.setAttribute("transform", "rotate(" + h * 30 + ")"); mH.setAttribute("transform", "rotate(" + m * 6 + ")"); sH.setAttribute("transform", "rotate(" + s * 6 + ")");
+    dig.textContent = d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+  }
+  tick(); setInterval(tick, 1000);
+  document.querySelectorAll("[data-clock]").forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      e.preventDefault();
+      var digital = a.dataset.clock === "digital";
+      face.classList.toggle("d-none", digital); dig.classList.toggle("d-none", !digital);
+      document.querySelectorAll("[data-clock]").forEach(function (o) { o.classList.toggle("active", o === a); });
+    });
+  });
+
+  /* Setup gauge */
+  var gauge = document.getElementById("gauge"), gFile = document.getElementById("gaugeFile");
+  var files = ["PROGMAN.EXE", "WINFILE.EXE", "CLOCK.EXE", "WRITE.EXE", "SOL.EXE", "SYSTEM.INI", "VGA.DRV", "SOUND.DRV"], pct = 42;
+  if (!reduce) setInterval(function () {
+    pct = pct >= 100 ? 0 : pct + 1;
+    gauge.style.setProperty("--value", pct); gauge.dataset.label = pct + "%"; gauge.setAttribute("aria-valuenow", pct);
+    gFile.textContent = "Copying: " + files[Math.floor(pct / 13) % files.length];
+  }, 180);
+
+  /* Bootstrap plugins */
+  document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(function (el) { new bootstrap.Tooltip(el); });
+  document.querySelectorAll('[data-bs-toggle="popover"]').forEach(function (el) { new bootstrap.Popover(el, { html: false }); });
+  var toast = bootstrap.Toast.getOrCreateInstance(document.getElementById("demoToast"));
+  document.getElementById("toastBtn").addEventListener("click", function () { toast.show(); });
+  document.querySelectorAll('a[href="#"]').forEach(function (a) { if (!a.dataset.bsToggle) a.addEventListener("click", function (e) { e.preventDefault(); }); });
+})();
+</script>
+</body>
+</html>
