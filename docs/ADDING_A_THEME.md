@@ -92,6 +92,7 @@ There is no registration step: the collection site (`apps/showcase/`) lists ever
 
 - [ ] Remove `incoming/<slug>/` once its contents are in `packages/<slug>/`, unless the owner asked to keep it.
 - [ ] Create one local commit with only the new package and the root files it required (for example `Add bootstra-neon theme`). Do not tag, push, or publish.
+- [ ] Check the repository's GitHub About (`gh repo view --json description,repositoryTopics`). If the description lists the themes, propose the updated text with the new theme's name, and any topics the theme adds, as a ready `gh repo edit` command for the owner. Do not change it yourself.
 - [ ] Report: the package name and folder, the checks that were actually run and their results, anything changed in the theme and why, open questions (licence, naming, missing assets), and the next steps for releasing it. Those steps include the owner's one-time npm setup from [`RELEASING.md`](RELEASING.md#npm-trusted-publishing): publish the first version manually, then add the trusted publisher for `release.yml`.
 
 ## Common situations
