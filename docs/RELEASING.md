@@ -59,7 +59,7 @@ From the repository root, for package `<name>` in `packages/<slug>/`:
 
 6. **Push** (owner only): `git push origin master <name>@X.Y.Z`.
 
-The workflow then runs: validate tag → extract notes → `npm ci` → `npm test --workspace <name>` → check pack contents → `npm publish --workspace <name>` → GitHub Release titled `<name> X.Y.Z` with the package's CSS files attached.
+The workflow then runs: validate tag → extract notes → `npm ci` → `npm test --workspace <name>` → check pack contents → `npm publish --workspace <name>` → GitHub Release titled `<name> X.Y.Z` with the package's built CSS files (those next to its `style` / `main` file) attached.
 
 CI and GitHub Pages run on pushes to `master` and are independent of releases. A release does not deploy the demo, and a demo deploy does not publish anything.
 

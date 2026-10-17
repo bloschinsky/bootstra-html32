@@ -3,7 +3,7 @@
 //
 //   node scripts/release.mjs check  <tag>   validate the tag against the workspace packages
 //   node scripts/release.mjs notes  <tag>   print the package's CHANGELOG section for that version
-//   node scripts/release.mjs assets <tag>   check the packed files (after a build), print CSS files to attach
+//   node scripts/release.mjs assets <tag>   check the packed files (after a build), print the built CSS files to attach
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -76,11 +76,13 @@ export function releaseAssets(root, tag) {
   }
   const files = info.files.map((f) => f.path);
   const pkg = readJson(path.join(root, dir, 'package.json'));
-  for (const entry of [pkg.style, pkg.main].filter(Boolean)) {
-    const file = entry.replace(/^\.\//, '');
+  const entries = [pkg.style, pkg.main].filter(Boolean).map((entry) => entry.replace(/^\.\//, ''));
+  for (const file of entries) {
     if (!files.includes(file)) throw new Error(`${name} declares ${file} but the package does not contain it (build first)`);
   }
-  const css = files.filter((f) => f.endsWith('.css'));
+  // Attach the CSS next to the entry file (the built output), not sources: release asset names must be unique.
+  const outDir = path.posix.dirname(entries[0] ?? '');
+  const css = files.filter((f) => f.endsWith('.css') && path.posix.dirname(f) === outDir);
   if (css.length === 0) throw new Error(`${name} package contains no CSS files`);
   return css.map((f) => `${dir}/${f}`);
 }

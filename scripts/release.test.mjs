@@ -96,6 +96,17 @@ test('releaseAssets requires the declared entry file', () => {
   assert.deepEqual(releaseAssets(root, 'theme-a@1.0.0'), ['packages/theme-a/dist/theme-a.css']);
 });
 
+test('releaseAssets attaches only the built CSS, so asset names stay unique', () => {
+  const root = fixture({ 'theme-a': { style: 'dist/theme-a.css', files: ['dist/', 'src/'] } });
+  for (const file of ['dist/theme-a.css', 'dist/theme-a.min.css', 'src/theme-a.css']) {
+    fs.mkdirSync(path.join(root, 'packages/theme-a', path.dirname(file)), { recursive: true });
+    fs.writeFileSync(path.join(root, 'packages/theme-a', file), 'a{}');
+  }
+  assert.deepEqual(releaseAssets(root, 'theme-a@1.0.0').sort(), [
+    'packages/theme-a/dist/theme-a.css', 'packages/theme-a/dist/theme-a.min.css',
+  ]);
+});
+
 // Every publishable package in this repository is releasable at its current version.
 // Runs after the workspace builds in `npm test`, so the packed files exist.
 test('workspace packages are release-ready', () => {
@@ -105,6 +116,9 @@ test('workspace packages are release-ready', () => {
     if (pkg.private) continue;
     const tag = `${pkg.name}@${pkg.version}`;
     assert.equal(checkTag(root, tag).name, pkg.name);
-    assert.ok(releaseAssets(root, tag).length > 0, tag);
+    const assets = releaseAssets(root, tag);
+    assert.ok(assets.length > 0, tag);
+    const names = assets.map((file) => path.basename(file));
+    assert.equal(new Set(names).size, names.length, `${tag} has release assets with the same file name`);
   }
 });
