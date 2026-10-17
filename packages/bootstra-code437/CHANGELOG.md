@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- The repository was renamed to [`bloschinsky/bootstra-themes`](https://github.com/bloschinsky/bootstra-themes). `repository`, `homepage`, and `bugs` in `package.json` point there; the demo is at <https://bloschinsky.github.io/bootstra-themes/themes/bootstra-code437/>. The npm package name and its files are unchanged.
+
 ## 0.1.0 — 2026-09-28
 
 First release.

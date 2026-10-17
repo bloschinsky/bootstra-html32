@@ -1,10 +1,10 @@
 {
   "name": "bootstra-themes",
   "private": true,
-  "description": "A collection of Bootstrap 5 themes, one npm package per theme.",
+  "description": "Bootstra Themes: a Bootstrap 5 theme collection, one npm package per theme.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bloschinsky/bootstra-html32.git"
+    "url": "git+https://github.com/bloschinsky/bootstra-themes.git"
   },
   "workspaces": [
     "packages/*",

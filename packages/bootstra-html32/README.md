@@ -6,7 +6,7 @@ Outset buttons that press in. Navy title bars. Phosphor-green terminal blocks. A
 
 ![bootstra-html32 demo page](screenshots/screenshot.png)
 
-**[▶ Live demo](https://bloschinsky.github.io/bootstra-html32/themes/bootstra-html32/)** · part of the [Bootstrap Theme Collection](https://bloschinsky.github.io/bootstra-html32/)
+**[▶ Live demo](https://bloschinsky.github.io/bootstra-themes/themes/bootstra-html32/)** · part of [Bootstra Themes](https://bloschinsky.github.io/bootstra-themes/), a Bootstrap 5 theme collection
 
 ## Install
 
@@ -34,18 +34,18 @@ Bootstrap is a peer dependency (`^5.3.0`): npm 7 and later installs it automatic
 The demo page also serves the current build from `master`. It always follows the latest commit and cannot be pinned to a version, so use it for prototypes rather than long-lived pages.
 
 ```html
-<link rel="stylesheet" href="https://bloschinsky.github.io/bootstra-html32/themes/bootstra-html32/dist/bootstra-html32.min.css">
+<link rel="stylesheet" href="https://bloschinsky.github.io/bootstra-themes/themes/bootstra-html32/dist/bootstra-html32.min.css">
 ```
 
 ### Copy the file into your project
 
-Download [`bootstra-html32.min.css`](https://bloschinsky.github.io/bootstra-html32/themes/bootstra-html32/dist/bootstra-html32.min.css) (or the readable [`bootstra-html32.css`](https://bloschinsky.github.io/bootstra-html32/themes/bootstra-html32/dist/bootstra-html32.css)) and keep it next to your own code, for example in `assets/vendor/`. The file is self-contained, and its version is in the banner comment at the top.
+Download [`bootstra-html32.min.css`](https://bloschinsky.github.io/bootstra-themes/themes/bootstra-html32/dist/bootstra-html32.min.css) (or the readable [`bootstra-html32.css`](https://bloschinsky.github.io/bootstra-themes/themes/bootstra-html32/dist/bootstra-html32.css)) and keep it next to your own code, for example in `assets/vendor/`. The file is self-contained, and its version is in the banner comment at the top.
 
 ### Build from source
 
 ```sh
-git clone https://github.com/bloschinsky/bootstra-html32.git
-cd bootstra-html32
+git clone https://github.com/bloschinsky/bootstra-themes.git
+cd bootstra-themes
 npm ci
 npm run build --workspace bootstra-html32
 # packages/bootstra-html32/dist/bootstra-html32.css and .min.css
@@ -58,7 +58,7 @@ The repository holds several themes; this one lives in `packages/bootstra-html32
 `src/bootstra-html32.css` pulls in its partials with plain CSS `@import`, so a browser can load it without a build. This makes 15 requests and is not minified:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bloschinsky/bootstra-html32@master/packages/bootstra-html32/src/bootstra-html32.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bloschinsky/bootstra-themes@master/packages/bootstra-html32/src/bootstra-html32.css">
 ```
 
 ### Set up the page
@@ -178,7 +178,7 @@ A few variants have a 90s meaning:
 | `.nv-new`, `.nv-rainbow` | Flashing NEW! tag and rainbow text |
 | `.nv-footer` | Centred small-print footer |
 
-The [demo page](https://bloschinsky.github.io/bootstra-html32/themes/bootstra-html32/) (`site/index.html`) shows every component in use and doubles as the documentation.
+The [demo page](https://bloschinsky.github.io/bootstra-themes/themes/bootstra-html32/) (`site/index.html`) shows every component in use and doubles as the documentation.
 
 ## Accessibility and motion
 
@@ -190,7 +190,7 @@ Any current browser that supports `color-mix()`: Chrome / Edge 111+, Firefox 113
 
 ## Development
 
-The theme is the `packages/bootstra-html32/` workspace of the [bootstra-html32 repository](https://github.com/bloschinsky/bootstra-html32). Paths below are relative to that folder.
+The theme is the `packages/bootstra-html32/` workspace of the [Bootstra Themes repository](https://github.com/bloschinsky/bootstra-themes). Paths below are relative to that folder.
 
 ```
 src/          theme source, one partial per section, bundled from bootstra-html32.css
@@ -222,7 +222,7 @@ git tag bootstra-html32@X.Y.Z
 git push origin master bootstra-html32@X.Y.Z
 ```
 
-The `release.yml` workflow checks that the tag matches this package's version, runs lint and build, publishes to npm with provenance (trusted publishing, no token) and creates a GitHub Release with the CSS files attached. Releases before the monorepo were tagged `vX.Y.Z`. The full procedure, including troubleshooting, is in the repository's [`docs/RELEASING.md`](https://github.com/bloschinsky/bootstra-html32/blob/master/docs/RELEASING.md).
+The `release.yml` workflow checks that the tag matches this package's version, runs lint and build, publishes to npm with provenance (trusted publishing, no token) and creates a GitHub Release with the CSS files attached. Releases before the monorepo were tagged `vX.Y.Z`. The full procedure, including troubleshooting, is in the repository's [`docs/RELEASING.md`](https://github.com/bloschinsky/bootstra-themes/blob/master/docs/RELEASING.md).
 
 ## Credits
 

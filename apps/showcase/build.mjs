@@ -158,7 +158,7 @@ export function renderIndex(themes, repoUrl) {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<title>Bootstrap Theme Collection</title>
+<title>Bootstra Themes — Bootstrap 5 Theme Collection</title>
 <meta name="description" content="Bootstrap 5 themes with live demos and install instructions: ${esc(themes.map((t) => t.name).join(', '))}.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%237952b3'/%3E%3Cpath d='M5 4h4a2 2 0 0 1 0 4H5zm0 4h4.5a2 2 0 0 1 0 4H5z' fill='none' stroke='%23fff' stroke-width='1.6'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="style.css">
@@ -167,7 +167,8 @@ export function renderIndex(themes, repoUrl) {
   <a class="skip" href="#themes">Skip to themes</a>
   <header class="site-header">
     <div class="wrap">
-      <h1>Bootstrap Theme Collection</h1>
+      <h1>Bootstra Themes</h1>
+      <p class="subtitle">Bootstrap 5 Theme Collection</p>
       <p class="lead">Themes for Bootstrap 5. Each one is its own npm package with a live demo. Write plain Bootstrap markup, load a theme after Bootstrap's CSS, and only the look changes.</p>
     </div>
   </header>

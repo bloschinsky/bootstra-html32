@@ -39,12 +39,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bloschinsky/bootstra-html32.git",
+    "url": "git+https://github.com/bloschinsky/bootstra-themes.git",
     "directory": "packages/bootstra-html32"
   },
-  "homepage": "https://bloschinsky.github.io/bootstra-html32/themes/bootstra-html32/",
+  "homepage": "https://bloschinsky.github.io/bootstra-themes/themes/bootstra-html32/",
   "bugs": {
-    "url": "https://github.com/bloschinsky/bootstra-html32/issues"
+    "url": "https://github.com/bloschinsky/bootstra-themes/issues"
   },
   "engines": {
     "node": ">=20"

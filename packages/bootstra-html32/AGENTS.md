@@ -46,7 +46,7 @@ Generated, never committed, never edited by hand: `dist/`, `_site/`.
 - The build injects the `package.json` version into the banner comment. Do not write the version into source files.
 - `npm run dev` builds, watches `src/`, `site/`, and `examples/`, and serves `_site/` on `http://localhost:8080`.
 - Run these from this folder, or from the repository root with `--workspace bootstra-html32`.
-- The demo and the starter link to `dist/bootstra-html32.css` by a relative path. The collection site copies `_site/` (the `themeCollection.demo` folder) to `/bootstra-html32/themes/bootstra-html32/` on GitHub Pages, so every link in `site/` and `examples/` must stay relative.
+- The demo and the starter link to `dist/bootstra-html32.css` by a relative path. The collection site copies `_site/` (the `themeCollection.demo` folder) to `/bootstra-themes/themes/bootstra-html32/` on GitHub Pages, so every link in `site/` and `examples/` must stay relative.
 
 ## Development principles
 

@@ -14,7 +14,9 @@ This repository is a small collection of Bootstrap 5 themes managed as an npm-wo
 | bootstra-code437 | `packages/bootstra-code437/` | `bootstra-code437` | [`packages/bootstra-code437/AGENTS.md`](packages/bootstra-code437/AGENTS.md) |
 | bootstra-showcase (private) | `apps/showcase/` | not published | [`apps/showcase/AGENTS.md`](apps/showcase/AGENTS.md) |
 
-The collection site (`apps/showcase/`) is published to GitHub Pages. It lists every theme and hosts each theme's own demo as a separate page.
+The collection is called **Bootstra Themes** (subtitle: *Bootstrap 5 Theme Collection*). The repository is [`bloschinsky/bootstra-themes`](https://github.com/bloschinsky/bootstra-themes) (it was `bloschinsky/bootstra-html32` before the rename; that name now belongs only to the HTML32 theme package).
+
+The collection site (`apps/showcase/`) is published to GitHub Pages at `https://bloschinsky.github.io/bootstra-themes/`. It lists every theme and hosts each theme's own demo as a separate page, at `themes/<id>/`.
 
 The root is private and is never published. It only wires the workspaces together and holds shared CI and documentation.
 
@@ -115,6 +117,8 @@ Every theme package declares a small `themeCollection` field in its own `package
 - `description` (required): one sentence, plain text.
 - `demo` (optional): folder, relative to the package, that the package's `build` script fills with a self-contained demo. It must contain `index.html` and use only relative links. The showcase copies it unchanged to `themes/<id>/`, so it keeps its own CSS, scripts, and assets (with their licence notices). Without `demo`, the theme still gets a card with install instructions and docs, marked "Demo coming soon".
 - `preview` (optional): an image (`.png`, `.jpg`, `.webp`, `.svg`) inside the package, shown on the card. Without it the card shows a placeholder.
+
+Every theme package also sets its standard npm metadata to this repository: `repository` `{ "type": "git", "url": "git+https://github.com/bloschinsky/bootstra-themes.git", "directory": "packages/<slug>" }`, `homepage` `https://bloschinsky.github.io/bootstra-themes/themes/<id>/`, and `bugs.url` `https://github.com/bloschinsky/bootstra-themes/issues`. The root `package.json` `repository.url` is the single source for the repository: the showcase derives its GitHub links and local preview base path from it, and `scripts/release.mjs` rejects a package whose `repository.url` differs.
 
 The card also uses the package's own `name`, `version`, `private`, `style`, `peerDependencies.bootstrap`, and `repository` for install snippets and links. The showcase build fails with the file name and the fix when the metadata is invalid: an unknown field, a bad or duplicate `id`, a missing name or description, or a `demo`/`preview` path that is absolute, outside the package, or missing. Do not add more fields until a feature needs them.
 

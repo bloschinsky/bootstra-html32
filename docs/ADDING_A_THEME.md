@@ -51,7 +51,7 @@ Anything the prompt leaves open (npm name, display name, licence questions) is e
 - [ ] Move the theme into `packages/<slug>/`, preserving its internal layout.
 - [ ] Create or complete `packages/<slug>/package.json`:
   - `name`, `version`, `description`, `license`, `author`;
-  - `repository` with this repository's URL and `"directory": "packages/<slug>"`, plus `homepage` and `bugs` (the release checks and npm provenance require the exact `repository` values; see [`RELEASING.md`](RELEASING.md#package-metadata));
+  - `repository` `{ "type": "git", "url": "git+https://github.com/bloschinsky/bootstra-themes.git", "directory": "packages/<slug>" }`, `homepage` `https://bloschinsky.github.io/bootstra-themes/themes/<slug>/`, and `bugs.url` `https://github.com/bloschinsky/bootstra-themes/issues`. Replace any URL of the theme's previous standalone repository; the release checks and npm provenance require the exact `repository` values (see [`RELEASING.md`](RELEASING.md#package-metadata));
   - `files` listing only what users need (built CSS, licence, README); check it with `npm pack --dry-run`;
   - `style` / `main` pointing to the main built CSS file;
   - Bootstrap as a `peerDependency` when the theme loads after Bootstrap's CSS, or as a dependency or devDependency when it compiles Bootstrap's Sass. Never copy Bootstrap files into the package;
@@ -86,7 +86,7 @@ There is no registration step: the collection site (`apps/showcase/`) lists ever
 
 - [ ] Set `themeCollection.demo` to the folder the package's `build` writes its demo to (it must contain `index.html` and use relative links only). If the theme has no demo page, leave `demo` out rather than writing one in another theme's style; the card then says "Demo coming soon". Keep the theme's own demo; do not restyle it to match HTML32 or the gallery.
 - [ ] Set `themeCollection.preview` to a screenshot inside the package if one exists or can be taken from the demo; otherwise leave it out.
-- [ ] Run `npm run preview` and check at `http://localhost:8090/bootstra-html32/`: the new card shows the right name, version, and install commands; **Open demo** opens `themes/<slug>/` with the theme's own styling; existing themes look unchanged.
+- [ ] Run `npm run preview` and check at `http://localhost:8090/bootstra-themes/`: the new card shows the right name, version, and install commands; **Open demo** opens `themes/<slug>/` with the theme's own styling; existing themes look unchanged.
 
 ### 8. Clean up and report
 

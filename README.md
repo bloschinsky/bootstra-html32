@@ -1,13 +1,13 @@
-# bootstra themes
+# Bootstra Themes
 
-A small collection of Bootstrap 5 themes. Each theme is its own npm package with its own docs, demo, changelog, and version. Underneath, every page is still Bootstrap: only the look changes.
+**Bootstrap 5 Theme Collection.** A small collection of Bootstrap 5 themes. Each theme is its own npm package with its own docs, demo, changelog, and version. Underneath, every page is still Bootstrap: only the look changes.
 
 | Theme | npm | Docs | Demo |
 | --- | --- | --- | --- |
-| **HTML32**: mid-90s web pages and desktop UI chrome | [`bootstra-html32`](https://www.npmjs.com/package/bootstra-html32) | [README](packages/bootstra-html32/README.md) | [▶ Live demo](https://bloschinsky.github.io/bootstra-html32/themes/bootstra-html32/) |
-| **Code437**: ANSI art, BBS boards and DOS-era terminals | [`bootstra-code437`](https://www.npmjs.com/package/bootstra-code437) | [README](packages/bootstra-code437/README.md) | [▶ Live demo](https://bloschinsky.github.io/bootstra-html32/themes/bootstra-code437/) |
+| **HTML32**: mid-90s web pages and desktop UI chrome | [`bootstra-html32`](https://www.npmjs.com/package/bootstra-html32) | [README](packages/bootstra-html32/README.md) | [▶ Live demo](https://bloschinsky.github.io/bootstra-themes/themes/bootstra-html32/) |
+| **Code437**: ANSI art, BBS boards and DOS-era terminals | [`bootstra-code437`](https://www.npmjs.com/package/bootstra-code437) | [README](packages/bootstra-code437/README.md) | [▶ Live demo](https://bloschinsky.github.io/bootstra-themes/themes/bootstra-code437/) |
 
-Browse them all on the **[collection site](https://bloschinsky.github.io/bootstra-html32/)**. Install and usage instructions live in each theme's README.
+Browse them all on the **[collection site](https://bloschinsky.github.io/bootstra-themes/)**. Install and usage instructions live in each theme's README.
 
 ## Using a theme
 
@@ -46,12 +46,12 @@ npm run build   # build every theme, then the collection site
 npm run lint    # lint every package
 npm test        # lint + build + tests for every package
 npm run dev     # build, watch and serve the HTML32 demo on http://localhost:8080
-npm run preview # build and serve the collection site on http://localhost:8090/bootstra-html32/
+npm run preview # build and serve the collection site on http://localhost:8090/bootstra-themes/
 ```
 
 Run a single package's script with `--workspace`, for example `npm run build --workspace bootstra-html32`.
 
-GitHub Pages serves the [collection site](https://bloschinsky.github.io/bootstra-html32/) from `master`: a gallery of all themes, with each theme's own demo under `themes/<id>/`. Preview it locally with `npm run preview` (http://localhost:8090/bootstra-html32/).
+GitHub Pages serves the [collection site](https://bloschinsky.github.io/bootstra-themes/) from `master`: a gallery of all themes, with each theme's own demo under `themes/<id>/`. Preview it locally with `npm run preview` (http://localhost:8090/bootstra-themes/).
 
 ## Releases
 
