@@ -1,11 +1,11 @@
 /*!
- * bootsys-p31 · Bootstrap 5.3 theme
+ * bootstra-p31 · Bootstrap 5.3 theme
  * Retro research-terminal look on a P31 phosphor screen.
  *
  * Usage (load after Bootstrap):
  *   <html lang="en" class="p31" data-bs-theme="dark">
  *   <link rel="stylesheet" href="bootstrap.min.css">
- *   <link rel="stylesheet" href="bootsys-p31.css">
+ *   <link rel="stylesheet" href="bootstra-p31.css">
  *
  * Phosphor:      <html ... data-p31-phosphor="amber|cyan">   (default: green P31)
  * CRT effect:    <body class="p31-crt">

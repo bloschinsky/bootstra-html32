@@ -1,9 +1,9 @@
 {
-  "name": "bootsys-p31",
+  "name": "bootstra-p31",
   "version": "1.0.0",
-  "description": "bootsys-p31 — a retro research-terminal (P31 phosphor CRT) theme for Bootstrap 5.3",
+  "description": "bootstra-p31 — a retro research-terminal (P31 phosphor CRT) theme for Bootstrap 5.3",
   "themeCollection": {
-    "id": "bootsys-p31",
+    "id": "bootstra-p31",
     "name": "P31",
     "description": "A research terminal on a P31 phosphor CRT: monospaced type, square corners, scanlines, green, amber or cyan phosphor.",
     "demo": "docs",
@@ -19,18 +19,19 @@
     "phosphor",
     "design-system"
   ],
+  "author": "Artem Bloschinsky",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bloschinsky/bootstra-themes.git",
-    "directory": "packages/bootsys-p31"
+    "directory": "packages/bootstra-p31"
   },
-  "homepage": "https://bloschinsky.github.io/bootstra-themes/themes/bootsys-p31/",
+  "homepage": "https://bloschinsky.github.io/bootstra-themes/themes/bootstra-p31/",
   "bugs": {
     "url": "https://github.com/bloschinsky/bootstra-themes/issues"
   },
-  "style": "dist/bootsys-p31.css",
-  "main": "dist/bootsys-p31.css",
+  "style": "dist/bootstra-p31.css",
+  "main": "dist/bootstra-p31.css",
   "files": [
     "dist",
     "src",

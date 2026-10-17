@@ -1,4 +1,4 @@
-# bootsys-p31
+# bootstra-p31
 
 A retro research-terminal theme for Bootstrap 5.3. It turns stock Bootstrap components into the screen of an old lab terminal: a P31 phosphor display, a monospaced typeface, square corners and optional scanlines. The grid, classes and JavaScript stay exactly the same, so you write ordinary Bootstrap markup and get a phosphor screen.
 
@@ -16,7 +16,7 @@ A retro research-terminal theme for Bootstrap 5.3. It turns stock Bootstrap comp
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootsys-p31@1.0/dist/bootsys-p31.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstra-p31@1.0/dist/bootstra-p31.min.css" rel="stylesheet">
 </head>
 <body class="p31-crt">
   …
@@ -25,10 +25,10 @@ A retro research-terminal theme for Bootstrap 5.3. It turns stock Bootstrap comp
 </html>
 ```
 
-Or install from npm and load `node_modules/bootsys-p31/dist/bootsys-p31.min.css` after Bootstrap:
+Or install from npm and load `node_modules/bootstra-p31/dist/bootstra-p31.min.css` after Bootstrap:
 
 ```bash
-npm install bootstrap bootsys-p31
+npm install bootstrap bootstra-p31
 ```
 
 A complete page with a header, folders and a document is in [`examples/starter.html`](examples/starter.html).
@@ -43,14 +43,14 @@ A complete page with a header, folders and a document is in [`examples/starter.h
 ## Project layout
 
 ```
-packages/bootsys-p31/
-├── src/bootsys-p31.css         ← theme source, edit here
+packages/bootstra-p31/
+├── src/bootstra-p31.css        ← theme source, edit here
 ├── dist/                       ← build output (npm run build)
-│   ├── bootsys-p31.css
-│   └── bootsys-p31.min.css
+│   ├── bootstra-p31.css
+│   └── bootstra-p31.min.css
 ├── docs/                       ← component docs (the demo in the collection site)
 │   ├── index.html
-│   └── assets/bootsys-p31.css  ← build output
+│   └── assets/bootstra-p31.css ← build output
 ├── examples/
 │   ├── starter.html            ← shell for a new page
 │   └── prototype/index.html    ← the original encyclopedia prototype (standalone, no Bootstrap)
@@ -63,12 +63,12 @@ The theme lives in the [bootstra-themes](https://github.com/bloschinsky/bootstra
 
 ```bash
 npm ci
-npm run build --workspace bootsys-p31    # src → dist and docs/assets
-npm run watch --workspace bootsys-p31    # rebuild on every save
-npm run serve --workspace bootsys-p31    # local server, then open /docs/ or /examples/
+npm run build --workspace bootstra-p31    # src → dist and docs/assets
+npm run watch --workspace bootstra-p31    # rebuild on every save
+npm run serve --workspace bootstra-p31    # local server, then open /docs/ or /examples/
 ```
 
-Only edit `src/bootsys-p31.css`. Files in `dist/` and `docs/assets/` are generated.
+Only edit `src/bootstra-p31.css`. Files in `dist/` and `docs/assets/` are generated.
 
 ### How the theme works
 
@@ -89,7 +89,7 @@ Colour roles:
 
 ### Adding your own phosphor
 
-Copy the `html.p31[data-p31-phosphor="amber"]` block in `src/bootsys-p31.css`, rename it and change the token values, including the `*-rgb` values and the `--p31-select-arrow`, `--p31-close-icon` and `--p31-switch-off` icons.
+Copy the `html.p31[data-p31-phosphor="amber"]` block in `src/bootstra-p31.css`, rename it and change the token values, including the `*-rgb` values and the `--p31-select-arrow`, `--p31-close-icon` and `--p31-switch-off` icons.
 
 ## Patterns
 
@@ -109,7 +109,7 @@ Live examples with code are in [`docs/index.html`](docs/index.html).
 
 ## Docs online
 
-The component docs are published with the Bootstra Themes collection at <https://bloschinsky.github.io/bootstra-themes/themes/bootsys-p31/>.
+The component docs are published with the Bootstra Themes collection at <https://bloschinsky.github.io/bootstra-themes/themes/bootstra-p31/>.
 
 ## Support
 
