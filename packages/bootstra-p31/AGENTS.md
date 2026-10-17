@@ -82,7 +82,7 @@ Generated, never committed, never edited by hand: `dist/`, `docs/assets/`.
 
 - Semantic Versioning, with this package's `package.json` as the source of truth. The theme came into the collection at `1.0.0`.
 - **Patch** for fixes and small visual corrections that keep the public API; **minor** for new classes, phosphors, or tokens; **major** for any breaking change to the public API.
-- Every user-visible change adds a line under `## Unreleased` in `CHANGELOG.md`; a release moves them under `## [X.Y.Z] — YYYY-MM-DD`. A minor or major release also updates the `@X.Y` version in the README CDN link.
+- Every user-visible change adds a line under `## Unreleased` in `CHANGELOG.md`; a release moves them under `## X.Y.Z — YYYY-MM-DD`. A minor or major release also updates the `@X.Y` version in the README CDN link.
 - Release tags are `bootstra-p31@X.Y.Z`. Follow [`docs/RELEASING.md`](../../docs/RELEASING.md); only the owner pushes tags.
 
 ## Demo security

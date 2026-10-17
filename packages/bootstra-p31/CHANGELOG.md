@@ -2,7 +2,7 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [SemVer](https://semver.org/).
 
-## [1.0.0] — 2026-10-17
+## 1.0.0 — 2026-10-17
 
 ### Added
 - `bootstra-p31.css` theme for Bootstrap 5.3: `--p31-*` tokens mapped onto Bootstrap’s `--bs-*` variables.
