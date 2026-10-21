@@ -8,6 +8,7 @@
 | **Code437**: ANSI art, BBS boards and DOS-era terminals | [`bootstra-code437`](https://www.npmjs.com/package/bootstra-code437) | [README](packages/bootstra-code437/README.md) | [▶ Live demo](https://bloschinsky.github.io/bootstra-themes/themes/bootstra-code437/) |
 | **Win31**: Windows 3.1 and Program Manager | [`bootstra-win31`](https://www.npmjs.com/package/bootstra-win31) | [README](packages/bootstra-win31/README.md) | [▶ Live demo](https://bloschinsky.github.io/bootstra-themes/themes/bootstra-win31/) |
 | **P31**: a research terminal on a P31 phosphor CRT | [`bootstra-p31`](https://www.npmjs.com/package/bootstra-p31) | [README](packages/bootstra-p31/README.md) | [▶ Live demo](https://bloschinsky.github.io/bootstra-themes/themes/bootstra-p31/) |
+| **IRIX**: the Indigo Magic desktop of early-90s SGI workstations | [`bootstra-irix`](https://www.npmjs.com/package/bootstra-irix) | [README](packages/bootstra-irix/README.md) | [▶ Live demo](https://bloschinsky.github.io/bootstra-themes/themes/bootstra-irix/) |
 
 Browse them all on the **[collection site](https://bloschinsky.github.io/bootstra-themes/)**. Install and usage instructions live in each theme's README.
 

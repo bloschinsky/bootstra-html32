@@ -1,0 +1,57 @@
+{
+  "name": "bootstra-irix",
+  "version": "0.1.0",
+  "description": "A Bootstrap 5 theme inspired by the Indigo Magic desktop of early-90s Silicon Graphics workstations.",
+  "themeCollection": {
+    "id": "bootstra-irix",
+    "name": "IRIX",
+    "description": "The Indigo Magic desktop of early-90s SGI workstations: bevelled Motif chrome, italic menus, thumbwheels, pink path fields, teal icon views.",
+    "demo": "_site",
+    "preview": "screenshots/screenshot.png"
+  },
+  "style": "dist/bootstra-irix.css",
+  "main": "dist/bootstra-irix.css",
+  "files": [
+    "dist/",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "lint": "stylelint \"src/**/*.css\" && node --check src/bootstra-irix.js",
+    "test": "npm run lint && npm run build"
+  },
+  "keywords": [
+    "bootstrap",
+    "bootstrap5",
+    "theme",
+    "css",
+    "retro",
+    "90s",
+    "irix",
+    "sgi",
+    "indigo-magic",
+    "motif"
+  ],
+  "author": "Artem Bloschinsky",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bloschinsky/bootstra-themes.git",
+    "directory": "packages/bootstra-irix"
+  },
+  "homepage": "https://bloschinsky.github.io/bootstra-themes/themes/bootstra-irix/",
+  "bugs": {
+    "url": "https://github.com/bloschinsky/bootstra-themes/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "peerDependencies": {
+    "bootstrap": "^5.3.0"
+  },
+  "devDependencies": {
+    "stylelint": "^17.16.0",
+    "stylelint-config-recommended": "^18.0.0"
+  }
+}

@@ -1,0 +1,814 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Components — bootstra-irix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,700;1,400;1,700&family=Cousine:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="dist/bootstra-irix.css">
+<style>
+  :root { box-sizing: border-box; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+  html { scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 12px); background: var(--ix-desk); }
+  body { background: var(--ix-desk); }
+  .docs { display: grid; gap: 16px; padding: 12px; max-width: 1280px; margin: 0 auto; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 992px) {
+    .docs { grid-template-columns: 240px minmax(0, 1fr); padding: 16px; }
+    .docs-toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px); align-self: start; max-height: calc(100vh - 32px); }
+    .docs-toc .ix-list { max-height: calc(100vh - 120px); }
+  }
+  .docs-main { min-width: 0; display: flex; flex-direction: column; gap: 16px; }
+  .docs-main > .ix-window + .ix-window { margin-top: 0; }
+  .docs-toc .ix-list { max-height: none; }
+  .docs-toc .list-group-item { font-size: 13px; }
+  .docs-toc .toc-group { font-style: italic; font-weight: 700; padding: 6px 6px 2px; color: var(--ix-text-muted); font-size: 12px; }
+  .docs-intro h1 { font-size: 28px; font-weight: 700; font-style: italic; margin: 0 0 6px; letter-spacing: -.01em; }
+  .docs-intro p { max-width: 68ch; }
+  .lead-line { max-width: 70ch; margin-bottom: 10px; }
+  .doc-example { background: var(--ix-desk); padding: 14px; box-shadow: var(--ix-sink2); margin: 8px 0 0; overflow-x: auto; }
+  .doc-example--chrome { background: var(--ix-chrome); color: var(--ix-text); }
+  .doc-example > .ix-window { max-width: 560px; }
+  .doc-code-wrap { position: relative; margin-top: 4px; }
+  .doc-code { margin: 0; background: var(--ix-view-navajo); color: var(--ix-view-text); font: 12px/1.45 var(--ix-mono); padding: 10px 12px; box-shadow: var(--ix-sink2); max-height: 320px; overflow: auto; white-space: pre; }
+  .doc-copy { position: absolute; top: 6px; right: 18px; min-width: 0; }
+  .doc-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 6px; }
+  .swatch { display: flex; gap: 8px; align-items: center; font-size: 12px; }
+  .swatch i { flex: 0 0 34px; height: 22px; box-shadow: inset 0 0 0 1px #000; }
+  .swatch code { background: none; padding: 0; }
+  .scheme-strip { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px; }
+  .scheme-strip > div { padding: 8px; background: var(--ix-desk); box-shadow: var(--ix-sink2); }
+  .icon-table .ix-icon { width: auto; }
+  h3.doc-h { font-size: 14px; font-weight: 700; font-style: italic; margin: 16px 0 4px; }
+  h3.doc-h:first-child { margin-top: 0; }
+</style>
+</head>
+<body class="ix-desktop">
+
+<div class="docs">
+
+  <!-- Contents -->
+  <aside class="docs-toc" data-ix-layer>
+    <nav class="ix-window" aria-label="Contents">
+      <header class="ix-titlebar">
+        <span class="ix-tbtn ix-tbtn--menu" aria-hidden="true"></span>
+        <span class="ix-title">Contents</span>
+        <button class="ix-tbtn ix-tbtn--max d-lg-none" data-bs-toggle="collapse" data-bs-target="#toc" aria-expanded="false" aria-controls="toc" aria-label="Show contents"></button>
+      </header>
+      <div class="collapse d-lg-block" id="toc">
+        <div class="ix-list list-group mt-1">
+          <div class="toc-group">Start</div>
+          <a class="list-group-item list-group-item-action" href="#start">Getting started</a>
+          <a class="list-group-item list-group-item-action" href="#schemes">Colour schemes</a>
+          <a class="list-group-item list-group-item-action" href="#tokens">Tokens</a>
+          <div class="toc-group">Desktop</div>
+          <a class="list-group-item list-group-item-action" href="#window">Window</a>
+          <a class="list-group-item list-group-item-action" href="#menubar">Menu bar &amp; menus</a>
+          <a class="list-group-item list-group-item-action" href="#toolchest">Toolchest</a>
+          <a class="list-group-item list-group-item-action" href="#desk-icons">Desktop icons</a>
+          <a class="list-group-item list-group-item-action" href="#clock">Clock</a>
+          <div class="toc-group">Views</div>
+          <a class="list-group-item list-group-item-action" href="#views">Icon views</a>
+          <a class="list-group-item list-group-item-action" href="#iconset">Icon set</a>
+          <a class="list-group-item list-group-item-action" href="#pathbar">Path bar &amp; drop pocket</a>
+          <a class="list-group-item list-group-item-action" href="#ix-tabs">Catalog tabs</a>
+          <div class="toc-group">Controls</div>
+          <a class="list-group-item list-group-item-action" href="#thumbwheel">Thumbwheel</a>
+          <a class="list-group-item list-group-item-action" href="#buttons">Buttons</a>
+          <a class="list-group-item list-group-item-action" href="#fields">Text fields &amp; option menus</a>
+          <a class="list-group-item list-group-item-action" href="#checks">Checks, radios, switches</a>
+          <a class="list-group-item list-group-item-action" href="#range">Range</a>
+          <a class="list-group-item list-group-item-action" href="#groups">Input groups &amp; frames</a>
+          <div class="toc-group">Content</div>
+          <a class="list-group-item list-group-item-action" href="#tables">Tables</a>
+          <a class="list-group-item list-group-item-action" href="#lists">Lists</a>
+          <a class="list-group-item list-group-item-action" href="#meters">Meters</a>
+          <a class="list-group-item list-group-item-action" href="#alerts">Notifiers</a>
+          <a class="list-group-item list-group-item-action" href="#badges">Badges</a>
+          <a class="list-group-item list-group-item-action" href="#cards">Cards</a>
+          <a class="list-group-item list-group-item-action" href="#terminal">Terminal</a>
+          <div class="toc-group">Overlays &amp; navigation</div>
+          <a class="list-group-item list-group-item-action" href="#modals">Modals</a>
+          <a class="list-group-item list-group-item-action" href="#toasts">Toasts &amp; tooltips</a>
+          <a class="list-group-item list-group-item-action" href="#navs">Nav tabs &amp; pagination</a>
+          <a class="list-group-item list-group-item-action" href="#utilities">Utilities</a>
+        </div>
+      </div>
+    </nav>
+  </aside>
+
+  <main class="docs-main">
+
+    <!-- Intro -->
+    <section class="ix-window is-active docs-intro" id="start">
+      <header class="ix-titlebar">
+        <span class="ix-tbtn ix-tbtn--menu" aria-hidden="true"></span>
+        <span class="ix-title">bootstra-irix — Component Reference</span>
+      </header>
+      <nav class="ix-menubar" data-ix-layer>
+        <a href="index.html" data-demo-link><u>D</u>emo desktop</a>
+        <div class="dropdown"><a href="#" class="ix-menu-item" data-bs-toggle="dropdown" aria-expanded="false"><u>S</u>cheme</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#" data-ix-scheme="auto">Follow system</a></li>
+            <li><a class="dropdown-item" href="#" data-ix-scheme="indigo">IndigoMagic</a></li>
+            <li><a class="dropdown-item" href="#" data-ix-scheme="keywest">KeyWest</a></li>
+            <li><a class="dropdown-item" href="#" data-ix-scheme="pacific">Pacific</a></li>
+            <li><a class="dropdown-item" href="#" data-ix-scheme="mendocino">Mendocino</a></li>
+            <li><a class="dropdown-item" href="#" data-ix-scheme="potrero">Potrero</a></li>
+          </ul>
+        </div>
+        <a href="#utilities"><u>R</u>eference</a>
+      </nav>
+      <div class="ix-window-body">
+        <h1>bootstra-irix</h1>
+        <p>Every component in the theme, each with a live example and the markup to copy. Load Bootstrap 5.3 first, then the theme. The JavaScript file is optional: without it, thumbwheels, clocks, view modes and window buttons are static.</p>
+        <div class="doc-code-wrap"><pre class="doc-code">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"&gt;
+&lt;link rel="stylesheet" href="dist/bootstra-irix.css"&gt;
+
+&lt;body class="ix-desktop"&gt;
+  …
+  &lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;
+  &lt;script src="dist/bootstra-irix.js"&gt;&lt;/script&gt;
+&lt;/body&gt;</pre></div>
+      </div>
+    </section>
+
+    <!-- Schemes -->
+    <section class="ix-window" id="schemes">
+      <header class="ix-titlebar"><span class="ix-tbtn ix-tbtn--menu" aria-hidden="true"></span><span class="ix-title">Colour schemes</span></header>
+      <div class="ix-window-body">
+        <p class="lead-line">Put <code>data-scheme</code> on <code>&lt;html&gt;</code> for the whole page, or on any element to scope it. With no attribute the theme follows the system: IndigoMagic in light mode, Potrero in dark mode. Buttons with <code>data-ix-scheme</code> switch and remember the choice.</p>
+        <div class="doc-example doc-example--chrome">
+          <div class="doc-row">
+            <button class="btn btn-sm" data-ix-scheme="auto">Follow system</button>
+            <button class="btn btn-sm" data-ix-scheme="indigo">IndigoMagic</button>
+            <button class="btn btn-sm" data-ix-scheme="keywest">KeyWest</button>
+            <button class="btn btn-sm" data-ix-scheme="pacific">Pacific</button>
+            <button class="btn btn-sm" data-ix-scheme="mendocino">Mendocino</button>
+            <button class="btn btn-sm" data-ix-scheme="potrero">Potrero</button>
+          </div>
+        </div>
+        <h3 class="doc-h mt-3">Scoped previews</h3>
+        <div class="scheme-strip" data-no-code>
+          <div data-scheme="indigo"><div class="ix-window"><div class="ix-titlebar"><span class="ix-title">IndigoMagic</span></div><div class="ix-window-body"><input class="form-control form-control-sm" value="/usr/people" aria-label="Sample"><div class="ix-view ix-view--teal mt-1 p-1" style="min-height:30px"></div></div></div></div>
+          <div data-scheme="keywest"><div class="ix-window"><div class="ix-titlebar"><span class="ix-title">KeyWest</span></div><div class="ix-window-body"><input class="form-control form-control-sm" value="/usr/people" aria-label="Sample"><div class="ix-view ix-view--teal mt-1 p-1" style="min-height:30px"></div></div></div></div>
+          <div data-scheme="pacific"><div class="ix-window"><div class="ix-titlebar"><span class="ix-title">Pacific</span></div><div class="ix-window-body"><input class="form-control form-control-sm" value="/usr/people" aria-label="Sample"><div class="ix-view ix-view--teal mt-1 p-1" style="min-height:30px"></div></div></div></div>
+          <div data-scheme="mendocino"><div class="ix-window"><div class="ix-titlebar"><span class="ix-title">Mendocino</span></div><div class="ix-window-body"><input class="form-control form-control-sm" value="/usr/people" aria-label="Sample"><div class="ix-view ix-view--teal mt-1 p-1" style="min-height:30px"></div></div></div></div>
+          <div data-scheme="potrero"><div class="ix-window"><div class="ix-titlebar"><span class="ix-title">Potrero</span></div><div class="ix-window-body"><input class="form-control form-control-sm" value="/usr/people" aria-label="Sample"><div class="ix-view ix-view--teal mt-1 p-1" style="min-height:30px"></div></div></div></div>
+        </div>
+        <div class="doc-code-wrap"><pre class="doc-code">&lt;html data-scheme="keywest"&gt;            &lt;!-- whole page --&gt;
+&lt;div data-scheme="potrero"&gt;…&lt;/div&gt;      &lt;!-- one region --&gt;
+&lt;html data-theme="dark"&gt;                &lt;!-- force automatic choice --&gt;
+&lt;script&gt;BootstraIrix.setScheme("pacific")&lt;/script&gt;</pre></div>
+      </div>
+    </section>
+
+    <!-- Tokens -->
+    <section class="ix-window" id="tokens">
+      <header class="ix-titlebar"><span class="ix-tbtn ix-tbtn--menu" aria-hidden="true"></span><span class="ix-title">Tokens</span></header>
+      <div class="ix-window-body">
+        <p class="lead-line">All colours are custom properties, so swatches below change with the scheme. Define your own scheme by redefining them under <code>[data-scheme="yours"]</code>.</p>
+        <div class="swatch-grid" id="swatches"></div>
+      </div>
+    </section>
+
+    <!-- Window -->
+    <section class="ix-window" id="window">
+      <header class="ix-titlebar"><span class="ix-tbtn ix-tbtn--menu" aria-hidden="true"></span><span class="ix-title">Window</span></header>
+      <div class="ix-window-body">
+        <p class="lead-line"><code>.ix-window</code> is the bevelled frame. The title bar holds the window-menu button on the left and shade / maximize on the right; both work with the JS. Add <code>data-ix-drag</code> to drag by the title bar on wide screens, and <code>.is-active</code> for the highlighted title.</p>
+        <div class="doc-example">
+          <section class="ix-window is-active">
+            <header class="ix-titlebar">
+              <button class="ix-tbtn ix-tbtn--menu" aria-label="Window menu"></button>
+              <h2 class="ix-title m-0">jot: notes.txt</h2>
+              <button class="ix-tbtn ix-tbtn--min" aria-label="Shade window"></button>
+              <button class="ix-tbtn ix-tbtn--max" aria-label="Maximize window"></button>
+            </header>
+            <nav class="ix-menubar">
+              <a href="#"><u>F</u>ile</a><a href="#"><u>E</u>dit</a>
+              <a href="#" class="ix-menu-help"><u>H</u>elp</a>
+            </nav>
+            <div class="ix-window-body">
+              <textarea class="form-control" rows="3" aria-label="Notes">Render farm back up at 18:00.</textarea>
+            </div>
+            <div class="ix-statusline">Line 1, column 1</div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menubar -->
+    <section class="ix-window" id="menubar">
+      <header class="ix-titlebar"><span class="ix-tbtn ix-tbtn--menu" aria-hidden="true"></span><span class="ix-title">Menu bar &amp; menus</span></header>
+      <div class="ix-window-body">
+        <p class="lead-line">Menu titles are italic bold with the mnemonic underlined (<code>&lt;u&gt;</code>). Use Bootstrap dropdowns inside; <code>.ix-menu-help</code> pushes Help to the right. Keyboard hints go in <code>&lt;kbd&gt;</code>. Open menus always float above other windows.</p>
+        <div class="doc-example doc-example--chrome">
+          <nav class="ix-menubar">
+            <div class="dropdown">
+              <a href="#" class="ix-menu-item" data-bs-toggle="dropdown" aria-expanded="false"><u>S</u>elected</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Open <kbd>Enter</kbd></a></li>
+                <li><a class="dropdown-item" href="#">Duplicate <kbd>Ctrl+D</kbd></a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><h6 class="dropdown-header">Dangerous</h6></li>
+                <li><a class="dropdown-item" href="#">Move to Dumpster</a></li>
+                <li><a class="dropdown-item disabled" aria-disabled="true">Empty Dumpster</a></li>
+              </ul>
+            </div>
+            <div class="dropdown">
+              <a href="#" class="ix-menu-item" data-bs-toggle="dropdown" aria-expanded="false"><u>V</u>iew</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item active" href="#">As Icons</a></li>
+                <li><a class="dropdown-item" href="#">As List</a></li>
+              </ul>
+            </div>
+            <a href="#" class="ix-menu-help"><u>H</u>elp</a>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <!-- Toolchest -->
+    <section class="ix-window" id="toolchest">
+      <header class="ix-titlebar"><span class="ix-tbtn ix-tbtn--menu" aria-hidden="true"></span><span class="ix-title">Toolchest</span></header>
+      <div class="ix-window-body">
+        <p class="lead-line">The cascading launcher from the top-left of the desktop. Each entry is a <code>.dropend</code>. If the Toolchest is not inside a window, put <code>data-ix-layer</code> on its container so open menus are raised above windows.</p>
+        <div class="doc-example" data-ix-layer>
+          <nav class="ix-toolchest">
+            <div class="ix-toolchest-title">Toolchest</div>
+            <div class="dropend">
+              <button class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Desktop</button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Open Icon Catalog</a></li>
+                <li><a class="dropdown-item" href="#">Home Directory <kbd>Alt+H</kbd></a></li>
+              </ul>
+            </div>
+            <div class="dropend">
+              <button class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">System</button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">System Monitor</a></li>
+                <li><a class="dropdown-item" href="#">Log Out…</a></li>
+              </ul>
+            </div>
+            <a class="ix-toolchest-item" href="#">Help</a>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <!-- Desktop icons -->
+    <section class="ix-window" id="desk-icons">
+      <header class="ix-titlebar"><span class="ix-tbtn ix-tbtn--menu" aria-hidden="true"></span><span class="ix-title">Desktop icons</span></header>
+      <div class="ix-window-body">
+        <p class="lead-line">Icons that sit directly on the desktop get a boxed label. Wrap them in <code>.ix-desk-icons</code> so clicks select one at a time.</p>
+        <div class="doc-example">
+          <div class="ix-desk-icons d-flex flex-wrap gap-2">
+            <button class="ix-desk-icon"><i class="ix-ico-media"></i><span>camera</span></button>
+            <button class="ix-desk-icon"><i class="ix-ico-folder"></i><span>kaya</span></button>
+            <button class="ix-desk-icon"><i class="ix-ico-cdrom"></i><span>CDROM</span></button>
+            <button class="ix-desk-icon"><i class="ix-ico-dumpster"></i><span>dumpster</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Clock -->
+    <section class="ix-window" id="clock">
+      <header class="ix-titlebar"><span class="ix-tbtn ix-tbtn--menu" aria-hidden="true"></span><span class="ix-title">Clock</span></header>
+      <div class="ix-window-body">
+        <p class="lead-line">An analog desk clock. The JS draws the face into any element with <code>data-ix-clock</code> and ticks every second.</p>
+        <div class="doc-example">
+          <div class="ix-clock" data-ix-clock></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Views -->
+    <section class="ix-window" id="views">
+      <header class="ix-titlebar"><span class="ix-tbtn ix-tbtn--menu" aria-hidden="true"></span><span class="ix-title">Icon views</span></header>
+      <div class="ix-window-body">
+        <p class="lead-line">A view is a sunken area in one of four SGI colours: <code>--teal</code> for directories, <code>--cadet</code> for shelves, <code>--catalog</code> for the Icon Catalog and <code>--navajo</code> for search results. The tool strip on the left switches modes (<code>data-ix-view="icons|list|compact"</code>), opens a find bar (<code>data-ix-find</code>), and a thumbwheel resizes icons.</p>
+        <div class="doc-example">
+          <section class="ix-window">
+            <header class="ix-titlebar"><button class="ix-tbtn ix-tbtn--menu" aria-label="Window menu"></button><h2 class="ix-title m-0">/usr/people/kaya</h2></header>
+            <div class="ix-viewframe">
+              <div class="ix-vtools">
+                <button class="ix-vbtn ix-vbtn--icons active" data-ix-view="icons" aria-label="Icon view"></button>
+                <button class="ix-vbtn ix-vbtn--list" data-ix-view="list" aria-label="List view"></button>
+                <button class="ix-vbtn ix-vbtn--grid" data-ix-view="compact" aria-label="Compact view"></button>
+                <button class="ix-vbtn ix-vbtn--face" data-ix-find aria-label="Find an icon"></button>
+                <div class="ix-thumbwheel" data-min="24" data-max="72" data-step="2" data-value="48" data-icon-size aria-label="Icon size"></div>
+                <button class="ix-vbtn ix-vbtn--stop" aria-label="Stop"></button>
+              </div>
+              <div class="ix-view ix-view--teal" style="min-height:220px">
+                <div class="ix-icons" role="listbox" aria-label="Files">
+                  <button class="ix-icon" role="option"><i class="ix-ico-folder"></i><span>Mail</span><small>dir</small></button>
+                  <button class="ix-icon" role="option"><i class="ix-ico-folder"></i><span>freeware</span><small>dir</small></button>
+                  <button class="ix-icon" role="option"><i class="ix-ico-media"></i><span>gamemusic.aifc</span><small>2.3 MB</small></button>
+                  <button class="ix-icon" role="option"><i class="ix-ico-file"></i><span>image1.rgb</span><small>3.8 MB</small></button>
+                  <button class="ix-icon" role="option"><i class="ix-ico-file"></i><span>image2.rgb</span><small>3.8 MB</small></button>
+                  <button class="ix-icon" role="option"><i class="ix-ico-terminal"></i><span>worker</span><small>exec</small></button>
+                  <button class="ix-icon" role="option"><i class="ix-ico-dumpster"></i><span>dumpster</span><small>4 items</small></button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <h3 class="doc-h mt-3">View colours</h3>
+        <div class="doc-example doc-example--chrome">
+          <div class="row g-2">
+            <div class="col-6 col-md-3"><div class="ix-view ix-view--teal" style="min-height:60px">teal</div></div>
+            <div class="col-6 col-md-3"><div class="ix-view ix-view--cadet" style="min-height:60px">cadet</div></div>
+            <div class="col-6 col-md-3"><div class="ix-view ix-view--catalog" style="min-height:60px">catalog</div></div>
+            <div class="col-6 col-md-3"><div class="ix-view ix-view--navajo" style="min-height:60px">navajo</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Icon set -->
+    <section class="ix-window" id="iconset">
+      <header class="ix-titlebar"><span class="ix-tbtn ix-tbtn--menu" aria-hidden="true"></span><span class="ix-title">Icon set</span></header>
+      <div class="ix-window-body">
+        <p class="lead-line">Twelve original isometric icons, drawn as inline SVG. Put the class on an <code>&lt;i&gt;</code> inside <code>.ix-icon</code>, <code>.ix-desk-icon</code> or <code>.ix-droppocket</code>. Tint variants with a CSS <code>filter</code>.</p>
+        <div class="doc-example" data-no-code>
+          <div class="ix-view ix-view--catalog icon-table">
+            <div class="ix-icons" id="icon-list"></div>
+          </div>
+        </div>
+        <div class="doc-code-wrap"><pre class="doc-code">&lt;button class="ix-icon"&gt;&lt;i class="ix-ico-folder"&gt;&lt;/i&gt;&lt;span&gt;Mail&lt;/span&gt;&lt;/button&gt;
+&lt;button class="ix-icon"&gt;&lt;i class="ix-ico-app" style="filter:hue-rotate(140deg)"&gt;&lt;/i&gt;&lt;span&gt;imgview&lt;/span&gt;&lt;/button&gt;</pre></div>
+      </div>
+    </section>
+
+    <!-- Path bar -->
+    <section class="ix-window" id="pathbar">
+      <header class="ix-titlebar"><span class="ix-tbtn ix-tbtn--menu" aria-hidden="true"></span><span class="ix-title">Path bar &amp; drop pocket</span></header>
+      <div class="ix-window-body">
+        <p class="lead-line">The directory-view header: a drop pocket that takes a dragged icon, the pink path field with depth ticks above it (set <code>--ix-path-depth</code>), and the rescan button.</p>
+        <div class="doc-example doc-example--chrome">
+          <div class="ix-pathbar">
+            <button class="ix-droppocket" aria-label="Up one level"><i class="ix-ico-folder-open"></i></button>
+            <div class="ix-path" style="--ix-path-depth: 30%"><input class="form-control" value="/usr/people/kaya/freeware" aria-label="Path"></div>
+            <button class="ix-refresh" aria-label="Rescan"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Catalog tabs -->
+    <section class="ix-window" id="ix-tabs">
+      <header class="ix-titlebar"><span class="ix-tbtn ix-tbtn--menu" aria-hidden="true"></span><span class="ix-title">Catalog tabs (Page <span data-ix-page>1</span> of 3)</span></header>
+      <div class="ix-window-body">
+        <p class="lead-line">Slanted tabs that hang under a view. They are ordinary Bootstrap tabs with <code>.nav.ix-tabs</code>. The active face takes the view colour: default catalog, or <code>.ix-tabs--teal</code> / <code>.ix-tabs--navajo</code>. Give tabs <code>data-page</code> and the window title a <code>data-ix-page</code> span to update “Page N”.</p>
+        <div class="doc-example doc-example--chrome">
+          <div class="ix-view ix-view--catalog tab-content" style="min-height:90px">
+            <div class="tab-pane show active" id="tab-apps" role="tabpanel">Applications: soundeditor, movieplayer, imgview.</div>
+            <div class="tab-pane" id="tab-demos" role="tabpanel">Demos: buttonfly, ideas, insect.</div>
+            <div class="tab-pane" id="tab-tools" role="tabpanel">DesktopTools: jot, xcalc, snapshot.</div>
+          </div>
+          <ul class="nav ix-tabs" role="tablist">
+            <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-apps" data-page="1" role="tab">Applications</button></li>
+            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-demos" data-page="2" role="tab">Demos</button></li>
+            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-tools" data-page="3" role="tab">DesktopTools</button></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Thumbwheel -->
+    <section class="ix-window" id="thumbwheel">
+      <header class="ix-titlebar"><span class="ix-tbtn ix-tbtn--menu" aria-hidden="true"></span><span class="ix-title">Thumbwheel</span></header>
+      <div class="ix-window-body">
+        <p class="lead-line">The ribbed wheel from SGI viewers. Drag it, roll the mouse wheel over it, or focus it and use the arrow keys, Home and End. It is a <code>role="slider"</code> and fires <code>ix:change</code> with <code>detail.value</code>.</p>
+        <div class="doc-example doc-example--chrome">
+          <div class="d-flex align-items-center gap-4 flex-wrap">
+            <div class="ix-thumbwheel" data-min="0" data-max="100" data-value="50" aria-label="Zoom" id="tw-v"></div>
+            <div class="ix-thumbwheel ix-thumbwheel--h" data-min="-180" data-max="180" data-step="5" data-value="0" aria-label="Rotate" id="tw-h"></div>
+            <span class="ix-mono" id="tw-out">zoom 50, rotate 0°</span>
+          </div>
+        </div>
+        <div class="doc-code-wrap"><pre class="doc-code">wheel.addEventListener("ix:change", e =&gt; console.log(e.detail.value));
+wheel.ixSet(75);   // set from code</pre></div>
+      </div>
+    </section>
+
+    <!-- Buttons -->
+    <section class="ix-window" id="buttons">
+      <header class="ix-titlebar"><span class="ix-tbtn ix-tbtn--menu" aria-hidden="true"></span><span class="ix-title">Buttons</span></header>
+      <div class="ix-window-body">
+        <p class="lead-line">Raised Motif buttons that sink when pressed. The default (Enter) button, <code>.btn-primary</code> or <code>.btn-default</code>, gets the extra ring. Row them with <code>.ix-btnrow</code> to space them like an SGI dialog.</p>
+        <div class="doc-example doc-example--chrome">
+          <div class="ix-btnrow">
+            <button class="btn btn-default">OK</button>
+            <button class="btn">Cancel</button>
+            <button class="btn" disabled>Help</button>
+          </div>
+        </div>
+        <h3 class="doc-h mt-3">Colours, sizes, groups</h3>
+        <div class="doc-example doc-example--chrome">
+          <div class="doc-row">
+            <button class="btn btn-success">Start</button>
+            <button class="btn btn-warning">Pause</button>
+            <button class="btn btn-danger">Stop</button>
+            <button class="btn btn-sm">Small</button>
+            <button class="btn btn-lg">Large</button>
+            <button class="btn btn-link">Link</button>
+            <div class="btn-group" role="group" aria-label="Alignment">
+              <input type="radio" class="btn-check" name="al" id="al1" checked><label class="btn btn-sm" for="al1">Left</label>
+              <input type="radio" class="btn-check" name="al" id="al2"><label class="btn btn-sm" for="al2">Center</label>
+              <input type="radio" class="btn-check" name="al" id="al3"><label class="btn btn-sm" for="al3">Right</label>
+            </div>
+          </div>
+        </div>
+        <h3 class="doc-h mt-3">Icon buttons</h3>
+        <div class="doc-example doc-example--chrome">
+          <div class="doc-row">
+            <button class="ix-iconbtn" aria-label="Rewind">&#9664;&#9664;</button>
+            <button class="ix-iconbtn active" aria-label="Play">&#9654;</button>
+            <button class="ix-iconbtn" aria-label="Stop">&#9632;</button>
+            <button class="ix-iconbtn ix-iconbtn--rec" aria-label="Record"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fields -->
+    <section class="ix-window" id="fields">
+      <header class="ix-titlebar"><span class="ix-tbtn ix-tbtn--menu" aria-hidden="true"></span><span class="ix-title">Text fields &amp; option menus</span></header>
+      <div class="ix-window-body">
+        <p class="lead-line">Editable fields are SGI pink; read-only ones turn grey. <code>.form-select</code> becomes an option menu: a raised italic button with the dash indicator.</p>
+        <div class="doc-example doc-example--chrome">
+          <div class="row g-2 align-items-center">
+            <label class="col-sm-3 col-form-label text-sm-end" for="f-name">name</label>
+            <div class="col-sm-4"><select class="form-select" id="f-mode" aria-label="Match mode"><option>matches pattern</option><option>contains</option><option>is exactly</option></select></div>
+            <div class="col-sm-5"><input class="form-control" id="f-name" placeholder="*.rgb"></div>
+            <label class="col-sm-3 col-form-label text-sm-end" for="f-host">host</label>
+            <div class="col-sm-9"><input class="form-control" id="f-host" value="indigo.lab" readonly></div>
+            <label class="col-sm-3 col-form-label text-sm-end" for="f-notes">notes</label>
+            <div class="col-sm-9"><textarea class="form-control" id="f-notes" rows="2">Swap the tape drive.</textarea><div class="form-text">Saved with the host record.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Checks -->
+    <section class="ix-window" id="checks">
+      <header class="ix-titlebar"><span class="ix-tbtn ix-tbtn--menu" aria-hidden="true"></span><span class="ix-title">Checks, radios, switches</span></header>
+      <div class="ix-window-body">
+        <p class="lead-line">Check boxes get the red tick. Radio buttons are Motif diamonds that fill yellow. Switches are a sliding block that turns green.</p>
+        <div class="doc-example doc-example--chrome">
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-check"><input class="form-check-input" type="checkbox" id="c1" checked><label class="form-check-label" for="c1">Only on this host</label></div>
+              <div class="form-check"><input class="form-check-input" type="checkbox" id="c2"><label class="form-check-label" for="c2">Follow links</label></div>
+              <div class="form-check"><input class="form-check-input" type="checkbox" id="c3" disabled><label class="form-check-label" for="c3">Network drives</label></div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-check"><input class="form-check-input" type="radio" name="r" id="r1" checked><label class="form-check-label" for="r1">Create new</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="r" id="r2"><label class="form-check-label" for="r2">Copy existing</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="r" id="r3"><label class="form-check-label" for="r3">Share</label></div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-check form-switch"><input class="form-check-input" type="checkbox" role="switch" id="s1" checked><label class="form-check-label" for="s1">Monitor</label></div>
+              <div class="form-check form-switch"><input class="form-check-input" type="checkbox" role="switch" id="s2"><label class="form-check-label" for="s2">Mute</label></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Range -->
+    <section class="ix-window" id="range">
+      <header class="ix-titlebar"><span class="ix-tbtn ix-tbtn--menu" aria-hidden="true"></span><span class="ix-title">Range</span></header>
+      <div class="ix-window-body">
+        <p class="lead-line">A Motif scale with a bevelled thumb. Add <code>.ix-vrange</code> for the vertical faders of the Audio Panel.</p>
+        <div class="doc-example doc-example--chrome">
+          <div class="d-flex gap-4 align-items-center flex-wrap">
+            <div style="flex:1 1 240px"><label class="form-label" for="rg1">Test depth</label><input type="range" class="form-range" id="rg1" value="40"></div>
+            <input type="range" class="form-range ix-vrange" value="70" aria-label="Gain">
+            <input type="range" class="form-range ix-vrange" value="35" aria-label="Volume">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Groups -->
+    <section class="ix-window" id="groups">
+      <header class="ix-titlebar"><span class="ix-tbtn ix-tbtn--menu" aria-hidden="true"></span><span class="ix-title">Input groups &amp; frames</span></header>
+      <div class="ix-window-body">
+        <p class="lead-line">Input-group labels are raised italic tabs. <code>.ix-frame</code> on a <code>&lt;fieldset&gt;</code> draws the etched Motif group box with its legend on the line.</p>
+        <div class="doc-example doc-example--chrome">
+          <div class="input-group mb-3">
+            <span class="input-group-text">Host</span>
+            <input class="form-control" value="indigo.lab" aria-label="Host">
+            <button class="btn" type="button">Ping</button>
+          </div>
+          <fieldset class="ix-frame">
+            <legend>Analog In</legend>
+            <div class="form-check"><input class="form-check-input" type="radio" name="src" id="src1" checked><label class="form-check-label" for="src1">Microphone</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="src" id="src2"><label class="form-check-label" for="src2">Line</label></div>
+          </fieldset>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tables -->
+    <section class="ix-window" id="tables">
+      <header class="ix-titlebar"><span class="ix-tbtn ix-tbtn--menu" aria-hidden="true"></span><span class="ix-title">Tables</span></header>
+      <div class="ix-window-body">
+        <p class="lead-line">Tables sit on navajo inside a sunken <code>.ix-table-wrap</code>, with raised italic headers. <code>.num</code> right-aligns numbers in the monospace face; <code>.table-active</code> marks the selected row.</p>
+        <div class="doc-example doc-example--chrome">
+          <div class="ix-table-wrap">
+            <table class="table table-sm table-hover">
+              <thead><tr><th>PID</th><th>User</th><th>State</th><th class="num">CPU %</th></tr></thead>
+              <tbody>
+                <tr><td>2847</td><td>kaya</td><td>sleep</td><td class="num">8.0</td></tr>
+                <tr class="table-active"><td>804</td><td>root</td><td>sleep</td><td class="num">4.1</td></tr>
+                <tr><td>961</td><td>kaya</td><td>run</td><td class="num">1.3</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lists -->
+    <section class="ix-window" id="lists">
+      <header class="ix-titlebar"><span class="ix-tbtn ix-tbtn--menu" aria-hidden="true"></span><span class="ix-title">Lists</span></header>
+      <div class="ix-window-body">
+        <p class="lead-line">A scrolling Motif list: <code>.ix-list</code> plus Bootstrap’s <code>.list-group</code>. Items with <code>.list-group-item-action</code> highlight on hover; <code>.active</code> is the selection.</p>
+        <div class="doc-example doc-example--chrome">
+          <div class="ix-list list-group" style="max-width:320px">
+            <button class="list-group-item list-group-item-action active">indigo.lab</button>
+            <button class="list-group-item list-group-item-action">octane2.lab</button>
+            <button class="list-group-item list-group-item-action">onyx.render</button>
+            <button class="list-group-item list-group-item-action" disabled>crimson.old</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Meters -->
+    <section class="ix-window" id="meters">
+      <header class="ix-titlebar"><span class="ix-tbtn ix-tbtn--menu" aria-hidden="true"></span><span class="ix-title">Meters</span></header>
+      <div class="ix-window-body">
+        <p class="lead-line">Bootstrap progress bars become gr_osview meters on black. Stack them for CPU breakdowns. <code>.ix-vu</code> holds segmented level bars; set <code>--level</code> from 0 to 100.</p>
+        <div class="doc-example doc-example--chrome">
+          <div class="ix-osview">
+            <div class="ix-osview-label">CPU0 Usage:
+              <span class="ix-osview-key" style="--k:var(--ix-info)">user</span>
+              <span class="ix-osview-key" style="--k:var(--ix-bad)">sys</span>
+              <span class="ix-osview-key" style="--k:var(--ix-ok)">idle</span>
+            </div>
+            <div class="progress-stacked progress">
+              <div class="progress" role="progressbar" aria-label="user" style="width:32%"><div class="progress-bar bg-info"></div></div>
+              <div class="progress" role="progressbar" aria-label="sys" style="width:14%"><div class="progress-bar bg-danger"></div></div>
+              <div class="progress" role="progressbar" aria-label="idle" style="width:54%"><div class="progress-bar bg-success"></div></div>
+            </div>
+            <div class="ix-osview-label">Memory: <b>128 MB</b></div>
+            <div class="progress" role="progressbar" aria-label="Memory" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-info" style="width:62%">62%</div></div>
+          </div>
+          <div class="ix-vu mt-3" style="width:max-content">
+            <div class="ix-vu-bar" style="--level:72"></div>
+            <div class="ix-vu-bar" style="--level:88"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Alerts -->
+    <section class="ix-window" id="alerts">
+      <header class="ix-titlebar"><span class="ix-tbtn ix-tbtn--menu" aria-hidden="true"></span><span class="ix-title">Notifiers</span></header>
+      <div class="ix-window-body">
+        <p class="lead-line">Alerts render as IRIX notifiers with a glyph. Wrap the text in a <code>&lt;div&gt;</code> so it sits beside the glyph.</p>
+        <div class="doc-example doc-example--chrome">
+          <div class="alert alert-info" role="alert"><div>Probing for video… found.</div></div>
+          <div class="alert alert-success" role="alert"><div>Software installed. Restart the desktop to use it.</div></div>
+          <div class="alert alert-warning" role="alert"><div><div class="alert-heading">Tape drive not responding</div>Check the SCSI cable, then run the test again.</div></div>
+          <div class="alert alert-danger mb-0" role="alert"><div><div class="alert-heading">Disk full</div>/usr has 0 KB free. Empty the dumpster to continue.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Badges -->
+    <section class="ix-window" id="badges">
+      <header class="ix-titlebar"><span class="ix-tbtn ix-tbtn--menu" aria-hidden="true"></span><span class="ix-title">Badges</span></header>
+      <div class="ix-window-body">
+        <p class="lead-line">Small raised status labels.</p>
+        <div class="doc-example doc-example--chrome">
+          <div class="doc-row">
+            <span class="badge">idle</span>
+            <span class="badge text-bg-primary">3 jobs</span>
+            <span class="badge text-bg-success">found</span>
+            <span class="badge text-bg-warning">not present</span>
+            <span class="badge text-bg-danger">failed</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cards -->
+    <section class="ix-window" id="cards">
+      <header class="ix-titlebar"><span class="ix-tbtn ix-tbtn--menu" aria-hidden="true"></span><span class="ix-title">Cards</span></header>
+      <div class="ix-window-body">
+        <p class="lead-line">Cards are lightweight windows: a bevelled panel with a title-bar header. Use them for grids of panels where full window chrome is too much.</p>
+        <div class="doc-example">
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-header">Indigo2 Extreme</div>
+                <div class="card-body"><h5 class="card-title">R4400, 250 MHz</h5><p class="card-text mb-0">128 MB RAM, 2 GB disk, Extreme graphics.</p></div>
+                <div class="card-footer"><button class="btn btn-sm">Details</button></div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-header">Octane</div>
+                <div class="card-body"><h5 class="card-title">R10000, 195 MHz</h5><p class="card-text mb-0">256 MB RAM, SI graphics.</p></div>
+                <div class="card-footer"><button class="btn btn-sm">Details</button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Terminal -->
+    <section class="ix-window" id="terminal">
+      <header class="ix-titlebar"><span class="ix-tbtn ix-tbtn--menu" aria-hidden="true"></span><span class="ix-title">Terminal</span></header>
+      <div class="ix-window-body">
+        <p class="lead-line">winterm’s navy screen. <code>.hi</code> paints the yellow header row of top; <code>.cur</code> is a blinking block cursor that stops when reduced motion is on.</p>
+        <div class="doc-example doc-example--chrome">
+<pre class="ix-term" tabindex="0" aria-label="Terminal output">indigo 1% hinv
+1 150 MHZ IP22 Processor
+Main memory size: 128 Mbytes
+<span class="hi">Graphics board: Indy 24-bit</span>
+indigo 2% <span class="cur"></span></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modals -->
+    <section class="ix-window" id="modals">
+      <header class="ix-titlebar"><span class="ix-tbtn ix-tbtn--menu" aria-hidden="true"></span><span class="ix-title">Modals</span></header>
+      <div class="ix-window-body">
+        <p class="lead-line">Bootstrap modals become dialog windows with a title bar and an etched footer. Put a notifier inside for the IRIX confirm look.</p>
+        <div class="doc-example doc-example--chrome">
+          <button class="btn btn-default" data-bs-toggle="modal" data-bs-target="#demoModal">Log Out…</button>
+          <div class="modal fade" id="demoModal" tabindex="-1" aria-labelledby="demoModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header"><h5 class="modal-title" id="demoModalTitle">Log Out</h5></div>
+                <div class="modal-body">
+                  <div class="alert alert-warning m-0 border-0 p-0 bg-transparent shadow-none"><div>Log out of the desktop? Unsaved work in open applications will be lost.</div></div>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-default" data-bs-dismiss="modal">Log Out</button>
+                  <button class="btn" data-bs-dismiss="modal">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Toasts & tooltips -->
+    <section class="ix-window" id="toasts">
+      <header class="ix-titlebar"><span class="ix-tbtn ix-tbtn--menu" aria-hidden="true"></span><span class="ix-title">Toasts &amp; tooltips</span></header>
+      <div class="ix-window-body">
+        <p class="lead-line">Toasts are small windows. Tooltips are pale yellow help tags with a black outline; initialise them with Bootstrap’s <code>Tooltip</code>.</p>
+        <div class="doc-example doc-example--chrome">
+          <div class="toast show mb-3" role="status" aria-live="polite">
+            <div class="toast-header"><span class="me-auto">Desktop</span><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button></div>
+            <div class="toast-body">Environment set up. Your desktop opens at next login.</div>
+          </div>
+          <button class="btn" data-bs-toggle="tooltip" data-bs-title="Scan the folder again">Rescan</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navs -->
+    <section class="ix-window" id="navs">
+      <header class="ix-titlebar"><span class="ix-tbtn ix-tbtn--menu" aria-hidden="true"></span><span class="ix-title">Nav tabs &amp; pagination</span></header>
+      <div class="ix-window-body">
+        <p class="lead-line">Top tabs for settings panels (use <code>.ix-tabs</code> for catalog-style bottom tabs), and raised page buttons.</p>
+        <div class="doc-example doc-example--chrome">
+          <ul class="nav nav-tabs mb-2" role="tablist">
+            <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#nt-gen" role="tab">General</button></li>
+            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#nt-net" role="tab">Network</button></li>
+          </ul>
+          <div class="tab-content mb-3">
+            <div class="tab-pane show active" id="nt-gen" role="tabpanel">Hostname: indigo.lab</div>
+            <div class="tab-pane" id="nt-net" role="tabpanel">IP address: 192.0.2.10</div>
+          </div>
+          <nav aria-label="Pages">
+            <ul class="pagination pagination-sm m-0">
+              <li class="page-item disabled"><a class="page-link">Prev</a></li>
+              <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <!-- Utilities -->
+    <section class="ix-window" id="utilities">
+      <header class="ix-titlebar"><span class="ix-tbtn ix-tbtn--menu" aria-hidden="true"></span><span class="ix-title">Utilities &amp; class reference</span></header>
+      <div class="ix-window-body">
+        <p class="lead-line">Bevel and type helpers, plus a one-screen index of every theme class.</p>
+        <div class="doc-example doc-example--chrome">
+          <div class="doc-row">
+            <div class="ix-raised p-2">.ix-raised</div>
+            <div class="ix-sunken p-2">.ix-sunken</div>
+            <span class="ix-italic-bold">.ix-italic-bold</span>
+            <span class="ix-mono">.ix-mono</span>
+            <span class="text-ix-muted">.text-ix-muted</span>
+          </div>
+          <hr class="ix-sep">
+        </div>
+        <div class="ix-table-wrap mt-3" data-no-code>
+          <table class="table table-sm">
+            <thead><tr><th>Area</th><th>Classes and attributes</th></tr></thead>
+            <tbody>
+              <tr><td>Desktop</td><td><code>ix-desktop</code> <code>ix-desktop--pattern</code> <code>ix-desk-icons</code> <code>ix-desk-icon</code> <code>ix-toolchest</code> <code>ix-toolchest-title</code> <code>ix-toolchest-item</code> <code>ix-clock</code> <code>data-ix-clock</code> <code>data-ix-layer</code></td></tr>
+              <tr><td>Window</td><td><code>ix-window</code> <code>is-active</code> <code>is-shaded</code> <code>is-max</code> <code>data-ix-drag</code> <code>ix-titlebar</code> <code>ix-title</code> <code>ix-tbtn--menu|min|max</code> <code>ix-menubar</code> <code>ix-menu-item</code> <code>ix-menu-help</code> <code>ix-window-body</code> <code>ix-statusline</code></td></tr>
+              <tr><td>Views</td><td><code>ix-viewframe</code> <code>ix-vtools</code> <code>ix-vbtn--icons|list|grid|face|stop</code> <code>data-ix-view</code> <code>data-ix-find</code> <code>ix-view--teal|cadet|catalog|navajo|chrome</code> <code>ix-icons</code> <code>ix-icons--list|compact</code> <code>ix-icon</code> <code>is-selected</code></td></tr>
+              <tr><td>Controls</td><td><code>ix-thumbwheel</code> <code>ix-thumbwheel--h</code> <code>ix-pathbar</code> <code>ix-path</code> <code>ix-droppocket</code> <code>ix-refresh</code> <code>ix-iconbtn</code> <code>ix-iconbtn--rec</code> <code>ix-btnrow</code> <code>btn-default</code> <code>ix-vrange</code> <code>ix-frame</code></td></tr>
+              <tr><td>Tabs</td><td><code>ix-tabs</code> <code>ix-tabs--teal|navajo</code> <code>data-page</code> <code>data-ix-page</code></td></tr>
+              <tr><td>Content</td><td><code>ix-list</code> <code>ix-table-wrap</code> <code>num</code> <code>ix-term</code> <code>ix-osview</code> <code>ix-osview-label</code> <code>ix-osview-key</code> <code>ix-vu</code> <code>ix-vu-bar</code></td></tr>
+              <tr><td>JS API</td><td><code>BootstraIrix.setScheme(name)</code> <code>BootstraIrix.init()</code> events <code>ix:change</code> <code>ix:scheme</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Capture example markup before any script touches it -->
+<script>
+(function () {
+  "use strict";
+  function dedent(t) {
+    var lines = t.replace(/^\s*\n/, "").replace(/\s+$/, "").split("\n");
+    var pad = Math.min.apply(null, lines.filter(function (l) { return l.trim(); }).map(function (l) { return l.match(/^ */)[0].length; }));
+    return lines.map(function (l) { return l.slice(pad); }).join("\n");
+  }
+  document.querySelectorAll(".doc-example:not([data-no-code])").forEach(function (ex) {
+    var wrap = document.createElement("div"); wrap.className = "doc-code-wrap";
+    var pre = document.createElement("pre"); pre.className = "doc-code"; pre.tabIndex = 0;
+    pre.textContent = dedent(ex.innerHTML).replace(/=""/g, "");
+    var btn = document.createElement("button"); btn.className = "btn btn-sm doc-copy"; btn.type = "button"; btn.textContent = "Copy";
+    btn.addEventListener("click", function () {
+      var done = function () { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy"; }, 1400); };
+      if (navigator.clipboard) navigator.clipboard.writeText(pre.textContent).then(done, function () { btn.textContent = "Select and copy"; });
+    });
+    wrap.appendChild(pre); wrap.appendChild(btn);
+    ex.after(wrap);
+  });
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="dist/bootstra-irix.js"></script>
+<script>
+(function () {
+  "use strict";
+  /* Token swatches */
+  var tokens = ["desk", "chrome", "light", "light2", "dark", "darker", "title", "title-active", "text", "text-muted", "field", "view-teal", "view-cadet", "view-catalog", "view-navajo", "sel", "toggle", "check", "term-bg", "ok", "info", "warn", "bad"];
+  var sw = document.getElementById("swatches");
+  sw.innerHTML = tokens.map(function (t) { return '<div class="swatch"><i style="background:var(--ix-' + t + ')"></i><code>--ix-' + t + '</code></div>'; }).join("");
+
+  /* Icon set */
+  var icons = ["folder", "folder-open", "file", "terminal", "app", "media", "dumpster", "cdrom", "mail", "clock", "printer", "disk"];
+  document.getElementById("icon-list").innerHTML = icons.map(function (n) { return '<button class="ix-icon" type="button"><i class="ix-ico-' + n + '"></i><span>ix-ico-' + n + '</span></button>'; }).join("");
+
+  /* Thumbwheels */
+  document.querySelectorAll("[data-icon-size]").forEach(function (w) {
+    var view = w.closest(".ix-viewframe").querySelector(".ix-view");
+    w.addEventListener("ix:change", function (e) { view.style.setProperty("--ix-icon-size", e.detail.value + "px"); });
+  });
+  var tv = document.getElementById("tw-v"), th = document.getElementById("tw-h"), out = document.getElementById("tw-out");
+  function show() { out.textContent = "zoom " + tv.dataset.value + ", rotate " + th.dataset.value + "°"; }
+  tv.addEventListener("ix:change", show); th.addEventListener("ix:change", show);
+
+  /* Tooltips */
+  document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(function (el) { new bootstrap.Tooltip(el); });
+
+  /* Close the mobile contents after picking a section */
+  var toc = document.getElementById("toc");
+  toc.addEventListener("click", function (e) {
+    if (e.target.closest("a") && window.matchMedia("(max-width: 991.98px)").matches) bootstrap.Collapse.getOrCreateInstance(toc).hide();
+  });
+})();
+</script>
+</body>
+</html>
