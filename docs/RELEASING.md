@@ -95,7 +95,17 @@ Each package needs its own trusted publisher on npmjs.com. The owner sets it und
 | Workflow filename | `release.yml` |
 | Environment name | *(empty)* |
 
-Both `bootstra-html32` and `bootstra-code437` were set up when the repository was still called `bootstra-html32`. After the rename to `bootstra-themes`, the owner must edit the trusted publisher of **each** package and change **Repository** from `bootstra-html32` to `bootstra-themes` (owner `bloschinsky`, workflow `release.yml`, environment empty, as before). Until both are changed, a release tag fails at the publish step with an OIDC error. Do not publish a version just to test the change, and do not add an npm token as a workaround. Versions already on npm keep their old `repository` metadata; the new URLs appear from each package's next release. After setting it up, **Publishing access → Require two-factor authentication and disallow tokens** is recommended.
+Or from the command line, with an npm that has the `trust` command (`npm trust --help`; npm 11.19 has it). The account needs two-factor authentication, and the first request asks for it:
+
+```sh
+npm trust github <name> --repo bloschinsky/bootstra-themes --file release.yml --allow-publish --dry-run   # preview
+npm trust github <name> --repo bloschinsky/bootstra-themes --file release.yml --allow-publish
+npm trust list <name>                                                                                     # check
+```
+
+`--file` is the workflow file name only, without `.github/workflows/`. `--allow-publish` is required: without it the trust grants nothing. Leave out `--env`, since `release.yml` uses no environment.
+
+Both `bootstra-html32` and `bootstra-code437` were set up when the repository was still called `bootstra-html32`. After the rename to `bootstra-themes`, the owner must edit the trusted publisher of **each** package and change **Repository** from `bootstra-html32` to `bootstra-themes` (owner `bloschinsky`, workflow `release.yml`, environment empty, as before). From the command line: `npm trust list <name>` shows the old entry and its id, `npm trust revoke <name> --id=<id>` removes it, and the `npm trust github` command above adds the new one. Until both are changed, a release tag fails at the publish step with an OIDC error. Do not publish a version just to test the change, and do not add an npm token as a workaround. Versions already on npm keep their old `repository` metadata; the new URLs appear from each package's next release. After setting it up, **Publishing access → Require two-factor authentication and disallow tokens** is recommended.
 
 npm only allows a trusted publisher on a package that already exists. A new package's **first** version is therefore published once by the owner from a local machine (`npm login`, then `npm publish --workspace <name>` after `npm test`; scoped packages also need `--access public`). Push its tag afterwards so the GitHub Release is created; the workflow sees the version on npm and skips publishing. Every later version goes through the workflow.
 
