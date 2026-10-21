@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 0.1.0 — 2026-10-21
+
+First public release.
+
 ### Added
 - `bootstra-irix.css` theme for Bootstrap 5.3 in the style of the SGI Indigo Magic desktop: `--ix-*` tokens and `ix-*` classes for the desktop, windows, menu bars, path bars, drop pockets, thumbwheels, icon views, catalog tabs, terminal, gr_osview meters and VU meters.
 - Five colour schemes (`data-scheme`): IndigoMagic (default), KeyWest, Pacific, Mendocino and Potrero (automatic in dark mode).
