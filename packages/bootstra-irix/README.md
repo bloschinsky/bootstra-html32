@@ -14,7 +14,7 @@ Load Bootstrap 5.3 first, then the theme. The script is optional; it adds the be
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstra-irix@0.1/dist/bootstra-irix.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstra-irix@0.1/dist/bootstra-irix.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstra-irix@0.1/dist/bootstra-irix.js"></script> <!-- optional -->
@@ -28,7 +28,7 @@ Load Bootstrap 5.3 first, then the theme. The script is optional; it adds the be
 npm install bootstrap bootstra-irix
 ```
 
-Then link `node_modules/bootstra-irix/dist/bootstra-irix.css` after Bootstrap's stylesheet, and optionally `dist/bootstra-irix.js` after Bootstrap's bundle. Bootstrap is a peer dependency (`^5.3.0`).
+Then link `node_modules/bootstra-irix/dist/bootstra-irix.min.css` (or the readable `bootstra-irix.css`) after Bootstrap's stylesheet, and optionally `dist/bootstra-irix.js` after Bootstrap's bundle. Bootstrap is a peer dependency (`^5.3.0`).
 
 ### Build from source
 
@@ -36,7 +36,7 @@ Then link `node_modules/bootstra-irix/dist/bootstra-irix.css` after Bootstrap's 
 git clone https://github.com/bloschinsky/bootstra-themes.git
 cd bootstra-themes
 npm ci
-npm run build --workspace bootstra-irix   # dist/ and the demo in _site/
+npm run build --workspace bootstra-irix   # dist/bootstra-irix.css, .min.css, .js and the demo in _site/
 ```
 
 ## Behaviours

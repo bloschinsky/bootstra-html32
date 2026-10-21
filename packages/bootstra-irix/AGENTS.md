@@ -32,9 +32,9 @@ Generated, never committed, never edited by hand: `dist/`, `_site/`.
 
 ## Build
 
-- The theme is hand-written; there is no compiler or minifier. `npm run build` runs `scripts/build.mjs`, which copies `src/` to `dist/` unchanged, then assembles the demo in `_site/` from `index.html`, `components.html`, and `dist/`.
+- The theme is hand-written; there is no compiler. `npm run build` runs `scripts/build.mjs`, which writes `dist/bootstra-irix.css` and `dist/bootstra-irix.js` from `src/` with the package version stamped into their banners, minifies the CSS with lightningcss into `dist/bootstra-irix.min.css` (no `targets`, so nothing is prefixed or lowered), then assembles the demo in `_site/` from `index.html`, `components.html`, and `dist/`. The JavaScript is not minified.
 - `_site/` is the `themeCollection.demo` folder. The collection site copies it to `themes/bootstra-irix/`, so both pages must keep loading the theme from `dist/bootstra-irix.css` and `dist/bootstra-irix.js`, and every other link must stay relative.
-- The version in the banner comments of `src/bootstra-irix.css` and `src/bootstra-irix.js` is written by hand; update it together with `package.json` on a release.
+- The banner of each source file starts with ` * bootstra-irix` and carries no version; the build appends ` vX.Y.Z` from `package.json`. Do not write a version into `src/`.
 - Run scripts from the repository root with `--workspace bootstra-irix`, or from this folder. To check the demo, use the root `npm run preview` and open `themes/bootstra-irix/`.
 
 ## Theme rules
@@ -69,7 +69,7 @@ Generated, never committed, never edited by hand: `dist/`, `_site/`.
 
 ## Dependencies
 
-- No runtime dependencies. Development dependencies are `stylelint` and `stylelint-config-recommended`; `lint` also runs `node --check` on the script.
+- No runtime dependencies. Development dependencies are `lightningcss`, `stylelint`, and `stylelint-config-recommended`; `lint` also runs `node --check` on the script.
 - Stylelint uses the recommended config with three rules disabled, so the source keeps its original order: `no-descending-specificity` and `no-duplicate-selectors`, because the single-file cascade adds later overrides (for example the `.ix-vbtn` pressed state) after their base rules; and `declaration-property-value-keyword-no-deprecated`, because icon labels use `word-break: break-word`, which every supported browser still implements.
 
 ## Verification

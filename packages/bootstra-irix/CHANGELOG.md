@@ -8,3 +8,4 @@
 - Restyled Bootstrap components: buttons, forms, cards, dropdowns, tables, list groups, progress, badges, alerts, modals, nav tabs, pagination, tooltips and toasts.
 - Optional `bootstra-irix.js`: thumbwheels, clock, scheme switching, window drag / shade / maximize, icon selection, view modes, find bar, page counters.
 - Demo desktop (`index.html`) and component reference (`components.html`).
+- Minified `bootstra-irix.min.css`; the build stamps the package version into the CSS and JS banners.

@@ -1,5 +1,5 @@
 /*!
- * bootstra-irix v0.1.0 — optional behaviours (no dependencies; Bootstrap JS optional)
+ * bootstra-irix — optional behaviours (no dependencies; Bootstrap JS optional)
  *   [data-ix-thumbwheel]        draggable thumbwheel, fires "ix:change" {value}
  *   [data-ix-clock]             analog desktop clock
  *   [data-ix-scheme="name"]     click to switch colour scheme (persisted)
